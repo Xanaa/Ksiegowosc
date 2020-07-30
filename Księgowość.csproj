@@ -86,10 +86,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Dane\Koszty.txt">
+    <Content Include="Dane\Koszty\Koszty-2020.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Dane\Przychody.txt">
+    <Content Include="Dane\Przychody\Przychody-2020.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="favicon.ico" />

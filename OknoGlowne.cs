@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using Pomocnik;
 
@@ -7,17 +8,36 @@ namespace Księgowość
     public partial class OknoGlowne : Form
     {
         public static string sciezka_startowa = Application.StartupPath;
-        public static string P_Koszty = @"\Dane\Koszty.txt";
-        public static string P_Przychody = @"\Dane\Przychody.txt";
+        public static string F_Dane = @"/Dane";
+        public static string F_Koszty = F_Dane + @"/Koszty";
+        public static string F_Przychody = F_Dane + @"/Przychody";
+        public static string P_Koszty = F_Koszty + @"/Koszty-";
+        public static string P_Przychody = F_Przychody + @"/Przychody-";
 
-        public static string[,] Koszty = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Koszty, 3, "#", ";");
-        public static string[,] Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Przychody, 4, "#", ";");
+        public static string[,] Koszty;
+        public static string[,] Przychody;
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
+        public static string ROK = "1995";
 
         public OknoGlowne()
         {
             InitializeComponent();
+            ROK = DateTime.Now.Year.ToString(); // Obecny rok
+            Wczytaj_rok(ROK);            
+        }
+
+        public void Wczytaj_rok(string rok)
+        {
+            ROK = rok;
+            this.Text = "Księgowość - Rok " + ROK;
+            toolStripComboBox_rok.Text = ROK;
+            Czy_pliki_istnieja(rok);
+            string Koszty_s2 = P_Koszty + rok + ".txt";
+            string Przychody_s2 = P_Przychody + rok + ".txt";
+            Koszty = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Koszty_s2, 3, "#", ";");
+            Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 4, "#", ";");
+
             Wczytaj_Przychody();
             Wczytaj_Koszty();
             Wczytaj_Info_PIT();
@@ -112,5 +132,29 @@ namespace Księgowość
             return decimal.Round((Dochodek* Stawka_PIT),2, MidpointRounding.AwayFromZero);
         }
 
+        public void Czy_pliki_istnieja(string rok)
+        {
+            string[] Do_zapisu = new string[0];
+            string pth_koszty = P_Koszty + rok + ".txt";
+            string pth_przychody = P_Przychody + rok + ".txt";
+            if (!File.Exists(sciezka_startowa + pth_koszty))
+            {
+                Directory.CreateDirectory(sciezka_startowa + F_Koszty);
+                File.WriteAllLines(sciezka_startowa+ pth_koszty, Do_zapisu);
+            }
+            if (!File.Exists(sciezka_startowa + pth_przychody))
+            {
+                Directory.CreateDirectory(sciezka_startowa + F_Przychody);
+                File.WriteAllLines(sciezka_startowa + pth_przychody, Do_zapisu);
+            }
+        }
+
+        private void toolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ROK != toolStripComboBox_rok.Text)
+            {
+                Wczytaj_rok(toolStripComboBox_rok.Text);
+            }
+        }
     }
 }
