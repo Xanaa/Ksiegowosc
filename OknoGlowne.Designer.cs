@@ -51,16 +51,9 @@
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage_Info = new System.Windows.Forms.TabPage();
-            this.dataGrid_PITMiesiecznie = new System.Windows.Forms.DataGridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
-            this.textBox_MiesLimPrzych = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_Roz_mies = new System.Windows.Forms.TabPage();
-            this.tabPage_InfoPIT = new System.Windows.Forms.TabPage();
+            this.dataGrid_PITMiesiecznie = new System.Windows.Forms.DataGridView();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,18 +61,34 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tabPage_InfoPIT = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_MiesLimPrzych = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
+            this.textBox_S_Przychodow = new System.Windows.Forms.TextBox();
+            this.textBox_S_Kosztow = new System.Windows.Forms.TextBox();
+            this.textBox_S_Dochodow = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox_S_ZaliczekPIT = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_S_netto = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Sprzedaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
             this.tabPage_Koszty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).BeginInit();
             this.tabPage_Info.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage_Roz_mies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).BeginInit();
             this.tabPage_InfoPIT.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Glowne
@@ -220,6 +229,30 @@
             this.tabPage_Info.Text = "Info";
             this.tabPage_Info.UseVisualStyleBackColor = true;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Controls.Add(this.tabPage_Roz_mies);
+            this.tabControl1.Controls.Add(this.tabPage_InfoPIT);
+            this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(837, 377);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage_Roz_mies
+            // 
+            this.tabPage_Roz_mies.Controls.Add(this.dataGrid_PITMiesiecznie);
+            this.tabPage_Roz_mies.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Roz_mies.Name = "tabPage_Roz_mies";
+            this.tabPage_Roz_mies.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Roz_mies.Size = new System.Drawing.Size(829, 351);
+            this.tabPage_Roz_mies.TabIndex = 0;
+            this.tabPage_Roz_mies.Text = "Rozliczenie miesięczne";
+            this.tabPage_Roz_mies.UseVisualStyleBackColor = true;
+            // 
             // dataGrid_PITMiesiecznie
             // 
             this.dataGrid_PITMiesiecznie.AllowUserToAddRows = false;
@@ -235,13 +268,119 @@
             this.Column13,
             this.Column10,
             this.Column15,
-            this.Column14,
-            this.Column12});
+            this.Column14});
             this.dataGrid_PITMiesiecznie.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_PITMiesiecznie.Name = "dataGrid_PITMiesiecznie";
             this.dataGrid_PITMiesiecznie.ReadOnly = true;
             this.dataGrid_PITMiesiecznie.Size = new System.Drawing.Size(817, 339);
             this.dataGrid_PITMiesiecznie.TabIndex = 0;
+            // 
+            // Column11
+            // 
+            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column11.HeaderText = "Miesiąc";
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Width = 68;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Format = "C2";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column8.HeaderText = "Przychód";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 76;
+            // 
+            // Column9
+            // 
+            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Format = "C2";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column9.HeaderText = "Koszty";
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 63;
+            // 
+            // Column13
+            // 
+            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle6.Format = "C2";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Column13.HeaderText = "Dochód";
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            this.Column13.Width = 70;
+            // 
+            // Column10
+            // 
+            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle7.Format = "C2";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Column10.HeaderText = "Zaliczka PIT";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 92;
+            // 
+            // Column15
+            // 
+            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle8.Format = "C2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Column15.HeaderText = "Netto";
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            this.Column15.Width = 58;
+            // 
+            // Column14
+            // 
+            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle9.Format = "C2";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle9;
+            this.Column14.HeaderText = "Pozostały limit";
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            this.Column14.Width = 99;
+            // 
+            // tabPage_InfoPIT
+            // 
+            this.tabPage_InfoPIT.Controls.Add(this.label6);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_S_netto);
+            this.tabPage_InfoPIT.Controls.Add(this.label5);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_S_ZaliczekPIT);
+            this.tabPage_InfoPIT.Controls.Add(this.label4);
+            this.tabPage_InfoPIT.Controls.Add(this.label3);
+            this.tabPage_InfoPIT.Controls.Add(this.label2);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Dochodow);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Kosztow);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Przychodow);
+            this.tabPage_InfoPIT.Controls.Add(this.label1);
+            this.tabPage_InfoPIT.Controls.Add(this.textBox_MiesLimPrzych);
+            this.tabPage_InfoPIT.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_InfoPIT.Name = "tabPage_InfoPIT";
+            this.tabPage_InfoPIT.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_InfoPIT.Size = new System.Drawing.Size(829, 351);
+            this.tabPage_InfoPIT.TabIndex = 1;
+            this.tabPage_InfoPIT.Text = "Rozliczenie PIT";
+            this.tabPage_InfoPIT.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(112, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Miesięczny limit przychodów";
+            // 
+            // textBox_MiesLimPrzych
+            // 
+            this.textBox_MiesLimPrzych.Location = new System.Drawing.Point(6, 6);
+            this.textBox_MiesLimPrzych.Name = "textBox_MiesLimPrzych";
+            this.textBox_MiesLimPrzych.ReadOnly = true;
+            this.textBox_MiesLimPrzych.Size = new System.Drawing.Size(100, 20);
+            this.textBox_MiesLimPrzych.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -277,137 +416,92 @@
             this.toolStripComboBox_rok.Name = "toolStripComboBox_rok";
             this.toolStripComboBox_rok.Size = new System.Drawing.Size(121, 21);
             this.toolStripComboBox_rok.Sorted = true;
-            this.toolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBox_rok_SelectedIndexChanged);
+            this.toolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox_rok_SelectedIndexChanged);
             // 
-            // textBox_MiesLimPrzych
+            // textBox_S_Przychodow
             // 
-            this.textBox_MiesLimPrzych.Location = new System.Drawing.Point(6, 6);
-            this.textBox_MiesLimPrzych.Name = "textBox_MiesLimPrzych";
-            this.textBox_MiesLimPrzych.ReadOnly = true;
-            this.textBox_MiesLimPrzych.Size = new System.Drawing.Size(100, 20);
-            this.textBox_MiesLimPrzych.TabIndex = 0;
+            this.textBox_S_Przychodow.Location = new System.Drawing.Point(6, 32);
+            this.textBox_S_Przychodow.Name = "textBox_S_Przychodow";
+            this.textBox_S_Przychodow.ReadOnly = true;
+            this.textBox_S_Przychodow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Przychodow.TabIndex = 2;
             // 
-            // label1
+            // textBox_S_Kosztow
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(112, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Miesięczny limit przychodów";
+            this.textBox_S_Kosztow.Location = new System.Drawing.Point(6, 58);
+            this.textBox_S_Kosztow.Name = "textBox_S_Kosztow";
+            this.textBox_S_Kosztow.ReadOnly = true;
+            this.textBox_S_Kosztow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Kosztow.TabIndex = 3;
             // 
-            // tabControl1
+            // textBox_S_Dochodow
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage_Roz_mies);
-            this.tabControl1.Controls.Add(this.tabPage_InfoPIT);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(837, 377);
-            this.tabControl1.TabIndex = 2;
+            this.textBox_S_Dochodow.Location = new System.Drawing.Point(6, 84);
+            this.textBox_S_Dochodow.Name = "textBox_S_Dochodow";
+            this.textBox_S_Dochodow.ReadOnly = true;
+            this.textBox_S_Dochodow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Dochodow.TabIndex = 4;
             // 
-            // tabPage_Roz_mies
+            // label2
             // 
-            this.tabPage_Roz_mies.Controls.Add(this.dataGrid_PITMiesiecznie);
-            this.tabPage_Roz_mies.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Roz_mies.Name = "tabPage_Roz_mies";
-            this.tabPage_Roz_mies.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Roz_mies.Size = new System.Drawing.Size(829, 351);
-            this.tabPage_Roz_mies.TabIndex = 0;
-            this.tabPage_Roz_mies.Text = "Rozliczenie miesięczne";
-            this.tabPage_Roz_mies.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(112, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(180, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Suma przychodów - PIT36(27) p.107";
             // 
-            // tabPage_InfoPIT
+            // label3
             // 
-            this.tabPage_InfoPIT.Controls.Add(this.label1);
-            this.tabPage_InfoPIT.Controls.Add(this.textBox_MiesLimPrzych);
-            this.tabPage_InfoPIT.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_InfoPIT.Name = "tabPage_InfoPIT";
-            this.tabPage_InfoPIT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_InfoPIT.Size = new System.Drawing.Size(829, 351);
-            this.tabPage_InfoPIT.TabIndex = 1;
-            this.tabPage_InfoPIT.Text = "Rozliczenie PIT";
-            this.tabPage_InfoPIT.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(112, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(162, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Suma kosztów - PIT36(27) p.108";
             // 
-            // Column11
+            // label4
             // 
-            this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column11.HeaderText = "Miesiąc";
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Width = 68;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(112, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(173, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Suma dochodów - PIT36(27) p.109";
             // 
-            // Column8
+            // textBox_S_ZaliczekPIT
             // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "C2";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Column8.HeaderText = "Przychód";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Width = 76;
+            this.textBox_S_ZaliczekPIT.Location = new System.Drawing.Point(6, 110);
+            this.textBox_S_ZaliczekPIT.Name = "textBox_S_ZaliczekPIT";
+            this.textBox_S_ZaliczekPIT.ReadOnly = true;
+            this.textBox_S_ZaliczekPIT.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_ZaliczekPIT.TabIndex = 8;
             // 
-            // Column9
+            // label5
             // 
-            this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Format = "C2";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Column9.HeaderText = "Koszty";
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Width = 63;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(112, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Suma zaliczek PIT";
             // 
-            // Column13
+            // textBox_S_netto
             // 
-            this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "C2";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Column13.HeaderText = "Do podatku";
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            this.Column13.Width = 88;
+            this.textBox_S_netto.Location = new System.Drawing.Point(6, 136);
+            this.textBox_S_netto.Name = "textBox_S_netto";
+            this.textBox_S_netto.ReadOnly = true;
+            this.textBox_S_netto.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_netto.TabIndex = 10;
             // 
-            // Column10
+            // label6
             // 
-            this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Format = "C2";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Column10.HeaderText = "Zaliczka PIT";
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Width = 92;
-            // 
-            // Column15
-            // 
-            this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Format = "C2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Column15.HeaderText = "Netto";
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            this.Column15.Width = 58;
-            // 
-            // Column14
-            // 
-            this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Format = "C2";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle9;
-            this.Column14.HeaderText = "Pozostały limit";
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Width = 99;
-            // 
-            // Column12
-            // 
-            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column12.HeaderText = "P.L.";
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.ToolTipText = "Przekroczenie limitu miesięcznych przychodów";
-            this.Column12.Width = 32;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(112, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Suma netto";
             // 
             // OknoGlowne
             // 
@@ -426,13 +520,13 @@
             this.tabPage_Koszty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).EndInit();
             this.tabPage_Info.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage_Roz_mies.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).EndInit();
             this.tabPage_InfoPIT.ResumeLayout(false);
             this.tabPage_InfoPIT.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -470,7 +564,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column12;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox_S_ZaliczekPIT;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_S_Dochodow;
+        private System.Windows.Forms.TextBox textBox_S_Kosztow;
+        private System.Windows.Forms.TextBox textBox_S_Przychodow;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox_S_netto;
     }
 }
 

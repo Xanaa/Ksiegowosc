@@ -75,18 +75,33 @@ namespace Księgowość
         public void Wczytaj_Info_PIT()
         {
             dataGrid_PITMiesiecznie.Rows.Clear();
+            decimal mies_limit = Podaj_limit_przychodu(ROK);
+            string miech;
+            decimal Przychod;
+            decimal Koszty;
+            decimal Dochod;
+            decimal Zal_PIT;
+            decimal netto;
+            decimal pozostaly_limit;
 
-            for(int a = 0; a < 12; a ++)
+            for (int a = 0; a < 12; a ++)
             {
-                string miech = (a+1).ToString("00");
-                decimal Przychod = Oblicz_Przychody_miesiaca(miech);
-                decimal Koszty = Oblicz_Koszty_miesiaca(miech);
-                decimal Dochody = Oblicz_Dochody_miesiaca(miech);
-                decimal Zal_PIT = Oblicz_Zaliczke_PIT_miesiaca(miech);
-                dataGrid_PITMiesiecznie.Rows.Add(miech, Przychod, Koszty, Dochody, Zal_PIT, false);
+                miech = (a+1).ToString("00");
+                Przychod = Oblicz_Przychody_miesiaca(miech);
+                Koszty = Oblicz_Koszty_miesiaca(miech);
+                Dochod = Oblicz_Dochody_miesiaca(miech);
+                Zal_PIT = Oblicz_Zaliczke_PIT_miesiaca(miech);
+                netto = Dochod - Zal_PIT;
+                pozostaly_limit = mies_limit - Przychod;
+                dataGrid_PITMiesiecznie.Rows.Add(miech, Przychod, Koszty, Dochod, Zal_PIT, netto, pozostaly_limit, false);
             }
 
-            textBox_MiesLimPrzych.Text = Podaj_limit_przychodu(ROK).ToString("C2");
+            textBox_MiesLimPrzych.Text = mies_limit.ToString("C2");
+            textBox_S_Przychodow.Text = Oblicz_Przychody_roku().ToString("C2");
+            textBox_S_Kosztow.Text = Oblicz_Koszty_roku().ToString("C2");
+            textBox_S_Dochodow.Text = Oblicz_Dochody_roku().ToString("C2");
+            textBox_S_ZaliczekPIT.Text = Oblicz_Zaliczke_PIT_roku().ToString("C2");
+            textBox_S_netto.Text = Oblicz_netto_roku().ToString("C2");
         }
 
         public static decimal Oblicz_Przychody_miesiaca(string miesiac)
@@ -176,7 +191,59 @@ namespace Księgowość
             return (Min_Wynagrodzenie * mnoznik_temp);
         }
 
-        private void toolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)
+        public static decimal Oblicz_Przychody_roku()
+        {
+            decimal Zwrot = 0;
+
+            for (int a = 0; a < Przychody.GetLength(0); a++)
+            {
+                decimal kwota = decimal.Parse(Przychody[a, 2]);
+                Zwrot += kwota;
+            }
+
+            return Zwrot;
+        }
+
+        public static decimal Oblicz_Koszty_roku()
+        {
+            decimal Zwrot = 0;
+
+            for (int a = 0; a < Koszty.GetLength(0); a++)
+            {
+                decimal kwota = decimal.Parse(Koszty[a, 1]);
+                Zwrot += kwota;
+            }
+
+            return Zwrot;
+        }
+
+        public static decimal Oblicz_Dochody_roku()
+        {
+            decimal Przychod = Oblicz_Przychody_roku();
+            decimal Koszty = Oblicz_Koszty_roku();
+            return (Przychod - Koszty);
+        }
+
+        public static decimal Oblicz_Zaliczke_PIT_roku()
+        {
+            decimal Dochodek = 0;
+
+            for(int a = 0; a < 12; a ++)
+            {
+                Dochodek += Oblicz_Zaliczke_PIT_miesiaca((a + 1).ToString("00"));
+            }
+
+            return Dochodek;
+        }
+
+        public static decimal Oblicz_netto_roku()
+        {
+            decimal doch = Oblicz_Dochody_roku();
+            decimal PITy = Oblicz_Zaliczke_PIT_roku();
+            return (doch- PITy);
+        }
+
+        private void ToolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ROK != toolStripComboBox_rok.Text)
             {
