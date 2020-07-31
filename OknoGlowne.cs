@@ -2,6 +2,8 @@
 using System.IO;
 using System.Windows.Forms;
 using Pomocnik;
+using GemBox.Document;
+using System.Globalization;
 
 namespace Księgowość
 {
@@ -16,11 +18,13 @@ namespace Księgowość
         public static string P_Przychody = F_Przychody + @"/Przychody-";
         public static string P_Sprzedaz = F_Sprzedaz + @"/Sprzedaż-";
         public static string P_Statystyka = F_Dane + @"/Statystyka.txt";
+        public static string P_Moje_dane = F_Dane + @"/Moje dane.txt";
 
         public static string[,] Koszty;
         public static string[,] Przychody;
         public static string[,] Sprzedaz;
         public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 3, "#", ";");
+        public static string[,] Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
@@ -30,6 +34,7 @@ namespace Księgowość
             InitializeComponent();
             ROK = DateTime.Now.Year.ToString(); // Obecny rok
             Wczytaj_rok(ROK);
+            ComponentInfo.SetLicense("FREE-LIMITED-KEY");
         }
 
         public void Wczytaj_rok(string rok)
@@ -425,6 +430,116 @@ namespace Księgowość
         private void zapiszToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Zapisz();
+        }
+
+        private void dataGrid_Przychody_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var senderGrid = (DataGridView)sender;
+            int Wiersz = e.RowIndex;
+            int liczba_wierszy = dataGrid_Przychody.Rows.GetRowCount(0);
+
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && Wiersz >= 0 && Wiersz < (liczba_wierszy-1))
+            {
+                int kolumna = e.ColumnIndex;
+                if(kolumna == 7)
+                {
+                    Generowanie_rachunku(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
+                } // Rachunek
+                else
+                {
+
+                } // Faktura
+            }
+        }
+
+        public void Generowanie_rachunku(string nr_kol)
+        {
+            string nazwa = "Rachunek-" + nr_kol;
+            var document = new DocumentModel();
+
+            SpecialCharacter lineBreakElement = new SpecialCharacter(document, SpecialCharacterType.LineBreak);
+
+            // Style's font size is 24pt.
+            var largeFont = new CharacterStyle("Large Font") { CharacterFormat = { Size = 24 } };
+            document.Styles.Add(largeFont);
+
+            // Paragraf 1 ////////////////////////////////////
+            var paragraph1 = new Paragraph(document,
+            new Run(document, "Sprzedawca:")
+            {
+                CharacterFormat = { Bold = true }
+            },
+            new SpecialCharacter(document, SpecialCharacterType.LineBreak),
+            new Run(document, Podaj_moje_imie_i_nazwisko()),
+            new SpecialCharacter(document, SpecialCharacterType.LineBreak),
+            new Run(document, Podaj_moj_adres()),
+            new SpecialCharacter(document, SpecialCharacterType.LineBreak),
+            new Run(document, Podaj_moj_kod_i_miasto())
+            );
+
+            // Paragraf 2 ////////////////////////////////////
+            var paragraph2 = new Paragraph(document,
+            new Run(document, "Rachunek " + nr_kol)
+            {
+                CharacterFormat = { Style = largeFont }
+            },
+            new SpecialCharacter(document, SpecialCharacterType.LineBreak),
+            new Run(document, "Data sprzedaży - " + Podaj_date_sprzedazy(nr_kol))
+            {
+                CharacterFormat = { Style = largeFont, Size = 12 }
+            });
+            paragraph2.ParagraphFormat.Alignment = GemBox.Document.HorizontalAlignment.Center;
+
+            document.Sections.Add(
+                new Section(document,
+                   paragraph1,
+                   paragraph2
+                )
+            );
+
+            
+
+            document.Save(@"C:\Users\lary3\Desktop\" + nazwa + ".pdf");
+        }
+
+        public static string Podaj_moje_imie_i_nazwisko()
+        {
+            string zwrot = "";
+            for(int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if(Moje_dane[a,0] == "Imię i nazwisko")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+        public static string Podaj_moj_adres()
+        {
+            string zwrot = "";
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Adres")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+        public static string Podaj_moj_kod_i_miasto()
+        {
+            string zwrot = "";
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Kod i miasto")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
         }
     }
 }

@@ -36,6 +36,10 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GemBox.Document, Version=31.0.0.1215, Culture=neutral, PublicKeyToken=b1b72c69714d4847, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\GemBox Software\GemBox.Document 3.1\Bin\net35\GemBox.Document.dll</HintPath>
+    </Reference>
     <Reference Include="Pomocnik">
       <HintPath>..\Pomocnik\Pomocnik\bin\Debug\Pomocnik.dll</HintPath>
     </Reference>
@@ -93,6 +97,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dane\Sprzedaż\Sprzedaż-2020.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane\Moje dane.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dane\Statystyka.txt">
