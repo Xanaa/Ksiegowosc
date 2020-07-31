@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -36,15 +35,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoGlowne));
             this.tabControl_Glowne = new System.Windows.Forms.TabControl();
             this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
             this.dataGrid_Przychody = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage_Koszty = new System.Windows.Forms.TabPage();
             this.dataGrid_Koszty = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,6 +73,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_S_netto = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Sprzedaz.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -126,48 +126,12 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Column12});
             this.dataGrid_Przychody.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
             this.dataGrid_Przychody.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "Data";
-            this.Column1.Name = "Column1";
-            this.Column1.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
-            this.Column1.Width = 55;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Nr kol.";
-            this.Column2.Name = "Column2";
-            this.Column2.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
-            this.Column2.Width = 63;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "N2";
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column3.HeaderText = "Kwota";
-            this.Column3.Name = "Column3";
-            this.Column3.ToolTipText = "Kwota bez symboli";
-            this.Column3.Width = 62;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Opis";
-            this.Column4.Name = "Column4";
-            this.Column4.ToolTipText = "Nazwa/Właściwości/Opis internetowy";
-            this.Column4.Width = 53;
             // 
             // tabPage_Koszty
             // 
@@ -205,8 +169,8 @@
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "N2";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "N2";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column6.HeaderText = "Kwota";
             this.Column6.Name = "Column6";
             this.Column6.Width = 62;
@@ -286,8 +250,8 @@
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "C2";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Format = "C2";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column8.HeaderText = "Przychód";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -296,8 +260,8 @@
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Format = "C2";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Format = "C2";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
             this.Column9.HeaderText = "Koszty";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
@@ -306,8 +270,8 @@
             // Column13
             // 
             this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "C2";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle5.Format = "C2";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle5;
             this.Column13.HeaderText = "Dochód";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
@@ -316,8 +280,8 @@
             // Column10
             // 
             this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Format = "C2";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle6.Format = "C2";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column10.HeaderText = "Zaliczka PIT";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
@@ -326,8 +290,8 @@
             // Column15
             // 
             this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Format = "C2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle7.Format = "C2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column15.HeaderText = "Netto";
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
@@ -336,8 +300,8 @@
             // Column14
             // 
             this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Format = "C2";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Format = "C2";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column14.HeaderText = "Pozostały limit";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
@@ -503,6 +467,49 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Suma netto";
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column1.HeaderText = "Data";
+            this.Column1.Name = "Column1";
+            this.Column1.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
+            this.Column1.Width = 55;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Nr kol.";
+            this.Column2.Name = "Column2";
+            this.Column2.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
+            this.Column2.Width = 63;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Nabywca";
+            this.Column3.Name = "Column3";
+            this.Column3.ToolTipText = "Nazwa/Imę i nazwisko nabywcy";
+            this.Column3.Width = 77;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Adres";
+            this.Column4.Name = "Column4";
+            this.Column4.ToolTipText = "Ulica i numer budynku/lokalu";
+            this.Column4.Width = 59;
+            // 
+            // Column12
+            // 
+            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column12.HeaderText = "Kod i miasto";
+            this.Column12.Name = "Column12";
+            this.Column12.ToolTipText = "Kod pocztowy i Miasto";
+            this.Column12.Width = 89;
+            // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,10 +551,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.TabPage tabPage_Info;
         private System.Windows.Forms.DataGridView dataGrid_PITMiesiecznie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zmianaRokuToolStripMenuItem;
@@ -574,6 +577,11 @@
         private System.Windows.Forms.TextBox textBox_S_Przychodow;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_S_netto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
     }
 }
 
