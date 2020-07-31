@@ -11,12 +11,15 @@ namespace Księgowość
         public static string F_Dane = @"/Dane";
         public static string F_Koszty = F_Dane + @"/Koszty";
         public static string F_Przychody = F_Dane + @"/Przychody";
+        public static string F_Sprzedaz = F_Dane + @"/Sprzedaż";
         public static string P_Koszty = F_Koszty + @"/Koszty-";
         public static string P_Przychody = F_Przychody + @"/Przychody-";
+        public static string P_Sprzedaz = F_Sprzedaz + @"/Sprzedaż-";
         public static string P_Statystyka = F_Dane + @"/Statystyka.txt";
 
         public static string[,] Koszty;
         public static string[,] Przychody;
+        public static string[,] Sprzedaz;
         public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 3, "#", ";");
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
@@ -37,10 +40,14 @@ namespace Księgowość
             Czy_pliki_istnieja(rok);
             string Koszty_s2 = P_Koszty + rok + ".txt";
             string Przychody_s2 = P_Przychody + rok + ".txt";
+            string Sprzedaz_s2 = P_Sprzedaz + rok + ".txt";
+
+            Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 6, "#", ";");
+            Sprzedaz = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Sprzedaz_s2, 4, "#", ";");
             Koszty = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Koszty_s2, 3, "#", ";");
-            Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 4, "#", ";");
 
             Wczytaj_Przychody();
+            Wczytaj_Sprzedaz();
             Wczytaj_Koszty();
             Wczytaj_Info_PIT();
         }
@@ -49,13 +56,47 @@ namespace Księgowość
         {
             dataGrid_Przychody.Rows.Clear();
 
-            for(int a = 0; a < Przychody.GetLength(0); a++)
+            DateTime Data;
+            string nrkol;
+            string Nabywca;
+            string Adres;
+            string Kod_i_miasto;
+            string Forma_platnosci;
+            decimal Przychod;
+
+            for (int a = 0; a < Przychody.GetLength(0); a++)
             {
-                DateTime Data = DateTime.Parse(Przychody[a, 0]);
-                string nrkol = Przychody[a, 1];
-                decimal kwota = decimal.Parse(Przychody[a, 2]);
-                string Opis = Przychody[a, 3];
-                dataGrid_Przychody.Rows.Add(Data, nrkol, kwota, Opis);
+                Data = DateTime.Parse(Przychody[a, 0]);
+                nrkol = Przychody[a, 1];
+                Nabywca = Przychody[a, 2];
+                Adres = Przychody[a, 3];
+                Kod_i_miasto = Przychody[a, 4];
+                Forma_platnosci = Przychody[a, 5];
+                Przychod = Podaj_przychod_faktury(nrkol);
+
+                dataGrid_Przychody.Rows.Add(Data, nrkol, Nabywca, Adres, Kod_i_miasto, Forma_platnosci, Przychod);
+            }
+        }
+
+        public void Wczytaj_Sprzedaz()
+        {
+            dataGridView_Sprzedaz.Rows.Clear();
+
+            string nrkol;
+            string Opis;
+            decimal cena;
+            decimal ilosc;
+            decimal wartosc;
+
+            for (int a = 0; a < Sprzedaz.GetLength(0); a++)
+            {
+                nrkol = Sprzedaz[a, 0];
+                Opis = Sprzedaz[a, 1];
+                cena = decimal.Parse(Sprzedaz[a, 2]);
+                ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                wartosc = cena * ilosc;
+
+                dataGridView_Sprzedaz.Rows.Add(nrkol, Opis, cena, ilosc, wartosc);
             }
         }
 
@@ -63,11 +104,15 @@ namespace Księgowość
         {
             dataGrid_Koszty.Rows.Clear();
 
+            string nrkol;
+            decimal kwota;
+            string Opis;
+
             for (int a = 0; a < Przychody.GetLength(0); a++)
             {
-                string nrkol = Koszty[a, 0];
-                decimal kwota = decimal.Parse(Koszty[a, 1]);
-                string Opis = Koszty[a, 2];
+                nrkol = Koszty[a, 0];
+                kwota = decimal.Parse(Koszty[a, 1]);
+                Opis = Koszty[a, 2];
                 dataGrid_Koszty.Rows.Add(nrkol, kwota, Opis);
             }
         }
@@ -107,14 +152,18 @@ namespace Księgowość
         public static decimal Oblicz_Przychody_miesiaca(string miesiac)
         {
             decimal Zwrot = 0;
+            string mies;
+            decimal cena;
+            decimal ilosc;
 
-            for (int a = 0; a < Przychody.GetLength(0); a++)
+            for (int a = 0; a < Sprzedaz.GetLength(0); a++)
             {
-                string mies = Przychody[a, 0].Remove(0, 3).Remove(2);
+                mies = Podaj_date_sprzedazy(Sprzedaz[a, 0]).Remove(0, 3).Remove(2);
                 if(mies == miesiac)
                 {
-                    decimal kwota = decimal.Parse(Przychody[a, 2]);
-                    Zwrot += kwota;
+                    cena = decimal.Parse(Sprzedaz[a, 2]);
+                    ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                    Zwrot += cena* ilosc;
                 }
             }
 
@@ -124,13 +173,15 @@ namespace Księgowość
         public static decimal Oblicz_Koszty_miesiaca(string miesiac)
         {
             decimal Zwrot = 0;
+            string mies;
+            decimal kwota;
 
             for (int a = 0; a < Koszty.GetLength(0); a++)
             {
-                string mies = Koszty[a, 0].Remove(2);
+                mies = Podaj_date_sprzedazy(Koszty[a, 0]).Remove(0, 3).Remove(2);
                 if (mies == miesiac)
                 {
-                    decimal kwota = decimal.Parse(Koszty[a, 1]);
+                    kwota = decimal.Parse(Koszty[a, 1]);
                     Zwrot += kwota;
                 }
             }
@@ -195,10 +246,9 @@ namespace Księgowość
         {
             decimal Zwrot = 0;
 
-            for (int a = 0; a < Przychody.GetLength(0); a++)
+            for (int a = 0; a < 12; a++)
             {
-                decimal kwota = decimal.Parse(Przychody[a, 2]);
-                Zwrot += kwota;
+                Zwrot += Oblicz_Przychody_miesiaca((a + 1).ToString("00"));
             }
 
             return Zwrot;
@@ -241,6 +291,40 @@ namespace Księgowość
             decimal doch = Oblicz_Dochody_roku();
             decimal PITy = Oblicz_Zaliczke_PIT_roku();
             return (doch- PITy);
+        }
+
+        public static string Podaj_date_sprzedazy(string nr_kol)
+        {
+            string data = "0";
+            for (int a = 0; a < Przychody.GetLength(0); a++)
+            {
+                if(Przychody[a,1] == nr_kol)
+                {
+                    data = Przychody[a, 0];
+                    break;
+                }
+            }
+            return data;
+        }
+
+        public static decimal Podaj_przychod_faktury(string nr_kol)
+        {
+            decimal kwota = 0;
+            decimal cena;
+            decimal ilosc;
+
+            for (int a = 0; a < Sprzedaz.GetLength(0); a++)
+            {
+                if (Sprzedaz[a,0] == nr_kol)
+                {
+                    cena = decimal.Parse(Sprzedaz[a, 2]);
+                    ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                    kwota += cena * ilosc;
+                }
+            }
+
+
+            return kwota;
         }
 
         private void ToolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)

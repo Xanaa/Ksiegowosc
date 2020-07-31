@@ -28,17 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoGlowne));
             this.tabControl_Glowne = new System.Windows.Forms.TabControl();
-            this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
+            this.tabPage_Przychody = new System.Windows.Forms.TabPage();
             this.dataGrid_Przychody = new System.Windows.Forms.DataGridView();
             this.tabPage_Koszty = new System.Windows.Forms.TabPage();
             this.dataGrid_Koszty = new System.Windows.Forms.DataGridView();
@@ -57,29 +61,38 @@
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage_InfoPIT = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_S_netto = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox_S_ZaliczekPIT = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_S_Dochodow = new System.Windows.Forms.TextBox();
+            this.textBox_S_Kosztow = new System.Windows.Forms.TextBox();
+            this.textBox_S_Przychodow = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_MiesLimPrzych = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
-            this.textBox_S_Przychodow = new System.Windows.Forms.TextBox();
-            this.textBox_S_Kosztow = new System.Windows.Forms.TextBox();
-            this.textBox_S_Dochodow = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox_S_ZaliczekPIT = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox_S_netto = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
+            this.dataGridView_Sprzedaz = new System.Windows.Forms.DataGridView();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl_Glowne.SuspendLayout();
-            this.tabPage_Sprzedaz.SuspendLayout();
+            this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
             this.tabPage_Koszty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).BeginInit();
@@ -89,6 +102,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).BeginInit();
             this.tabPage_InfoPIT.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.tabPage_Sprzedaz.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_Glowne
@@ -96,6 +111,7 @@
             this.tabControl_Glowne.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl_Glowne.Controls.Add(this.tabPage_Przychody);
             this.tabControl_Glowne.Controls.Add(this.tabPage_Sprzedaz);
             this.tabControl_Glowne.Controls.Add(this.tabPage_Koszty);
             this.tabControl_Glowne.Controls.Add(this.tabPage_Info);
@@ -105,16 +121,16 @@
             this.tabControl_Glowne.Size = new System.Drawing.Size(857, 415);
             this.tabControl_Glowne.TabIndex = 0;
             // 
-            // tabPage_Sprzedaz
+            // tabPage_Przychody
             // 
-            this.tabPage_Sprzedaz.Controls.Add(this.dataGrid_Przychody);
-            this.tabPage_Sprzedaz.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Sprzedaz.Name = "tabPage_Sprzedaz";
-            this.tabPage_Sprzedaz.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Sprzedaz.Size = new System.Drawing.Size(849, 389);
-            this.tabPage_Sprzedaz.TabIndex = 0;
-            this.tabPage_Sprzedaz.Text = "Przychody";
-            this.tabPage_Sprzedaz.UseVisualStyleBackColor = true;
+            this.tabPage_Przychody.Controls.Add(this.dataGrid_Przychody);
+            this.tabPage_Przychody.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Przychody.Name = "tabPage_Przychody";
+            this.tabPage_Przychody.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Przychody.Size = new System.Drawing.Size(849, 389);
+            this.tabPage_Przychody.TabIndex = 0;
+            this.tabPage_Przychody.Text = "Przychody";
+            this.tabPage_Przychody.UseVisualStyleBackColor = true;
             // 
             // dataGrid_Przychody
             // 
@@ -127,7 +143,9 @@
             this.Column2,
             this.Column3,
             this.Column4,
-            this.Column12});
+            this.Column12,
+            this.Column16,
+            this.Column22});
             this.dataGrid_Przychody.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
@@ -169,8 +187,8 @@
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "N2";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "N2";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
             this.Column6.HeaderText = "Kwota";
             this.Column6.Name = "Column6";
             this.Column6.Width = 62;
@@ -250,8 +268,8 @@
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "C2";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Format = "C2";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column8.HeaderText = "Przychód";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -260,8 +278,8 @@
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "C2";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Format = "C2";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle8;
             this.Column9.HeaderText = "Koszty";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
@@ -270,8 +288,8 @@
             // Column13
             // 
             this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Format = "C2";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Format = "C2";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle9;
             this.Column13.HeaderText = "Dochód";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
@@ -280,8 +298,8 @@
             // Column10
             // 
             this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "C2";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle10.Format = "C2";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle10;
             this.Column10.HeaderText = "Zaliczka PIT";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
@@ -290,8 +308,8 @@
             // Column15
             // 
             this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Format = "C2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle11.Format = "C2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle11;
             this.Column15.HeaderText = "Netto";
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
@@ -300,8 +318,8 @@
             // Column14
             // 
             this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Format = "C2";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle12.Format = "C2";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle12;
             this.Column14.HeaderText = "Pozostały limit";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
@@ -328,6 +346,91 @@
             this.tabPage_InfoPIT.TabIndex = 1;
             this.tabPage_InfoPIT.Text = "Rozliczenie PIT";
             this.tabPage_InfoPIT.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(112, 139);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Suma netto";
+            // 
+            // textBox_S_netto
+            // 
+            this.textBox_S_netto.Location = new System.Drawing.Point(6, 136);
+            this.textBox_S_netto.Name = "textBox_S_netto";
+            this.textBox_S_netto.ReadOnly = true;
+            this.textBox_S_netto.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_netto.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(112, 113);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Suma zaliczek PIT";
+            // 
+            // textBox_S_ZaliczekPIT
+            // 
+            this.textBox_S_ZaliczekPIT.Location = new System.Drawing.Point(6, 110);
+            this.textBox_S_ZaliczekPIT.Name = "textBox_S_ZaliczekPIT";
+            this.textBox_S_ZaliczekPIT.ReadOnly = true;
+            this.textBox_S_ZaliczekPIT.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_ZaliczekPIT.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(112, 87);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(173, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Suma dochodów - PIT36(27) p.109";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(112, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(162, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Suma kosztów - PIT36(27) p.108";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(112, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(180, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Suma przychodów - PIT36(27) p.107";
+            // 
+            // textBox_S_Dochodow
+            // 
+            this.textBox_S_Dochodow.Location = new System.Drawing.Point(6, 84);
+            this.textBox_S_Dochodow.Name = "textBox_S_Dochodow";
+            this.textBox_S_Dochodow.ReadOnly = true;
+            this.textBox_S_Dochodow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Dochodow.TabIndex = 4;
+            // 
+            // textBox_S_Kosztow
+            // 
+            this.textBox_S_Kosztow.Location = new System.Drawing.Point(6, 58);
+            this.textBox_S_Kosztow.Name = "textBox_S_Kosztow";
+            this.textBox_S_Kosztow.ReadOnly = true;
+            this.textBox_S_Kosztow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Kosztow.TabIndex = 3;
+            // 
+            // textBox_S_Przychodow
+            // 
+            this.textBox_S_Przychodow.Location = new System.Drawing.Point(6, 32);
+            this.textBox_S_Przychodow.Name = "textBox_S_Przychodow";
+            this.textBox_S_Przychodow.ReadOnly = true;
+            this.textBox_S_Przychodow.Size = new System.Drawing.Size(100, 20);
+            this.textBox_S_Przychodow.TabIndex = 2;
             // 
             // label1
             // 
@@ -382,90 +485,75 @@
             this.toolStripComboBox_rok.Sorted = true;
             this.toolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox_rok_SelectedIndexChanged);
             // 
-            // textBox_S_Przychodow
+            // tabPage_Sprzedaz
             // 
-            this.textBox_S_Przychodow.Location = new System.Drawing.Point(6, 32);
-            this.textBox_S_Przychodow.Name = "textBox_S_Przychodow";
-            this.textBox_S_Przychodow.ReadOnly = true;
-            this.textBox_S_Przychodow.Size = new System.Drawing.Size(100, 20);
-            this.textBox_S_Przychodow.TabIndex = 2;
+            this.tabPage_Sprzedaz.Controls.Add(this.dataGridView_Sprzedaz);
+            this.tabPage_Sprzedaz.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Sprzedaz.Name = "tabPage_Sprzedaz";
+            this.tabPage_Sprzedaz.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Sprzedaz.Size = new System.Drawing.Size(849, 389);
+            this.tabPage_Sprzedaz.TabIndex = 3;
+            this.tabPage_Sprzedaz.Text = "Sprzedaż";
+            this.tabPage_Sprzedaz.UseVisualStyleBackColor = true;
             // 
-            // textBox_S_Kosztow
+            // dataGridView_Sprzedaz
             // 
-            this.textBox_S_Kosztow.Location = new System.Drawing.Point(6, 58);
-            this.textBox_S_Kosztow.Name = "textBox_S_Kosztow";
-            this.textBox_S_Kosztow.ReadOnly = true;
-            this.textBox_S_Kosztow.Size = new System.Drawing.Size(100, 20);
-            this.textBox_S_Kosztow.TabIndex = 3;
+            this.dataGridView_Sprzedaz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Sprzedaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Sprzedaz.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column17,
+            this.Column18,
+            this.Column20,
+            this.Column19,
+            this.Column21});
+            this.dataGridView_Sprzedaz.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView_Sprzedaz.Name = "dataGridView_Sprzedaz";
+            this.dataGridView_Sprzedaz.Size = new System.Drawing.Size(837, 377);
+            this.dataGridView_Sprzedaz.TabIndex = 0;
             // 
-            // textBox_S_Dochodow
+            // Column17
             // 
-            this.textBox_S_Dochodow.Location = new System.Drawing.Point(6, 84);
-            this.textBox_S_Dochodow.Name = "textBox_S_Dochodow";
-            this.textBox_S_Dochodow.ReadOnly = true;
-            this.textBox_S_Dochodow.Size = new System.Drawing.Size(100, 20);
-            this.textBox_S_Dochodow.TabIndex = 4;
+            this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column17.HeaderText = "Nr. kol.";
+            this.Column17.Name = "Column17";
+            this.Column17.Width = 66;
             // 
-            // label2
+            // Column18
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(112, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Suma przychodów - PIT36(27) p.107";
+            this.Column18.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column18.HeaderText = "Nazwa";
+            this.Column18.Name = "Column18";
+            this.Column18.Width = 65;
             // 
-            // label3
+            // Column20
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Suma kosztów - PIT36(27) p.108";
+            this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Format = "N2";
+            this.Column20.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column20.HeaderText = "Cena";
+            this.Column20.Name = "Column20";
+            this.Column20.Width = 57;
             // 
-            // label4
+            // Column19
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(112, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Suma dochodów - PIT36(27) p.109";
+            this.Column19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.Column19.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Column19.HeaderText = "Ilość";
+            this.Column19.Name = "Column19";
+            this.Column19.Width = 54;
             // 
-            // textBox_S_ZaliczekPIT
+            // Column21
             // 
-            this.textBox_S_ZaliczekPIT.Location = new System.Drawing.Point(6, 110);
-            this.textBox_S_ZaliczekPIT.Name = "textBox_S_ZaliczekPIT";
-            this.textBox_S_ZaliczekPIT.ReadOnly = true;
-            this.textBox_S_ZaliczekPIT.Size = new System.Drawing.Size(100, 20);
-            this.textBox_S_ZaliczekPIT.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(112, 113);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Suma zaliczek PIT";
-            // 
-            // textBox_S_netto
-            // 
-            this.textBox_S_netto.Location = new System.Drawing.Point(6, 136);
-            this.textBox_S_netto.Name = "textBox_S_netto";
-            this.textBox_S_netto.ReadOnly = true;
-            this.textBox_S_netto.Size = new System.Drawing.Size(100, 20);
-            this.textBox_S_netto.TabIndex = 10;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(112, 139);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Suma netto";
+            this.Column21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle5.Format = "N2";
+            this.Column21.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Column21.HeaderText = "Wartość";
+            this.Column21.Name = "Column21";
+            this.Column21.Width = 72;
             // 
             // Column1
             // 
@@ -510,6 +598,26 @@
             this.Column12.ToolTipText = "Kod pocztowy i Miasto";
             this.Column12.Width = 89;
             // 
+            // Column16
+            // 
+            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column16.HeaderText = "Forma płatności";
+            this.Column16.Items.AddRange(new object[] {
+            "Przelew na konto",
+            "Gotówka"});
+            this.Column16.Name = "Column16";
+            this.Column16.Width = 80;
+            // 
+            // Column22
+            // 
+            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "C2";
+            this.Column22.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column22.HeaderText = "Sprzedaż";
+            this.Column22.Name = "Column22";
+            this.Column22.ReadOnly = true;
+            this.Column22.Width = 76;
+            // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -522,7 +630,7 @@
             this.Name = "OknoGlowne";
             this.Text = "Księgowość";
             this.tabControl_Glowne.ResumeLayout(false);
-            this.tabPage_Sprzedaz.ResumeLayout(false);
+            this.tabPage_Przychody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).EndInit();
             this.tabPage_Koszty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).EndInit();
@@ -534,6 +642,8 @@
             this.tabPage_InfoPIT.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.tabPage_Sprzedaz.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -542,7 +652,7 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabControl_Glowne;
-        private System.Windows.Forms.TabPage tabPage_Sprzedaz;
+        private System.Windows.Forms.TabPage tabPage_Przychody;
         private System.Windows.Forms.DataGridView dataGrid_Przychody;
         private System.Windows.Forms.TabPage tabPage_Koszty;
         private System.Windows.Forms.DataGridView dataGrid_Koszty;
@@ -577,11 +687,20 @@
         private System.Windows.Forms.TextBox textBox_S_Przychodow;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox_S_netto;
+        private System.Windows.Forms.TabPage tabPage_Sprzedaz;
+        private System.Windows.Forms.DataGridView dataGridView_Sprzedaz;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
     }
 }
 

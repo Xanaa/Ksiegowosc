@@ -1,4 +1,4 @@
-﻿01.05.2020;052020.01;10,00;Zasilacz 5V, 2A
-12.06.2020;062020.01;15,00;Zasilacz 12V, 2A
-15.06.2020;062020.02;20,00;Zasilacz 24V, 2A
-29.07.2020;072020.01;15,00;Zasilacz 12V, 2A
+﻿01.05.2020;052020.01;Nabywca1;ul. Uliczna 7/11;01-222 Warszawa;Przelew na konto
+12.06.2020;062020.01;Nabywca2;ul. Bananowa 1;85-123 Bydgoszcz;Przelew na konto
+15.06.2020;062020.02;Nabywca3;ul. Ruska 6/66;85-234 Bydgoszcz;Przelew na konto
+29.07.2020;072020.01;Nabywca4;ul. Demotywująca 1/23;01-333 Warszawa;Przelew na konto

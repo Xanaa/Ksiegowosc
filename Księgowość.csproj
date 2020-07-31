@@ -92,6 +92,9 @@
     <Content Include="Dane\Przychody\Przychody-2020.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Dane\Sprzedaż\Sprzedaż-2020.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Dane\Statystyka.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
