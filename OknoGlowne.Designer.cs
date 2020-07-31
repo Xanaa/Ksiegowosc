@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,12 +40,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoGlowne));
             this.tabControl_Glowne = new System.Windows.Forms.TabControl();
             this.tabPage_Przychody = new System.Windows.Forms.TabPage();
             this.dataGrid_Przychody = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
+            this.dataGridView_Sprzedaz = new System.Windows.Forms.DataGridView();
             this.tabPage_Koszty = new System.Windows.Forms.TabPage();
             this.dataGrid_Koszty = new System.Windows.Forms.DataGridView();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,23 +86,17 @@
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
-            this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
-            this.dataGridView_Sprzedaz = new System.Windows.Forms.DataGridView();
+            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
+            this.tabPage_Sprzedaz.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).BeginInit();
             this.tabPage_Koszty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).BeginInit();
             this.tabPage_Info.SuspendLayout();
@@ -102,8 +105,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).BeginInit();
             this.tabPage_InfoPIT.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.tabPage_Sprzedaz.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl_Glowne
@@ -150,6 +151,97 @@
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
             this.dataGrid_Przychody.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Column1.HeaderText = "Data";
+            this.Column1.Name = "Column1";
+            this.Column1.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
+            this.Column1.Width = 55;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Nr kol.";
+            this.Column2.Name = "Column2";
+            this.Column2.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
+            this.Column2.Width = 59;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Nabywca";
+            this.Column3.Name = "Column3";
+            this.Column3.ToolTipText = "Nazwa/Imę i nazwisko nabywcy";
+            this.Column3.Width = 77;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "Adres";
+            this.Column4.Name = "Column4";
+            this.Column4.ToolTipText = "Ulica i numer budynku/lokalu";
+            this.Column4.Width = 59;
+            // 
+            // Column12
+            // 
+            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column12.HeaderText = "Kod i miasto";
+            this.Column12.Name = "Column12";
+            this.Column12.ToolTipText = "Kod pocztowy i Miasto";
+            this.Column12.Width = 82;
+            // 
+            // Column16
+            // 
+            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column16.HeaderText = "Forma płatności";
+            this.Column16.Items.AddRange(new object[] {
+            "Przelew na konto",
+            "Gotówka"});
+            this.Column16.Name = "Column16";
+            this.Column16.Width = 80;
+            // 
+            // Column22
+            // 
+            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "C2";
+            this.Column22.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column22.HeaderText = "Sprzedaż";
+            this.Column22.Name = "Column22";
+            this.Column22.ReadOnly = true;
+            this.Column22.Width = 76;
+            // 
+            // tabPage_Sprzedaz
+            // 
+            this.tabPage_Sprzedaz.Controls.Add(this.dataGridView_Sprzedaz);
+            this.tabPage_Sprzedaz.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Sprzedaz.Name = "tabPage_Sprzedaz";
+            this.tabPage_Sprzedaz.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage_Sprzedaz.Size = new System.Drawing.Size(849, 389);
+            this.tabPage_Sprzedaz.TabIndex = 3;
+            this.tabPage_Sprzedaz.Text = "Sprzedaż";
+            this.tabPage_Sprzedaz.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView_Sprzedaz
+            // 
+            this.dataGridView_Sprzedaz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_Sprzedaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_Sprzedaz.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column17,
+            this.Column18,
+            this.Column20,
+            this.Column19,
+            this.Column21});
+            this.dataGridView_Sprzedaz.Location = new System.Drawing.Point(6, 6);
+            this.dataGridView_Sprzedaz.Name = "dataGridView_Sprzedaz";
+            this.dataGridView_Sprzedaz.Size = new System.Drawing.Size(837, 377);
+            this.dataGridView_Sprzedaz.TabIndex = 0;
             // 
             // tabPage_Koszty
             // 
@@ -462,8 +554,10 @@
             // 
             // plikToolStripMenuItem
             // 
+            this.plikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.zapiszToolStripMenuItem});
             this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
-            this.plikToolStripMenuItem.Size = new System.Drawing.Size(34, 20);
+            this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem.Text = "Plik";
             // 
             // zmianaRokuToolStripMenuItem
@@ -471,7 +565,7 @@
             this.zmianaRokuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripComboBox_rok});
             this.zmianaRokuToolStripMenuItem.Name = "zmianaRokuToolStripMenuItem";
-            this.zmianaRokuToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.zmianaRokuToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.zmianaRokuToolStripMenuItem.Text = "Zmiana roku";
             // 
             // toolStripComboBox_rok
@@ -481,44 +575,23 @@
             "2020",
             "2021"});
             this.toolStripComboBox_rok.Name = "toolStripComboBox_rok";
-            this.toolStripComboBox_rok.Size = new System.Drawing.Size(121, 21);
+            this.toolStripComboBox_rok.Size = new System.Drawing.Size(121, 23);
             this.toolStripComboBox_rok.Sorted = true;
             this.toolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox_rok_SelectedIndexChanged);
             // 
-            // tabPage_Sprzedaz
+            // zapiszToolStripMenuItem
             // 
-            this.tabPage_Sprzedaz.Controls.Add(this.dataGridView_Sprzedaz);
-            this.tabPage_Sprzedaz.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Sprzedaz.Name = "tabPage_Sprzedaz";
-            this.tabPage_Sprzedaz.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Sprzedaz.Size = new System.Drawing.Size(849, 389);
-            this.tabPage_Sprzedaz.TabIndex = 3;
-            this.tabPage_Sprzedaz.Text = "Sprzedaż";
-            this.tabPage_Sprzedaz.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_Sprzedaz
-            // 
-            this.dataGridView_Sprzedaz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_Sprzedaz.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_Sprzedaz.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column17,
-            this.Column18,
-            this.Column20,
-            this.Column19,
-            this.Column21});
-            this.dataGridView_Sprzedaz.Location = new System.Drawing.Point(6, 6);
-            this.dataGridView_Sprzedaz.Name = "dataGridView_Sprzedaz";
-            this.dataGridView_Sprzedaz.Size = new System.Drawing.Size(837, 377);
-            this.dataGridView_Sprzedaz.TabIndex = 0;
+            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
+            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zapiszToolStripMenuItem.Text = "Zapisz";
+            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.zapiszToolStripMenuItem_Click_1);
             // 
             // Column17
             // 
             this.Column17.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column17.HeaderText = "Nr. kol.";
+            this.Column17.HeaderText = "Nr kol.";
             this.Column17.Name = "Column17";
-            this.Column17.Width = 66;
+            this.Column17.Width = 63;
             // 
             // Column18
             // 
@@ -555,69 +628,6 @@
             this.Column21.Name = "Column21";
             this.Column21.Width = 72;
             // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "Data";
-            this.Column1.Name = "Column1";
-            this.Column1.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
-            this.Column1.Width = 55;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Nr kol.";
-            this.Column2.Name = "Column2";
-            this.Column2.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
-            this.Column2.Width = 63;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Nabywca";
-            this.Column3.Name = "Column3";
-            this.Column3.ToolTipText = "Nazwa/Imę i nazwisko nabywcy";
-            this.Column3.Width = 77;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Adres";
-            this.Column4.Name = "Column4";
-            this.Column4.ToolTipText = "Ulica i numer budynku/lokalu";
-            this.Column4.Width = 59;
-            // 
-            // Column12
-            // 
-            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column12.HeaderText = "Kod i miasto";
-            this.Column12.Name = "Column12";
-            this.Column12.ToolTipText = "Kod pocztowy i Miasto";
-            this.Column12.Width = 89;
-            // 
-            // Column16
-            // 
-            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column16.HeaderText = "Forma płatności";
-            this.Column16.Items.AddRange(new object[] {
-            "Przelew na konto",
-            "Gotówka"});
-            this.Column16.Name = "Column16";
-            this.Column16.Width = 80;
-            // 
-            // Column22
-            // 
-            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "C2";
-            this.Column22.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column22.HeaderText = "Sprzedaż";
-            this.Column22.Name = "Column22";
-            this.Column22.ReadOnly = true;
-            this.Column22.Width = 76;
-            // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -632,6 +642,8 @@
             this.tabControl_Glowne.ResumeLayout(false);
             this.tabPage_Przychody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).EndInit();
+            this.tabPage_Sprzedaz.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).EndInit();
             this.tabPage_Koszty.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Koszty)).EndInit();
             this.tabPage_Info.ResumeLayout(false);
@@ -642,8 +654,6 @@
             this.tabPage_InfoPIT.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tabPage_Sprzedaz.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Sprzedaz)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -689,11 +699,6 @@
         private System.Windows.Forms.TextBox textBox_S_netto;
         private System.Windows.Forms.TabPage tabPage_Sprzedaz;
         private System.Windows.Forms.DataGridView dataGridView_Sprzedaz;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -701,6 +706,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
+        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
     }
 }
 
