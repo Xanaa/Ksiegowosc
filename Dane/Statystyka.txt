@@ -1,0 +1,3 @@
+﻿2019;Minimalne wynagrodzenie;2250
+2020;Minimalne wynagrodzenie;2600
+2021;Minimalne wynagrodzenie;2800

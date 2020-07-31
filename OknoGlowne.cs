@@ -13,9 +13,11 @@ namespace Księgowość
         public static string F_Przychody = F_Dane + @"/Przychody";
         public static string P_Koszty = F_Koszty + @"/Koszty-";
         public static string P_Przychody = F_Przychody + @"/Przychody-";
+        public static string P_Statystyka = F_Dane + @"/Statystyka.txt";
 
         public static string[,] Koszty;
         public static string[,] Przychody;
+        public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 3, "#", ";");
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
@@ -83,6 +85,8 @@ namespace Księgowość
                 decimal Zal_PIT = Oblicz_Zaliczke_PIT_miesiaca(miech);
                 dataGrid_PITMiesiecznie.Rows.Add(miech, Przychod, Koszty, Dochody, Zal_PIT, false);
             }
+
+            textBox_MiesLimPrzych.Text = Podaj_limit_przychodu(ROK).ToString("C2");
         }
 
         public static decimal Oblicz_Przychody_miesiaca(string miesiac)
@@ -147,6 +151,29 @@ namespace Księgowość
                 Directory.CreateDirectory(sciezka_startowa + F_Przychody);
                 File.WriteAllLines(sciezka_startowa + pth_przychody, Do_zapisu);
             }
+        }
+
+        public static decimal Podaj_Minimalne_wynagrodzenie(string rok)
+        {
+            decimal limit = 0;
+
+            for (int a = 0; a < Statystyka.GetLength(0); a++)
+            {
+                if(Statystyka[a,0] == rok && Statystyka[a, 1] == "Minimalne wynagrodzenie")
+                {
+                    limit = decimal.Parse(Statystyka[a, 2]);
+                    break;
+                }
+            }
+
+            return limit;
+        }
+
+        public static decimal Podaj_limit_przychodu(string rok)
+        {
+            decimal Min_Wynagrodzenie = Podaj_Minimalne_wynagrodzenie(rok);
+            decimal mnoznik_temp = decimal.Parse("0,5");
+            return (Min_Wynagrodzenie * mnoznik_temp);
         }
 
         private void toolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)
