@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows.Forms;
 using Pomocnik;
 using GemBox.Document;
-using System.Globalization;
 using GemBox.Document.Tables;
 
 namespace Księgowość
