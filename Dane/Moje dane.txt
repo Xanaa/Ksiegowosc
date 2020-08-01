@@ -1,4 +1,6 @@
-﻿Imię i nazwisko;Jan Kowalski
+﻿# Jeśli sprzedajesz jako firma, wpisz nazwę
+Firma;Janusz-EX D.N.
+Imię i nazwisko;Janusz Kowalski
 Adres;ul. Demotywująca 12/8
 Kod i miasto;85-688 Bydgoszcz
 # Folder zostaw pusty lub podaj z ukośnikiem na końcu

@@ -431,12 +431,12 @@ namespace Księgowość
             }
         }
 
-        private void zapiszToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void ZapiszToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Zapisz();
         }
 
-        private void dataGrid_Przychody_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGrid_Przychody_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
             int Wiersz = e.RowIndex;
@@ -451,7 +451,7 @@ namespace Księgowość
                 } // Rachunek
                 else
                 {
-
+                    // ToDo
                 } // Faktura
             }
         }
@@ -474,8 +474,13 @@ namespace Księgowość
             table.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new Color(255, 255, 255), 1);
             var row = new TableRow(document);
             table.Rows.Add(row);
-            
+
+            string firma = Podaj_moja_firme();
             string sprzedawca = "Sprzedawca:\n";
+            if (firma != "")
+            {
+                sprzedawca += firma + "\n";
+            }
             sprzedawca += Podaj_moje_imie_i_nazwisko() + "\n";
             sprzedawca += Podaj_moj_adres() + "\n";
             sprzedawca += Podaj_moj_kod_i_miasto() + "\n";
@@ -570,6 +575,20 @@ namespace Księgowość
             document.Save(Podaj_folder_rachunkow() + nazwa + ".jpg");
         }
 
+        public static string Podaj_moja_firme()
+        {
+            string zwrot = "";
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Firma")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
         public static string Podaj_moje_imie_i_nazwisko()
         {
             string zwrot = "";
@@ -583,6 +602,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_moj_adres()
         {
             string zwrot = "";
@@ -596,6 +616,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_moj_kod_i_miasto()
         {
             string zwrot = "";
@@ -609,6 +630,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_folder_rachunkow()
         {
             string zwrot = "";
@@ -622,6 +644,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_nazwe_klienta(string nr_kol)
         {
             string zwrot = "";
@@ -635,6 +658,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_adres_klienta(string nr_kol)
         {
             string zwrot = "";
@@ -648,6 +672,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_kod_i_miasto_klienta(string nr_kol)
         {
             string zwrot = "";
@@ -661,6 +686,7 @@ namespace Księgowość
             }
             return zwrot;
         }
+
         public static string Podaj_forme_platnosci_faktury(string nr_kol)
         {
             string zwrot = "";

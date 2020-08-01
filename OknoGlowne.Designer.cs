@@ -153,7 +153,7 @@
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
             this.dataGrid_Przychody.TabIndex = 0;
-            this.dataGrid_Przychody.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_Przychody_CellContentClick);
+            this.dataGrid_Przychody.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Przychody_CellContentClick);
             // 
             // tabPage_Sprzedaz
             // 
@@ -547,7 +547,7 @@
             this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
             this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.zapiszToolStripMenuItem.Text = "Zapisz";
-            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.zapiszToolStripMenuItem_Click_1);
+            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click_1);
             // 
             // zmianaRokuToolStripMenuItem
             // 
