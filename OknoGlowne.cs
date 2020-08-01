@@ -6,6 +6,8 @@ using GemBox.Document;
 using GemBox.Document.Tables;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Threading;
+using System.Globalization;
 
 namespace Księgowość
 {
@@ -34,6 +36,12 @@ namespace Księgowość
         public OknoGlowne()
         {
             InitializeComponent();
+
+            CultureInfo culture;
+            culture = CultureInfo.CreateSpecificCulture("pl-PL");
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
             ROK = DateTime.Now.Year.ToString(); // Obecny rok
             Wczytaj_rok(ROK);
             ComponentInfo.SetLicense("FREE-LIMITED-KEY");
@@ -727,6 +735,7 @@ namespace Księgowość
             image1.Dispose();
             File.Delete(cala_sciezka);
         }
+
         private Image GetCopyImage(string path)
         {
             using (Image im = Image.FromFile(path))

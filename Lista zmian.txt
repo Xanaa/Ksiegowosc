@@ -1,3 +1,6 @@
 ﻿Lista zmian programu Księgowość:
+-1.0.0.1 (01.08.2020r.)
+	-Sztywna kultura wyświetlania -> pl-PL
+
 -1.0.0.0 (01.08.2020r.)
 	-Wypuszczenie wersji podstawowej
