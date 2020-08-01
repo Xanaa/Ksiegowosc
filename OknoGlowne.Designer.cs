@@ -93,7 +93,6 @@
             this.Column16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column23 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column24 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -149,8 +148,7 @@
             this.Column12,
             this.Column16,
             this.Column22,
-            this.Column23,
-            this.Column24});
+            this.Column23});
             this.dataGrid_Przychody.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
@@ -641,13 +639,6 @@
             this.Column23.Text = "";
             this.Column23.Width = 63;
             // 
-            // Column24
-            // 
-            this.Column24.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column24.HeaderText = "Faktura";
-            this.Column24.Name = "Column24";
-            this.Column24.Width = 49;
-            // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -733,7 +724,6 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
         private System.Windows.Forms.DataGridViewButtonColumn Column23;
-        private System.Windows.Forms.DataGridViewButtonColumn Column24;
     }
 }
 
