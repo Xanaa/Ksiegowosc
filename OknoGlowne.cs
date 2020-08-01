@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using Pomocnik;
 using GemBox.Document;
 using GemBox.Document.Tables;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Księgowość
 {
@@ -470,7 +472,7 @@ namespace Księgowość
             var table = new Table(document);
             table.TableFormat.RightToLeft = true;
             table.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
-            table.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new Color(255, 255, 255), 1);
+            table.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new GemBox.Document.Color(255, 255, 255), 1);
             var row = new TableRow(document);
             table.Rows.Add(row);
 
@@ -522,8 +524,8 @@ namespace Księgowość
             var customTableStyle = new TableStyle("GemBox Table");
             document.Styles.Add(customTableStyle);
             var firstRowFormat = customTableStyle.ConditionalFormats[TableStyleFormatType.FirstRow];
-            firstRowFormat.CellFormat.BackgroundColor = new Color(133, 230, 226);
-            customTableStyle.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new Color(0, 0, 0), 1);
+            firstRowFormat.CellFormat.BackgroundColor = new GemBox.Document.Color(133, 230, 226);
+            customTableStyle.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new GemBox.Document.Color(0, 0, 0), 1);
 
             var kol1 = new Paragraph(document, "Nazwa towaru lub usługi");    
             row2.Cells.Add(new TableCell(document, kol1));
@@ -572,6 +574,7 @@ namespace Księgowość
                new Paragraph(document, "Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)));
 
             document.Save(Podaj_folder_rachunkow() + nazwa + ".jpg");
+            Usun_smieci_z_rachunku(nr_kol);
         }
 
         public static string Podaj_moja_firme()
@@ -641,6 +644,11 @@ namespace Księgowość
                     break;
                 }
             }
+
+            if(zwrot == "")
+            {
+                zwrot = sciezka_startowa + "\\";
+            }
             return zwrot;
         }
 
@@ -700,5 +708,32 @@ namespace Księgowość
             return zwrot;
         }
 
-    }
+        public void Usun_smieci_z_rachunku(string nr_kol)
+        {
+            string nazwa = "Rachunek-" + nr_kol;
+            string cala_sciezka = Podaj_folder_rachunkow() + nazwa + ".jpg";
+            string cala_sciezka2 = Podaj_folder_rachunkow() + nazwa + ".jpeg";
+            Image image1 = GetCopyImage(cala_sciezka);
+            Point p1 = new Point(378, 152);
+            Point p2 = new Point(2105, 152);
+            Point p3 = new Point(378, 275);
+            Point p4 = new Point(2105, 290);
+            Point[] punkty = { p1, p2, p4, p3 };
+            System.Drawing.Color Caly_kolor = System.Drawing.Color.FromArgb(255, 255, 255);
+            Graphics g = Graphics.FromImage(image1);
+            Brush Bruszka = new SolidBrush(Caly_kolor);
+            g.FillPolygon(Bruszka, punkty);
+            image1.Save(cala_sciezka2, ImageFormat.Jpeg);
+            image1.Dispose();
+            File.Delete(cala_sciezka);
+        }
+        private Image GetCopyImage(string path)
+        {
+            using (Image im = Image.FromFile(path))
+            {
+                Bitmap bm = new Bitmap(im);
+                return bm;
+            }
+        }
+    }   
 }
