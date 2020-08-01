@@ -1,6 +1,14 @@
 ﻿Lista zmian programu Księgowość:
+-1.0.1.0 (01.08.2020r.)
+	-Dodano funkcję sprawdzania aktualizacji przez internet
+	-Dodano Okno 'O programie' z funkcją otwarcia strony pobierania aktualizacji
+	-Naprawiono błąd powodujący ujemną zaliczkę na PIT
+	-Naprawiono błąd przy starcie gdy brak wszystkich danych wejściowych
+	-Poprawa reguł nazewnictwa
+	-Drobne zmiany w 'Lista zmian.txt'
+
 -1.0.0.1 (01.08.2020r.)
-	-Sztywna kultura wyświetlania -> pl-PL
+	-Ustawienie domyślnego języka -> pl-PL
 
 -1.0.0.0 (01.08.2020r.)
-	-Wypuszczenie wersji podstawowej
+	-Opublikowanie wersji podstawowej

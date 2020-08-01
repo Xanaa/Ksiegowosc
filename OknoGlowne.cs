@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading;
 using System.Globalization;
+using System.Net;
 
 namespace Księgowość
 {
@@ -48,6 +49,8 @@ namespace Księgowość
 
             // Stop reading/writing a spreadsheet when the free limit is reached.
             ComponentInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
+
+            Sprawdz_wersje();
         }
 
         public void Wczytaj_rok(string rok)
@@ -64,10 +67,19 @@ namespace Księgowość
             Sprzedaz = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Sprzedaz_s2, 4, "#", ";");
             Koszty = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Koszty_s2, 3, "#", ";");
 
-            Wczytaj_Przychody();
-            Wczytaj_Sprzedaz();
-            Wczytaj_Koszty();
-            Wczytaj_Info_PIT();
+            if(Przychody != null)
+            {
+                Wczytaj_Przychody();
+            }
+            if (Sprzedaz != null)
+            {
+                Wczytaj_Sprzedaz();
+            }
+            if (Koszty != null)
+            {
+                Wczytaj_Koszty();
+                Wczytaj_Info_PIT();
+            }        
         }
 
         public void Wczytaj_Przychody()
@@ -126,13 +138,16 @@ namespace Księgowość
             decimal kwota;
             string Opis;
 
-            for (int a = 0; a < Przychody.GetLength(0); a++)
+            if(Koszty != null)
             {
-                nrkol = Koszty[a, 0];
-                kwota = decimal.Parse(Koszty[a, 1]);
-                Opis = Koszty[a, 2];
-                dataGrid_Koszty.Rows.Add(nrkol, kwota, Opis);
-            }
+                for (int a = 0; a < Koszty.GetLength(0); a++)
+                {
+                    nrkol = Koszty[a, 0];
+                    kwota = decimal.Parse(Koszty[a, 1]);
+                    Opis = Koszty[a, 2];
+                    dataGrid_Koszty.Rows.Add(nrkol, kwota, Opis);
+                }
+            }        
         }
 
         public void Wczytaj_Info_PIT()
@@ -176,15 +191,19 @@ namespace Księgowość
 
             for (int a = 0; a < Sprzedaz.GetLength(0); a++)
             {
-                mies = Podaj_date_sprzedazy(Sprzedaz[a, 0]).Remove(0, 3).Remove(2);
-                if (mies == miesiac)
+                mies = Podaj_date_sprzedazy(Sprzedaz[a, 0]);
+                if(mies != "0")
                 {
-                    cena = decimal.Parse(Sprzedaz[a, 2]);
-                    ilosc = decimal.Parse(Sprzedaz[a, 3]);
-                    Zwrot += cena * ilosc;
+                    mies = mies.Remove(0, 3).Remove(2);
+                    if (mies == miesiac)
+                    {
+                        cena = decimal.Parse(Sprzedaz[a, 2]);
+                        ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                        Zwrot += cena * ilosc;
+                    }
                 }
             }
-
+            
             return Zwrot;
         }
 
@@ -196,12 +215,16 @@ namespace Księgowość
 
             for (int a = 0; a < Koszty.GetLength(0); a++)
             {
-                mies = Podaj_date_sprzedazy(Koszty[a, 0]).Remove(0, 3).Remove(2);
-                if (mies == miesiac)
+                mies = Podaj_date_sprzedazy(Koszty[a, 0]);
+                if(mies != "0")
                 {
-                    kwota = decimal.Parse(Koszty[a, 1]);
-                    Zwrot += kwota;
-                }
+                    mies = mies.Remove(0, 3).Remove(2);
+                    if (mies == miesiac)
+                    {
+                        kwota = decimal.Parse(Koszty[a, 1]);
+                        Zwrot += kwota;
+                    }
+                }               
             }
 
             return Zwrot;
@@ -211,7 +234,12 @@ namespace Księgowość
         {
             decimal Przychod = Oblicz_Przychody_miesiaca(miesiac);
             decimal Koszty = Oblicz_Koszty_miesiaca(miesiac);
-            return (Przychod - Koszty);
+            decimal Dochody = (Przychod - Koszty);
+            if(Dochody < 0)
+            {
+                Dochody = 0;
+            }
+            return Dochody;
         }
 
         public static decimal Oblicz_Zaliczke_PIT_miesiaca(string miesiac)
@@ -743,6 +771,27 @@ namespace Księgowość
                 Bitmap bm = new Bitmap(im);
                 return bm;
             }
+        }
+
+        private void AktualizacjaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            O_programie O_programie_ = new O_programie();
+            O_programie_.Show();
+        }
+
+        public static string Sprawdz_wersje()
+        {          
+            string Adres_wersji = "https://raw.githubusercontent.com/Xanaa/Ksiegowosc_wer/master/Wersja";
+            WebClient webClient = new WebClient();
+            string moja = Application.ProductVersion;
+            string test = webClient.DownloadString(Adres_wersji).Remove(7);
+            if(moja != test)
+            {
+                string message = "Obecnie zainstalowana wersja to " + moja + "\nDostępna jest nowsza wersja " + test + " !";
+                string caption = "Aktualizacja";
+                MessageBox.Show(message, caption,MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            return test;
         }
     }   
 }
