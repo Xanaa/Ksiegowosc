@@ -34,10 +34,13 @@ namespace Księgowość
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
 
+        // Do okien innych
+        private static OknoGlowne Glowne_inst;
+
         public OknoGlowne()
         {
             InitializeComponent();
-
+            Glowne_inst = this;
             CultureInfo culture;
             culture = CultureInfo.CreateSpecificCulture("pl-PL");
             Thread.CurrentThread.CurrentCulture = culture;
@@ -792,6 +795,33 @@ namespace Księgowość
                 MessageBox.Show(message, caption,MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             return test;
+        }
+
+        private void DodajPrzychodyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Dodaj_przychody Dodaj_przychody_ = new Dodaj_przychody();
+            Dodaj_przychody_.Show();
+        }
+
+        public static void Dodaj_sprzedaz()
+        {
+            Przychody = Obsluga_tekstu.Polacz_tablice_2d(Przychody, Dodaj_przychody.K_przychody, ";");
+            Sprzedaz = Obsluga_tekstu.Polacz_tablice_2d(Sprzedaz, Dodaj_przychody.K_sprzedaz, ";");
+            Koszty = Obsluga_tekstu.Polacz_tablice_2d(Koszty, Dodaj_przychody.K_koszty, ";");
+
+            if (Przychody != null)
+            {
+                Glowne_inst.Wczytaj_Przychody();
+            }
+            if (Sprzedaz != null)
+            {
+                Glowne_inst.Wczytaj_Sprzedaz();
+            }
+            if (Koszty != null)
+            {
+                Glowne_inst.Wczytaj_Koszty();
+                Glowne_inst.Wczytaj_Info_PIT();
+            }
         }
     }   
 }
