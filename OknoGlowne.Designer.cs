@@ -97,6 +97,7 @@
             this.dodajPrzychodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.UstawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -329,9 +330,9 @@
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column5.HeaderText = "Nr Kol.";
+            this.Column5.HeaderText = "Nr kol.";
             this.Column5.Name = "Column5";
-            this.Column5.Width = 64;
+            this.Column5.Width = 63;
             // 
             // Column6
             // 
@@ -656,13 +657,14 @@
             // dodajPrzychodyToolStripMenuItem
             // 
             this.dodajPrzychodyToolStripMenuItem.Name = "dodajPrzychodyToolStripMenuItem";
-            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.dodajPrzychodyToolStripMenuItem.Text = "Dodaj przychody";
             this.dodajPrzychodyToolStripMenuItem.Click += new System.EventHandler(this.DodajPrzychodyToolStripMenuItem_Click);
             // 
             // pomocToolStripMenuItem
             // 
             this.pomocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.UstawieniaToolStripMenuItem,
             this.aktualizacjaToolStripMenuItem});
             this.pomocToolStripMenuItem.Name = "pomocToolStripMenuItem";
             this.pomocToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
@@ -671,9 +673,16 @@
             // aktualizacjaToolStripMenuItem
             // 
             this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
-            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aktualizacjaToolStripMenuItem.Text = "O programie";
             this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
+            // 
+            // UstawieniaToolStripMenuItem
+            // 
+            this.UstawieniaToolStripMenuItem.Name = "UstawieniaToolStripMenuItem";
+            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UstawieniaToolStripMenuItem.Text = "Ustawienia";
+            this.UstawieniaToolStripMenuItem.Click += new System.EventHandler(this.UstawieniaToolStripMenuItem_Click);
             // 
             // OknoGlowne
             // 
@@ -713,9 +722,6 @@
         private System.Windows.Forms.DataGridView dataGrid_Przychody;
         private System.Windows.Forms.TabPage tabPage_Koszty;
         private System.Windows.Forms.DataGridView dataGrid_Koszty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.TabPage tabPage_Info;
         private System.Windows.Forms.DataGridView dataGrid_PITMiesiecznie;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -764,6 +770,10 @@
         private System.Windows.Forms.ToolStripMenuItem aktualizacjaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem daneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dodajPrzychodyToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.ToolStripMenuItem UstawieniaToolStripMenuItem;
     }
 }
 

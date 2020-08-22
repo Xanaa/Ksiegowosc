@@ -53,13 +53,16 @@ namespace Księgowość
             // Stop reading/writing a spreadsheet when the free limit is reached.
             ComponentInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
 
-            Sprawdz_wersje();
+            if(Podaj_aktualizacje_na_start() == true)
+            {
+                Sprawdz_wersje();
+            }           
         }
 
         public void Wczytaj_rok(string rok)
         {
             ROK = rok;
-            this.Text = "Księgowość - Rok " + ROK;
+            this.Text = "Księgowość " + Application.ProductVersion + " - Rok " + ROK;
             toolStripComboBox_rok.Text = ROK;
             Czy_pliki_istnieja(rok);
             string Koszty_s2 = P_Koszty + rok + ".txt";
@@ -612,7 +615,7 @@ namespace Księgowość
                new HeaderFooter(document, HeaderFooterType.FooterDefault,
                new Paragraph(document, "Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)));
 
-            document.Save(Podaj_folder_rachunkow() + nazwa + ".jpg");
+            document.Save(Podaj_folder_rachunkow("0") + nazwa + ".jpg");
             Usun_smieci_z_rachunku(nr_kol);
         }
 
@@ -672,7 +675,32 @@ namespace Księgowość
             return zwrot;
         }
 
-        public static string Podaj_folder_rachunkow()
+        public static bool Podaj_aktualizacje_na_start()
+        {
+            string zwrot = "";
+            bool zwrot2;
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Aktualizacja")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+
+            if(zwrot == "0")
+            {
+                zwrot2 = false;
+            }
+            else
+            {
+                zwrot2 = true;
+            }
+
+            return zwrot2;
+        }
+
+        public static string Podaj_folder_rachunkow(string tryb)
         {
             string zwrot = "";
             for (int a = 0; a < Moje_dane.GetLength(0); a++)
@@ -684,7 +712,7 @@ namespace Księgowość
                 }
             }
 
-            if(zwrot == "")
+            if(zwrot == "" && tryb == "0")
             {
                 zwrot = sciezka_startowa + "\\";
             }
@@ -750,8 +778,8 @@ namespace Księgowość
         public void Usun_smieci_z_rachunku(string nr_kol)
         {
             string nazwa = "Rachunek-" + nr_kol;
-            string cala_sciezka = Podaj_folder_rachunkow() + nazwa + ".jpg";
-            string cala_sciezka2 = Podaj_folder_rachunkow() + nazwa + ".jpeg";
+            string cala_sciezka = Podaj_folder_rachunkow("0") + nazwa + ".jpg";
+            string cala_sciezka2 = Podaj_folder_rachunkow("0") + nazwa + ".jpeg";
             Image image1 = GetCopyImage(cala_sciezka);
             Point p1 = new Point(378, 152);
             Point p2 = new Point(2105, 152);
@@ -822,6 +850,41 @@ namespace Księgowość
                 Glowne_inst.Wczytaj_Koszty();
                 Glowne_inst.Wczytaj_Info_PIT();
             }
+        }
+
+        public static string Podaj_nowy_numer_kolejny(string miesiac)
+        {
+            string zwrot;
+            string licznik = "";
+            string t1, mies, dzielnik;
+            string[] sort;
+            for(int a = 0; a < Przychody.GetLength(0); a++)
+            {
+                t1 = Przychody[a, 1];
+                mies = t1.Remove(2);
+                if(mies == miesiac)
+                {
+                    dzielnik = t1.Remove(0, 7);
+                    licznik += dzielnik + ",";
+                }
+            }
+            if(licznik.Length > 1)
+            {
+                licznik = licznik.Remove(licznik.Length - 1);
+                sort = licznik.Split(',');
+                zwrot = (sort.GetLength(0) + 1).ToString();
+            }
+            else
+            {
+                zwrot = "1";
+            }
+            return zwrot;
+        }
+
+        private void UstawieniaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ustawienia Ustawienia_ = new Ustawienia();
+            Ustawienia_.Show();
         }
     }   
 }

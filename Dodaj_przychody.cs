@@ -15,6 +15,7 @@ namespace Księgowość
             DateTime Dzisiaj = DateTime.Today;
             TextBox_Data_sprzedazy.Text = Dzisiaj.ToString("dd.MM.yyyy");
             TextBox_nr_kol_1.Text = Dzisiaj.ToString("MMyyyy");
+            TextBox_nr_kol_2.Text = OknoGlowne.Podaj_nowy_numer_kolejny(Dzisiaj.ToString("MM"));
         }
 
         private void Button_Str1_Dalej_Click(object sender, EventArgs e)
@@ -86,6 +87,25 @@ namespace Księgowość
                 K_koszty[a, 0] = K_nr_kol;
                 K_koszty[a, 1] = nazwa2;
                 K_koszty[a, 2] = koszt2;
+            }
+        }
+
+        private void TextBox_Data_sprzedazy_KeyUp(object sender, KeyEventArgs e)
+        {
+            string texcik = TextBox_Data_sprzedazy.Text;
+            if (texcik.Length == 10)
+            {               
+                DateTime datka;
+                try
+                {
+                    datka = DateTime.Parse(texcik);
+                    TextBox_nr_kol_1.Text = datka.ToString("MMyyyy");
+                    TextBox_nr_kol_2.Text = OknoGlowne.Podaj_nowy_numer_kolejny(datka.ToString("MM"));
+                }
+                catch
+                {
+
+                }
             }
         }
     }
