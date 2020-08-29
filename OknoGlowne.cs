@@ -33,6 +33,7 @@ namespace Księgowość
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
+        public static bool Zapisane = true;
 
         // Do okien innych
         private static OknoGlowne Glowne_inst;
@@ -812,7 +813,7 @@ namespace Księgowość
 
         public static string Sprawdz_wersje()
         {          
-            string Adres_wersji = "https://raw.githubusercontent.com/Xanaa/Ksiegowosc_wer/master/Wersja";
+            string Adres_wersji = "https://raw.githubusercontent.com/Xanaa/Serwer_wersji/master/W_Ksiegowosc";
             WebClient webClient = new WebClient();
             string moja = Application.ProductVersion;
             string test = webClient.DownloadString(Adres_wersji).Remove(7);
@@ -833,9 +834,32 @@ namespace Księgowość
 
         public static void Dodaj_sprzedaz()
         {
-            Przychody = Obsluga_tekstu.Polacz_tablice_2d(Przychody, Dodaj_przychody.K_przychody, ";");
-            Sprzedaz = Obsluga_tekstu.Polacz_tablice_2d(Sprzedaz, Dodaj_przychody.K_sprzedaz, ";");
-            Koszty = Obsluga_tekstu.Polacz_tablice_2d(Koszty, Dodaj_przychody.K_koszty, ";");
+            if(Przychody.GetLength(0) != 0)
+            {
+                Przychody = Obsluga_tekstu.Polacz_tablice_2d(Przychody, Dodaj_przychody.K_przychody, ";");
+            }
+            else
+            {
+                Przychody = Dodaj_przychody.K_przychody;
+            }
+
+            if (Sprzedaz.GetLength(0) != 0)
+            {
+                Sprzedaz = Obsluga_tekstu.Polacz_tablice_2d(Sprzedaz, Dodaj_przychody.K_sprzedaz, ";");
+            }
+            else
+            {
+                Sprzedaz = Dodaj_przychody.K_sprzedaz;
+            }
+
+            if (Koszty.GetLength(0) != 0)
+            {
+                Koszty = Obsluga_tekstu.Polacz_tablice_2d(Koszty, Dodaj_przychody.K_koszty, ";");
+            }
+            else
+            {
+                Koszty = Dodaj_przychody.K_koszty;
+            }
 
             if (Przychody != null)
             {
@@ -850,6 +874,8 @@ namespace Księgowość
                 Glowne_inst.Wczytaj_Koszty();
                 Glowne_inst.Wczytaj_Info_PIT();
             }
+
+            Zapisane = false;
         }
 
         public static string Podaj_nowy_numer_kolejny(string miesiac)
@@ -885,6 +911,36 @@ namespace Księgowość
         {
             Ustawienia Ustawienia_ = new Ustawienia();
             Ustawienia_.Show();
+        }
+
+        private void OknoGlowne_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(Zapisane == false)
+            {
+                string message = "Czy zapisać zmiany?";
+                string title = "Zapisywanie";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(message, title, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    Zapisz();
+                }
+            }
+        }
+
+        private void DataGrid_Przychody_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Zapisane = false;
+        }
+
+        private void DataGridView_Sprzedaz_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Zapisane = false;
+        }
+
+        private void DataGrid_Koszty_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            Zapisane = false;
         }
     }   
 }

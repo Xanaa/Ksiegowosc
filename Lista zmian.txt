@@ -1,4 +1,9 @@
 ﻿Lista zmian programu Księgowość:
+-1.1.1.0 (29.08.2020r.)
+	-Naprawa błędu krytycznego przy dodawaniu przychodu gdy brak historii przychodów
+	-Dodanie zapytania o zapis przy zamykaniu okna
+	-Zmiana struktury serwera wersji na Github
+
 -1.1.0.0 (22.08.2020r.)
 	-Dodanie funkcji kreatora dla dodawania przychodów/sprzedaży/kosztów,
 	-Dodanie okna ustawień,

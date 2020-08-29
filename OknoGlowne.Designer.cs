@@ -96,8 +96,8 @@
             this.daneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajPrzychodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UstawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -159,6 +159,7 @@
             this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
             this.dataGrid_Przychody.TabIndex = 0;
             this.dataGrid_Przychody.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Przychody_CellContentClick);
+            this.dataGrid_Przychody.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Przychody_CellEndEdit);
             // 
             // Column1
             // 
@@ -258,6 +259,7 @@
             this.dataGridView_Sprzedaz.Name = "dataGridView_Sprzedaz";
             this.dataGridView_Sprzedaz.Size = new System.Drawing.Size(837, 377);
             this.dataGridView_Sprzedaz.TabIndex = 0;
+            this.dataGridView_Sprzedaz.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_Sprzedaz_CellEndEdit);
             // 
             // Column17
             // 
@@ -326,6 +328,7 @@
             this.dataGrid_Koszty.Name = "dataGrid_Koszty";
             this.dataGrid_Koszty.Size = new System.Drawing.Size(837, 377);
             this.dataGrid_Koszty.TabIndex = 0;
+            this.dataGrid_Koszty.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Koszty_CellEndEdit);
             // 
             // Column5
             // 
@@ -670,19 +673,19 @@
             this.pomocToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.pomocToolStripMenuItem.Text = "Pomoc";
             // 
-            // aktualizacjaToolStripMenuItem
-            // 
-            this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
-            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aktualizacjaToolStripMenuItem.Text = "O programie";
-            this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
-            // 
             // UstawieniaToolStripMenuItem
             // 
             this.UstawieniaToolStripMenuItem.Name = "UstawieniaToolStripMenuItem";
-            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.UstawieniaToolStripMenuItem.Text = "Ustawienia";
             this.UstawieniaToolStripMenuItem.Click += new System.EventHandler(this.UstawieniaToolStripMenuItem_Click);
+            // 
+            // aktualizacjaToolStripMenuItem
+            // 
+            this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
+            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aktualizacjaToolStripMenuItem.Text = "O programie";
+            this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
             // 
             // OknoGlowne
             // 
@@ -695,6 +698,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "OknoGlowne";
             this.Text = "Księgowość";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OknoGlowne_FormClosing);
             this.tabControl_Glowne.ResumeLayout(false);
             this.tabPage_Przychody.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).EndInit();
