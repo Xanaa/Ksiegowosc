@@ -98,6 +98,7 @@
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UstawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaKlientówToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -652,7 +653,8 @@
             // daneToolStripMenuItem
             // 
             this.daneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dodajPrzychodyToolStripMenuItem});
+            this.dodajPrzychodyToolStripMenuItem,
+            this.listaKlientówToolStripMenuItem});
             this.daneToolStripMenuItem.Name = "daneToolStripMenuItem";
             this.daneToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.daneToolStripMenuItem.Text = "Dane";
@@ -660,7 +662,7 @@
             // dodajPrzychodyToolStripMenuItem
             // 
             this.dodajPrzychodyToolStripMenuItem.Name = "dodajPrzychodyToolStripMenuItem";
-            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dodajPrzychodyToolStripMenuItem.Text = "Dodaj przychody";
             this.dodajPrzychodyToolStripMenuItem.Click += new System.EventHandler(this.DodajPrzychodyToolStripMenuItem_Click);
             // 
@@ -676,16 +678,23 @@
             // UstawieniaToolStripMenuItem
             // 
             this.UstawieniaToolStripMenuItem.Name = "UstawieniaToolStripMenuItem";
-            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.UstawieniaToolStripMenuItem.Text = "Ustawienia";
             this.UstawieniaToolStripMenuItem.Click += new System.EventHandler(this.UstawieniaToolStripMenuItem_Click);
             // 
             // aktualizacjaToolStripMenuItem
             // 
             this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
-            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aktualizacjaToolStripMenuItem.Text = "O programie";
             this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
+            // 
+            // listaKlientówToolStripMenuItem
+            // 
+            this.listaKlientówToolStripMenuItem.Name = "listaKlientówToolStripMenuItem";
+            this.listaKlientówToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.listaKlientówToolStripMenuItem.Text = "Lista Klientów";
+            this.listaKlientówToolStripMenuItem.Click += new System.EventHandler(this.ListaKlientówToolStripMenuItem_Click);
             // 
             // OknoGlowne
             // 
@@ -778,6 +787,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.ToolStripMenuItem UstawieniaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem listaKlientówToolStripMenuItem;
     }
 }
 

@@ -1,4 +1,8 @@
 ﻿Lista zmian programu Księgowość:
+-1.2.0.0 (02.11.2020r.)
+	-Dodanie listy klientów
+	-Dodanie ikony głównej w każdym oknie aplikacji
+
 -1.1.1.0 (29.08.2020r.)
 	-Naprawa błędu krytycznego przy dodawaniu przychodu gdy brak historii przychodów
 	-Dodanie zapytania o zapis przy zamykaniu okna

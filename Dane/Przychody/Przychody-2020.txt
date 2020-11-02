@@ -1,1 +1,6 @@
-﻿
+22.08.2020;082020.1;J.Banan;Gotówka
+02.09.2020;092020.1;M.Arbuz;Przelew na konto
+11.10.2020;102020.1;M.Arbuz;Przelew na konto
+17.10.2020;102020.2;M.Arbuz;Przelew na konto
+21.10.2020;102020.3;M.Arbuz;Przelew na konto
+25.10.2020;102020.4;M.Arbuz;Przelew na konto

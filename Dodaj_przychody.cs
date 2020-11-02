@@ -16,6 +16,28 @@ namespace Księgowość
             TextBox_Data_sprzedazy.Text = Dzisiaj.ToString("dd.MM.yyyy");
             TextBox_nr_kol_1.Text = Dzisiaj.ToString("MMyyyy");
             TextBox_nr_kol_2.Text = OknoGlowne.Podaj_nowy_numer_kolejny(Dzisiaj.ToString("MM"));
+            Wypelnij_klientow();
+        }
+
+        private void Wypelnij_klientow()
+        {
+            ComboBox_Klienci.Items.Clear();
+
+            for(int a = 0; a < OknoGlowne.Lista_klientów.GetLength(0); a++)
+            {
+                ComboBox_Klienci.Items.Add(OknoGlowne.Lista_klientów[a, 0]);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Lista_Klientow_okno Lista_Klientow_okno_ = new Lista_Klientow_okno();
+            Lista_Klientow_okno_.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Wypelnij_klientow();
         }
 
         private void Button_Str1_Dalej_Click(object sender, EventArgs e)
@@ -107,6 +129,15 @@ namespace Księgowość
 
                 }
             }
+        }
+
+        private void ComboBox_Klienci_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string nazwa_klienta = ComboBox_Klienci.Text;
+
+            TextBox_Kupujacy_nazwa.Text = OknoGlowne.Podaj_Imie_i_Nazwisko_klienta(nazwa_klienta);
+            TextBox_Kupujacy_ulica.Text = OknoGlowne.Podaj_adres_klienta(nazwa_klienta);
+            TextBox_Kupujacy_kod_miasto.Text = OknoGlowne.Podaj_kod_i_miasto_klienta(nazwa_klienta);
         }
     }
 }

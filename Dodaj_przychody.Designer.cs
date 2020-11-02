@@ -28,8 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dodaj_przychody));
             this.TabControl_Dodaj = new System.Windows.Forms.TabControl();
             this.TabPage_Dane_podstawowe = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ComboBox_Klienci = new System.Windows.Forms.ComboBox();
             this.Label_Forma_platnosci = new System.Windows.Forms.Label();
             this.ComboBox_Forma_platnosci = new System.Windows.Forms.ComboBox();
             this.Label_Numer_kolejny = new System.Windows.Forms.Label();
@@ -77,6 +82,10 @@
             // 
             // TabPage_Dane_podstawowe
             // 
+            this.TabPage_Dane_podstawowe.Controls.Add(this.button2);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.button1);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.label1);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.ComboBox_Klienci);
             this.TabPage_Dane_podstawowe.Controls.Add(this.Label_Forma_platnosci);
             this.TabPage_Dane_podstawowe.Controls.Add(this.ComboBox_Forma_platnosci);
             this.TabPage_Dane_podstawowe.Controls.Add(this.Label_Numer_kolejny);
@@ -100,10 +109,48 @@
             this.TabPage_Dane_podstawowe.Text = "Dane podstawowe";
             this.TabPage_Dane_podstawowe.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(452, 6);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "Odśwież";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(371, 6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Klienci";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(291, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Nazwa klienta";
+            // 
+            // ComboBox_Klienci
+            // 
+            this.ComboBox_Klienci.FormattingEnabled = true;
+            this.ComboBox_Klienci.Location = new System.Drawing.Point(6, 6);
+            this.ComboBox_Klienci.Name = "ComboBox_Klienci";
+            this.ComboBox_Klienci.Size = new System.Drawing.Size(279, 21);
+            this.ComboBox_Klienci.TabIndex = 15;
+            this.ComboBox_Klienci.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Klienci_SelectedIndexChanged);
+            // 
             // Label_Forma_platnosci
             // 
             this.Label_Forma_platnosci.AutoSize = true;
-            this.Label_Forma_platnosci.Location = new System.Drawing.Point(291, 139);
+            this.Label_Forma_platnosci.Location = new System.Drawing.Point(291, 169);
             this.Label_Forma_platnosci.Name = "Label_Forma_platnosci";
             this.Label_Forma_platnosci.Size = new System.Drawing.Size(83, 13);
             this.Label_Forma_platnosci.TabIndex = 14;
@@ -115,7 +162,7 @@
             this.ComboBox_Forma_platnosci.Items.AddRange(new object[] {
             "Przelew na konto",
             "Gotówka"});
-            this.ComboBox_Forma_platnosci.Location = new System.Drawing.Point(6, 136);
+            this.ComboBox_Forma_platnosci.Location = new System.Drawing.Point(6, 166);
             this.ComboBox_Forma_platnosci.Name = "ComboBox_Forma_platnosci";
             this.ComboBox_Forma_platnosci.Size = new System.Drawing.Size(279, 21);
             this.ComboBox_Forma_platnosci.TabIndex = 13;
@@ -124,7 +171,7 @@
             // Label_Numer_kolejny
             // 
             this.Label_Numer_kolejny.AutoSize = true;
-            this.Label_Numer_kolejny.Location = new System.Drawing.Point(155, 113);
+            this.Label_Numer_kolejny.Location = new System.Drawing.Point(155, 143);
             this.Label_Numer_kolejny.Name = "Label_Numer_kolejny";
             this.Label_Numer_kolejny.Size = new System.Drawing.Size(74, 13);
             this.Label_Numer_kolejny.TabIndex = 12;
@@ -133,7 +180,7 @@
             // TextBox_nr_kol_2
             // 
             this.TextBox_nr_kol_2.AccessibleDescription = "";
-            this.TextBox_nr_kol_2.Location = new System.Drawing.Point(110, 110);
+            this.TextBox_nr_kol_2.Location = new System.Drawing.Point(110, 140);
             this.TextBox_nr_kol_2.Name = "TextBox_nr_kol_2";
             this.TextBox_nr_kol_2.Size = new System.Drawing.Size(39, 20);
             this.TextBox_nr_kol_2.TabIndex = 11;
@@ -141,7 +188,7 @@
             // Label_kropka
             // 
             this.Label_kropka.AutoSize = true;
-            this.Label_kropka.Location = new System.Drawing.Point(94, 113);
+            this.Label_kropka.Location = new System.Drawing.Point(94, 143);
             this.Label_kropka.Name = "Label_kropka";
             this.Label_kropka.Size = new System.Drawing.Size(10, 13);
             this.Label_kropka.TabIndex = 10;
@@ -149,7 +196,7 @@
             // 
             // TextBox_nr_kol_1
             // 
-            this.TextBox_nr_kol_1.Location = new System.Drawing.Point(6, 110);
+            this.TextBox_nr_kol_1.Location = new System.Drawing.Point(6, 140);
             this.TextBox_nr_kol_1.Name = "TextBox_nr_kol_1";
             this.TextBox_nr_kol_1.ReadOnly = true;
             this.TextBox_nr_kol_1.Size = new System.Drawing.Size(82, 20);
@@ -158,7 +205,7 @@
             // Label_Data_sprzedazy
             // 
             this.Label_Data_sprzedazy.AutoSize = true;
-            this.Label_Data_sprzedazy.Location = new System.Drawing.Point(291, 87);
+            this.Label_Data_sprzedazy.Location = new System.Drawing.Point(291, 117);
             this.Label_Data_sprzedazy.Name = "Label_Data_sprzedazy";
             this.Label_Data_sprzedazy.Size = new System.Drawing.Size(80, 13);
             this.Label_Data_sprzedazy.TabIndex = 8;
@@ -166,7 +213,7 @@
             // 
             // TextBox_Data_sprzedazy
             // 
-            this.TextBox_Data_sprzedazy.Location = new System.Drawing.Point(6, 84);
+            this.TextBox_Data_sprzedazy.Location = new System.Drawing.Point(6, 114);
             this.TextBox_Data_sprzedazy.Name = "TextBox_Data_sprzedazy";
             this.TextBox_Data_sprzedazy.Size = new System.Drawing.Size(279, 20);
             this.TextBox_Data_sprzedazy.TabIndex = 7;
@@ -175,7 +222,7 @@
             // Label_Kod_miasto
             // 
             this.Label_Kod_miasto.AutoSize = true;
-            this.Label_Kod_miasto.Location = new System.Drawing.Point(291, 61);
+            this.Label_Kod_miasto.Location = new System.Drawing.Point(291, 90);
             this.Label_Kod_miasto.Name = "Label_Kod_miasto";
             this.Label_Kod_miasto.Size = new System.Drawing.Size(112, 13);
             this.Label_Kod_miasto.TabIndex = 6;
@@ -183,15 +230,16 @@
             // 
             // TextBox_Kupujacy_kod_miasto
             // 
-            this.TextBox_Kupujacy_kod_miasto.Location = new System.Drawing.Point(6, 58);
+            this.TextBox_Kupujacy_kod_miasto.Location = new System.Drawing.Point(6, 87);
             this.TextBox_Kupujacy_kod_miasto.Name = "TextBox_Kupujacy_kod_miasto";
+            this.TextBox_Kupujacy_kod_miasto.ReadOnly = true;
             this.TextBox_Kupujacy_kod_miasto.Size = new System.Drawing.Size(279, 20);
             this.TextBox_Kupujacy_kod_miasto.TabIndex = 5;
             // 
             // Label_Ulica_dom_mieszkanie
             // 
             this.Label_Ulica_dom_mieszkanie.AutoSize = true;
-            this.Label_Ulica_dom_mieszkanie.Location = new System.Drawing.Point(291, 35);
+            this.Label_Ulica_dom_mieszkanie.Location = new System.Drawing.Point(291, 64);
             this.Label_Ulica_dom_mieszkanie.Name = "Label_Ulica_dom_mieszkanie";
             this.Label_Ulica_dom_mieszkanie.Size = new System.Drawing.Size(154, 13);
             this.Label_Ulica_dom_mieszkanie.TabIndex = 4;
@@ -199,8 +247,9 @@
             // 
             // TextBox_Kupujacy_ulica
             // 
-            this.TextBox_Kupujacy_ulica.Location = new System.Drawing.Point(6, 32);
+            this.TextBox_Kupujacy_ulica.Location = new System.Drawing.Point(6, 61);
             this.TextBox_Kupujacy_ulica.Name = "TextBox_Kupujacy_ulica";
+            this.TextBox_Kupujacy_ulica.ReadOnly = true;
             this.TextBox_Kupujacy_ulica.Size = new System.Drawing.Size(279, 20);
             this.TextBox_Kupujacy_ulica.TabIndex = 3;
             // 
@@ -219,16 +268,17 @@
             // Label_kupujacy_nazwa
             // 
             this.Label_kupujacy_nazwa.AutoSize = true;
-            this.Label_kupujacy_nazwa.Location = new System.Drawing.Point(291, 9);
+            this.Label_kupujacy_nazwa.Location = new System.Drawing.Point(291, 38);
             this.Label_kupujacy_nazwa.Name = "Label_kupujacy_nazwa";
-            this.Label_kupujacy_nazwa.Size = new System.Drawing.Size(137, 13);
+            this.Label_kupujacy_nazwa.Size = new System.Drawing.Size(112, 13);
             this.Label_kupujacy_nazwa.TabIndex = 1;
-            this.Label_kupujacy_nazwa.Text = "Imię i nazwisko kupującego";
+            this.Label_kupujacy_nazwa.Text = "Imię i nazwisko klienta";
             // 
             // TextBox_Kupujacy_nazwa
             // 
-            this.TextBox_Kupujacy_nazwa.Location = new System.Drawing.Point(6, 6);
+            this.TextBox_Kupujacy_nazwa.Location = new System.Drawing.Point(6, 35);
             this.TextBox_Kupujacy_nazwa.Name = "TextBox_Kupujacy_nazwa";
+            this.TextBox_Kupujacy_nazwa.ReadOnly = true;
             this.TextBox_Kupujacy_nazwa.Size = new System.Drawing.Size(279, 20);
             this.TextBox_Kupujacy_nazwa.TabIndex = 0;
             // 
@@ -347,6 +397,7 @@
             this.ClientSize = new System.Drawing.Size(742, 437);
             this.Controls.Add(this.TabControl_Dodaj);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Dodaj_przychody";
             this.Text = "Dodaj przychody";
@@ -366,13 +417,7 @@
         private System.Windows.Forms.TabControl TabControl_Dodaj;
         private System.Windows.Forms.TabPage TabPage_Dane_podstawowe;
         private System.Windows.Forms.Button Button_Str1_Dalej;
-        private System.Windows.Forms.Label Label_kupujacy_nazwa;
-        private System.Windows.Forms.TextBox TextBox_Kupujacy_nazwa;
         private System.Windows.Forms.TabPage TabPage_Przychody;
-        private System.Windows.Forms.Label Label_Ulica_dom_mieszkanie;
-        private System.Windows.Forms.TextBox TextBox_Kupujacy_ulica;
-        private System.Windows.Forms.Label Label_Kod_miasto;
-        private System.Windows.Forms.TextBox TextBox_Kupujacy_kod_miasto;
         private System.Windows.Forms.Label Label_Data_sprzedazy;
         private System.Windows.Forms.TextBox TextBox_Data_sprzedazy;
         private System.Windows.Forms.Label Label_Numer_kolejny;
@@ -391,5 +436,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button Button_Str3_Dodaj;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox ComboBox_Klienci;
+        private System.Windows.Forms.Label Label_Kod_miasto;
+        private System.Windows.Forms.TextBox TextBox_Kupujacy_kod_miasto;
+        private System.Windows.Forms.Label Label_Ulica_dom_mieszkanie;
+        private System.Windows.Forms.TextBox TextBox_Kupujacy_ulica;
+        private System.Windows.Forms.Label Label_kupujacy_nazwa;
+        private System.Windows.Forms.TextBox TextBox_Kupujacy_nazwa;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

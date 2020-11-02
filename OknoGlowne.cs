@@ -24,12 +24,14 @@ namespace Księgowość
         public static string P_Sprzedaz = F_Sprzedaz + @"/Sprzedaż-";
         public static string P_Statystyka = F_Dane + @"/Statystyka.txt";
         public static string P_Moje_dane = F_Dane + @"/Moje dane.txt";
+        public static string P_Lista_klientów = F_Dane + @"/Lista klientów.txt";
 
         public static string[,] Koszty;
         public static string[,] Przychody;
         public static string[,] Sprzedaz;
         public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 3, "#", ";");
         public static string[,] Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
+        public static string[,] Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
 
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
@@ -70,7 +72,7 @@ namespace Księgowość
             string Przychody_s2 = P_Przychody + rok + ".txt";
             string Sprzedaz_s2 = P_Sprzedaz + rok + ".txt";
 
-            Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 6, "#", ";");
+            Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 4, "#", ";");
             Sprzedaz = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Sprzedaz_s2, 4, "#", ";");
             Koszty = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Koszty_s2, 3, "#", ";");
 
@@ -94,24 +96,21 @@ namespace Księgowość
             dataGrid_Przychody.Rows.Clear();
 
             DateTime Data;
-            string nrkol;
-            string Nabywca;
-            string Adres;
-            string Kod_i_miasto;
-            string Forma_platnosci;
+            string nrkol, Nazwa_klienta, Imie_i_Nazwisko_klienta, Adres, Kod_i_miasto, Forma_platnosci;
             decimal Przychod;
 
             for (int a = 0; a < Przychody.GetLength(0); a++)
             {
                 Data = DateTime.Parse(Przychody[a, 0]);
                 nrkol = Przychody[a, 1];
-                Nabywca = Przychody[a, 2];
-                Adres = Przychody[a, 3];
-                Kod_i_miasto = Przychody[a, 4];
-                Forma_platnosci = Przychody[a, 5];
+                Nazwa_klienta = Przychody[a, 2];
+                Imie_i_Nazwisko_klienta = Podaj_Imie_i_Nazwisko_klienta(Nazwa_klienta);
+                Adres = Podaj_adres_klienta(Nazwa_klienta);
+                Kod_i_miasto = Podaj_kod_i_miasto_klienta(Nazwa_klienta);
+                Forma_platnosci = Przychody[a, 3];
                 Przychod = Podaj_przychod_faktury(nrkol);
 
-                dataGrid_Przychody.Rows.Add(Data, nrkol, Nabywca, Adres, Kod_i_miasto, Forma_platnosci, Przychod);
+                dataGrid_Przychody.Rows.Add(Data, nrkol, Imie_i_Nazwisko_klienta, Adres, Kod_i_miasto, Forma_platnosci, Przychod);
             }
         }
 
@@ -520,6 +519,7 @@ namespace Księgowość
             table.Rows.Add(row);
 
             string firma = Podaj_moja_firme();
+            string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
             string sprzedawca = "Sprzedawca:\n";
             if (firma != "")
             {
@@ -530,9 +530,9 @@ namespace Księgowość
             sprzedawca += Podaj_moj_kod_i_miasto() + "\n";
 
             string nabywca = "Nabywca:\n";
-            nabywca += Podaj_nazwe_klienta(nr_kol) + "\n";
-            nabywca += Podaj_adres_klienta(nr_kol) + "\n";
-            nabywca += Podaj_kod_i_miasto_klienta(nr_kol) + "\n";
+            nabywca += Podaj_Imie_i_Nazwisko_klienta(nazwa_klienta) + "\n";
+            nabywca += Podaj_adres_klienta(nazwa_klienta) + "\n";
+            nabywca += Podaj_kod_i_miasto_klienta(nazwa_klienta) + "\n";
 
             var firstCellPara = new Paragraph(document, nabywca);
             firstCellPara.ParagraphFormat.RightToLeft = true;
@@ -734,28 +734,70 @@ namespace Księgowość
             return zwrot;
         }
 
-        public static string Podaj_adres_klienta(string nr_kol)
+        public static string Podaj_Imie_i_Nazwisko_klienta(string nazwa_klienta)
         {
             string zwrot = "";
-            for (int a = 0; a < Przychody.GetLength(0); a++)
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
             {
-                if (Przychody[a, 1] == nr_kol)
+                if (Lista_klientów[a, 0] == nazwa_klienta)
                 {
-                    zwrot = Przychody[a, 3];
+                    zwrot = Lista_klientów[a, 1];
                     break;
                 }
             }
             return zwrot;
         }
 
-        public static string Podaj_kod_i_miasto_klienta(string nr_kol)
+        public static string Podaj_adres_klienta(string nazwa_klienta)
         {
             string zwrot = "";
-            for (int a = 0; a < Przychody.GetLength(0); a++)
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
             {
-                if (Przychody[a, 1] == nr_kol)
+                if (Lista_klientów[a, 0] == nazwa_klienta)
                 {
-                    zwrot = Przychody[a, 4];
+                    zwrot = Lista_klientów[a, 2];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_kod_i_miasto_klienta(string nazwa_klienta)
+        {
+            string zwrot = "";
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
+            {
+                if (Lista_klientów[a, 0] == nazwa_klienta)
+                {
+                    zwrot = Lista_klientów[a, 3];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_email_klienta(string nazwa_klienta)
+        {
+            string zwrot = "";
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
+            {
+                if (Lista_klientów[a, 0] == nazwa_klienta)
+                {
+                    zwrot = Lista_klientów[a, 4];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_telefon_klienta(string nazwa_klienta)
+        {
+            string zwrot = "";
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
+            {
+                if (Lista_klientów[a, 0] == nazwa_klienta)
+                {
+                    zwrot = Lista_klientów[a, 5];
                     break;
                 }
             }
@@ -769,7 +811,7 @@ namespace Księgowość
             {
                 if (Przychody[a, 1] == nr_kol)
                 {
-                    zwrot = Przychody[a, 5];
+                    zwrot = Przychody[a, 3];
                     break;
                 }
             }
@@ -941,6 +983,12 @@ namespace Księgowość
         private void DataGrid_Koszty_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             Zapisane = false;
+        }
+
+        private void ListaKlientówToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Lista_Klientow_okno Lista_Klientow_okno_ = new Lista_Klientow_okno();
+            Lista_Klientow_okno_.Show();
         }
     }   
 }

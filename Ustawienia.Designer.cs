@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ustawienia));
             this.TextBox_ImieNazwisko = new System.Windows.Forms.TextBox();
             this.TextBox_Adres = new System.Windows.Forms.TextBox();
             this.TextBox_KodMiasto = new System.Windows.Forms.TextBox();
@@ -39,10 +40,10 @@
             this.Label_ImieNazwisko = new System.Windows.Forms.Label();
             this.TextBox_Firma = new System.Windows.Forms.TextBox();
             this.TabPage_Inne = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.TextBox_FolderRachunkow = new System.Windows.Forms.TextBox();
-            this.Label_FolderRachunkow = new System.Windows.Forms.Label();
             this.CheckBox_Aktualizacje = new System.Windows.Forms.CheckBox();
+            this.Label_FolderRachunkow = new System.Windows.Forms.Label();
+            this.TextBox_FolderRachunkow = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.TabControl_Ustawienia.SuspendLayout();
             this.TabPage_MojeDane.SuspendLayout();
             this.TabPage_Inne.SuspendLayout();
@@ -156,6 +157,32 @@
             this.TabPage_Inne.Text = "Inne";
             this.TabPage_Inne.UseVisualStyleBackColor = true;
             // 
+            // CheckBox_Aktualizacje
+            // 
+            this.CheckBox_Aktualizacje.AutoSize = true;
+            this.CheckBox_Aktualizacje.Location = new System.Drawing.Point(6, 32);
+            this.CheckBox_Aktualizacje.Name = "CheckBox_Aktualizacje";
+            this.CheckBox_Aktualizacje.Size = new System.Drawing.Size(288, 17);
+            this.CheckBox_Aktualizacje.TabIndex = 3;
+            this.CheckBox_Aktualizacje.Text = "Sprawdzanie dostępnej aktualizacji przy starcie aplikacji";
+            this.CheckBox_Aktualizacje.UseVisualStyleBackColor = true;
+            // 
+            // Label_FolderRachunkow
+            // 
+            this.Label_FolderRachunkow.AutoSize = true;
+            this.Label_FolderRachunkow.Location = new System.Drawing.Point(351, 9);
+            this.Label_FolderRachunkow.Name = "Label_FolderRachunkow";
+            this.Label_FolderRachunkow.Size = new System.Drawing.Size(109, 13);
+            this.Label_FolderRachunkow.TabIndex = 2;
+            this.Label_FolderRachunkow.Text = "Folder dla rachunków";
+            // 
+            // TextBox_FolderRachunkow
+            // 
+            this.TextBox_FolderRachunkow.Location = new System.Drawing.Point(6, 6);
+            this.TextBox_FolderRachunkow.Name = "TextBox_FolderRachunkow";
+            this.TextBox_FolderRachunkow.Size = new System.Drawing.Size(339, 20);
+            this.TextBox_FolderRachunkow.TabIndex = 1;
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -167,32 +194,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button_Zapisz_Click);
             // 
-            // TextBox_FolderRachunkow
-            // 
-            this.TextBox_FolderRachunkow.Location = new System.Drawing.Point(6, 6);
-            this.TextBox_FolderRachunkow.Name = "TextBox_FolderRachunkow";
-            this.TextBox_FolderRachunkow.Size = new System.Drawing.Size(339, 20);
-            this.TextBox_FolderRachunkow.TabIndex = 1;
-            // 
-            // Label_FolderRachunkow
-            // 
-            this.Label_FolderRachunkow.AutoSize = true;
-            this.Label_FolderRachunkow.Location = new System.Drawing.Point(351, 9);
-            this.Label_FolderRachunkow.Name = "Label_FolderRachunkow";
-            this.Label_FolderRachunkow.Size = new System.Drawing.Size(109, 13);
-            this.Label_FolderRachunkow.TabIndex = 2;
-            this.Label_FolderRachunkow.Text = "Folder dla rachunków";
-            // 
-            // CheckBox_Aktualizacje
-            // 
-            this.CheckBox_Aktualizacje.AutoSize = true;
-            this.CheckBox_Aktualizacje.Location = new System.Drawing.Point(6, 32);
-            this.CheckBox_Aktualizacje.Name = "CheckBox_Aktualizacje";
-            this.CheckBox_Aktualizacje.Size = new System.Drawing.Size(288, 17);
-            this.CheckBox_Aktualizacje.TabIndex = 3;
-            this.CheckBox_Aktualizacje.Text = "Sprawdzanie dostępnej aktualizacji przy starcie aplikacji";
-            this.CheckBox_Aktualizacje.UseVisualStyleBackColor = true;
-            // 
             // Ustawienia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -201,6 +202,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.TabControl_Ustawienia);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Ustawienia";
             this.Text = "Ustawienia";
