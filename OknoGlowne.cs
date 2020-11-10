@@ -2,13 +2,17 @@
 using System.IO;
 using System.Windows.Forms;
 using Pomocnik;
-using GemBox.Document;
-using GemBox.Document.Tables;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Threading;
 using System.Globalization;
 using System.Net;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Layout.Borders;
+using iText.Kernel.Colors;
+using iText.Kernel.Font;
+using iText.Kernel.Geom;
 
 namespace Księgowość
 {
@@ -33,6 +37,7 @@ namespace Księgowość
         public static string[,] Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
         public static string[,] Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
 
+        public static String FONT = sciezka_startowa + F_Dane + @"/FreeSans.ttf";
         public static decimal Stawka_PIT = decimal.Parse("0,17");
         public static string ROK = "1995";
         public static bool Zapisane = true;
@@ -51,10 +56,6 @@ namespace Księgowość
 
             ROK = DateTime.Now.Year.ToString(); // Obecny rok
             Wczytaj_rok(ROK);
-            ComponentInfo.SetLicense("FREE-LIMITED-KEY");
-
-            // Stop reading/writing a spreadsheet when the free limit is reached.
-            ComponentInfo.FreeLimitReached += (sender, e) => e.FreeLimitReachedAction = FreeLimitReachedAction.ContinueAsTrial;
 
             if(Podaj_aktualizacje_na_start() == true)
             {
@@ -501,123 +502,160 @@ namespace Księgowość
 
         public void Generowanie_rachunku(string nr_kol)
         {
-            string nazwa = "Rachunek-" + nr_kol;
-            var document = new DocumentModel();
-
-            // Style's font size is 24pt.
-            var largeFont = new CharacterStyle("Large Font") { CharacterFormat = { Size = 24 } };
-            document.Styles.Add(largeFont);
-            var section = new Section(document);
-            document.Sections.Add(section);
-
-            // Część 1 - Info o stronach////////////////////////////////////          
-            var table = new Table(document);
-            table.TableFormat.RightToLeft = true;
-            table.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
-            table.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new GemBox.Document.Color(255, 255, 255), 1);
-            var row = new TableRow(document);
-            table.Rows.Add(row);
-
-            string firma = Podaj_moja_firme();
+            string sciezka = Podaj_folder_rachunkow("0") + "Rachunek-" + nr_kol + ".pdf";
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
-            string sprzedawca = "Sprzedawca:\n";
+            string firma = Podaj_moja_firme();
+            string sprzedawca = "";
+            Color headerBg = new DeviceRgb(87, 235, 203);
+            string nabywca = "";
+            decimal cena, ilosc, wartosc;
+
+            sprzedawca += "Sprzedawca:\r";
             if (firma != "")
             {
-                sprzedawca += firma + "\n";
+                sprzedawca += firma + "\r";
             }
-            sprzedawca += Podaj_moje_imie_i_nazwisko() + "\n";
-            sprzedawca += Podaj_moj_adres() + "\n";
-            sprzedawca += Podaj_moj_kod_i_miasto() + "\n";
+            sprzedawca += Podaj_moje_imie_i_nazwisko() + "\r";
+            sprzedawca += Podaj_moj_adres() + "\r";
+            sprzedawca += Podaj_moj_kod_i_miasto() + "\r";
 
-            string nabywca = "Nabywca:\n";
-            nabywca += Podaj_Imie_i_Nazwisko_klienta(nazwa_klienta) + "\n";
-            nabywca += Podaj_adres_klienta(nazwa_klienta) + "\n";
-            nabywca += Podaj_kod_i_miasto_klienta(nazwa_klienta) + "\n";
+            nabywca += "Nabywca:\r";
+            nabywca += Podaj_Imie_i_Nazwisko_klienta(nazwa_klienta) + "\r";
+            nabywca += Podaj_adres_klienta(nazwa_klienta) + "\r";
+            nabywca += Podaj_kod_i_miasto_klienta(nazwa_klienta) + "\r";
 
-            var firstCellPara = new Paragraph(document, nabywca);
-            firstCellPara.ParagraphFormat.RightToLeft = true;
-            row.Cells.Add(new TableCell(document, firstCellPara));
+            PdfWriter Writer = new PdfWriter(sciezka);
+            PdfDocument pdf = new PdfDocument(Writer);
+            Document document = new Document(pdf);
+            PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
 
-            var secondCellPara = new Paragraph(document, sprzedawca);
-            row.Cells.Add(new TableCell(document, secondCellPara));
+            // Dane sprzedawcy i nabywcy
+            Table Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            Cell cell1 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .Add(new Paragraph(sprzedawca));
+            Cell cell2 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.RIGHT)
+                .Add(new Paragraph(nabywca));
+            Adresy_Tabela.AddCell(cell1);
+            Adresy_Tabela.AddCell(cell2);
+            document.Add(Adresy_Tabela);
 
-            section.Blocks.Add(table);
+            // Napis "Rachunek"
+            Paragraph header = new Paragraph("Rachunek " + nr_kol)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(30);
+            document.Add(header);
 
-            // Część 2 - opis dokumentu////////////////////////////////////
-            var paragraph2 = new Paragraph(document,
-            new Run(document, "Rachunek " + nr_kol)
+            // Napis "Data sprzedaży"
+            Paragraph subheader = new Paragraph("Data sprzedaży - " + Podaj_date_sprzedazy(nr_kol))
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(16);
+            document.Add(subheader);
+
+            // Tabela sprzedaży
+            Table Sprzedaz_Tabela = new Table(4, false).UseAllAvailableWidth();
+            Cell Sp_Cell11 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Nazwa towaru lub usługi"));
+            Cell Sp_Cell12 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Cena [Zł]"));
+            Cell Sp_Cell13 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Ilość [Szt.]"));
+            Cell Sp_Cell14 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Wartość [Zł]"));
+            Sprzedaz_Tabela.AddCell(Sp_Cell11);
+            Sprzedaz_Tabela.AddCell(Sp_Cell12);
+            Sprzedaz_Tabela.AddCell(Sp_Cell13);
+            Sprzedaz_Tabela.AddCell(Sp_Cell14);
+
+            for (int a = 0; a < Sprzedaz.GetLength(0); a++)
             {
-                CharacterFormat = { Style = largeFont }
-            },
-            new SpecialCharacter(document, SpecialCharacterType.LineBreak),
-            new Run(document, "Data sprzedaży - " + Podaj_date_sprzedazy(nr_kol))
-            {
-                CharacterFormat = { Style = largeFont, Size = 12 }
-            });
-            paragraph2.ParagraphFormat.Alignment = GemBox.Document.HorizontalAlignment.Center;
-            section.Blocks.Add(paragraph2);
-
-            // Część 3 - Sprzedaż////////////////////////////////////
-            var table2 = new Table(document);
-            table2.TableFormat.PreferredWidth = new TableWidth(100, TableWidthUnit.Percentage);
-            var row2 = new TableRow(document);
-            table2.Rows.Add(row2);
-
-            // Create and add a custom table style.
-            var customTableStyle = new TableStyle("GemBox Table");
-            document.Styles.Add(customTableStyle);
-            var firstRowFormat = customTableStyle.ConditionalFormats[TableStyleFormatType.FirstRow];
-            firstRowFormat.CellFormat.BackgroundColor = new GemBox.Document.Color(133, 230, 226);
-            customTableStyle.TableFormat.Borders.SetBorders(MultipleBorderTypes.All, GemBox.Document.BorderStyle.Single, new GemBox.Document.Color(0, 0, 0), 1);
-
-            var kol1 = new Paragraph(document, "Nazwa towaru lub usługi");    
-            row2.Cells.Add(new TableCell(document, kol1));
-
-            var kol2 = new Paragraph(document, "Cena [Zł]");
-            row2.Cells.Add(new TableCell(document, kol2));
-
-            var kol3 = new Paragraph(document, "Ilość [Szt.]");
-            row2.Cells.Add(new TableCell(document, kol3));
-
-            var kol4 = new Paragraph(document, "Wartość [Zł]");
-            row2.Cells.Add(new TableCell(document, kol4));
-
-            for(int a = 0; a < Sprzedaz.GetLength(0); a++)
-            {
-                if(Sprzedaz[a,0] == nr_kol)
+                if (Sprzedaz[a, 0] == nr_kol)
                 {
-                    var rowek = new TableRow(document);
-                    table2.Rows.Add(rowek);
+                    cena = decimal.Parse(Sprzedaz[a, 2]);
+                    ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                    wartosc = cena * ilosc;
 
-                    var kolumna1 = new Paragraph(document, Sprzedaz[a, 1]);
-                    rowek.Cells.Add(new TableCell(document, kolumna1));
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(Sprzedaz[a, 1])) // nazwa
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(cena.ToString("N2"))) // cena
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(ilosc.ToString("N2"))) // ilość
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(wartosc.ToString("N2"))) // wartość
+                    );
+                }
+            }
+            document.Add(Sprzedaz_Tabela);
 
-                    var kolumna2 = new Paragraph(document, Sprzedaz[a, 2]);
-                    rowek.Cells.Add(new TableCell(document, kolumna2));
+            // Razem
+            Paragraph header_razem = new Paragraph("Razem: " + Podaj_przychod_faktury(nr_kol).ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_razem);
+            
+            // Forma płatności
+            Paragraph header_platnosc = new Paragraph("Forma płatności: " + Podaj_forme_platnosci_faktury(nr_kol))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_platnosc);
 
-                    var kolumna3 = new Paragraph(document, Sprzedaz[a, 3]);
-                    rowek.Cells.Add(new TableCell(document, kolumna3));
-
-                    decimal sum = decimal.Parse(Sprzedaz[a, 2]) * decimal.Parse(Sprzedaz[a, 3]);
-
-                    var kolumna4 = new Paragraph(document, sum.ToString());
-                    rowek.Cells.Add(new TableCell(document, kolumna4));
-                }                
+            // Stopka z wersją
+            Paragraph header_wersja = new Paragraph("Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)
+                .SetFont(Czcionka)
+                .SetFontSize(8);
+            for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
+            {
+                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                float x = pageSize.GetWidth() / 16;
+                float y = pageSize.GetBottom() + 30;
+                document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
             }
 
-            section.Blocks.Add(table2);
-            table2.TableFormat.Style = customTableStyle;
 
-            string ostatnie_linie = "\nRAZEM: " + Podaj_przychod_faktury(nr_kol).ToString("C2") + "\n";
-            ostatnie_linie += "Forma płatności: " + Podaj_forme_platnosci_faktury(nr_kol);
-            section.Blocks.Add(new Paragraph(document, ostatnie_linie));
-
-            section.HeadersFooters.Add(
-               new HeaderFooter(document, HeaderFooterType.FooterDefault,
-               new Paragraph(document, "Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)));
-
-            document.Save(Podaj_folder_rachunkow("0") + nazwa + ".jpg");
-            Usun_smieci_z_rachunku(nr_kol);
+            document.Close();
         }
 
         public static string Podaj_moja_firme()
@@ -816,35 +854,6 @@ namespace Księgowość
                 }
             }
             return zwrot;
-        }
-
-        public void Usun_smieci_z_rachunku(string nr_kol)
-        {
-            string nazwa = "Rachunek-" + nr_kol;
-            string cala_sciezka = Podaj_folder_rachunkow("0") + nazwa + ".jpg";
-            string cala_sciezka2 = Podaj_folder_rachunkow("0") + nazwa + ".jpeg";
-            Image image1 = GetCopyImage(cala_sciezka);
-            Point p1 = new Point(378, 152);
-            Point p2 = new Point(2105, 152);
-            Point p3 = new Point(378, 275);
-            Point p4 = new Point(2105, 290);
-            Point[] punkty = { p1, p2, p4, p3 };
-            System.Drawing.Color Caly_kolor = System.Drawing.Color.FromArgb(255, 255, 255);
-            Graphics g = Graphics.FromImage(image1);
-            Brush Bruszka = new SolidBrush(Caly_kolor);
-            g.FillPolygon(Bruszka, punkty);
-            image1.Save(cala_sciezka2, ImageFormat.Jpeg);
-            image1.Dispose();
-            File.Delete(cala_sciezka);
-        }
-
-        private Image GetCopyImage(string path)
-        {
-            using (Image im = Image.FromFile(path))
-            {
-                Bitmap bm = new Bitmap(im);
-                return bm;
-            }
         }
 
         private void AktualizacjaToolStripMenuItem_Click(object sender, EventArgs e)

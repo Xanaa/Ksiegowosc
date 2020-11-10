@@ -1,4 +1,7 @@
 082020.1;Naprawa telewizora Toshiba 26AV733R;120,00;1,00
+082020.1;Syf;5,00;2,00
+082020.1;Kiła;10,00;3,00
+082020.1;Mogiła;15,00;4,00
 092020.1;Zasilacz Netgear 12V 500mA;2;2
 102020.1;Kabel sieciowy RJ45 5m;3,50;1
 102020.2;Dysza podwójna;0,75;2
