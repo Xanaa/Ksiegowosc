@@ -39,7 +39,7 @@ namespace Księgowość
         public static string[,] Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
 
         public static String FONT = sciezka_startowa + F_Dane + @"/FreeSans.ttf";
-        public static decimal Stawka_PIT = decimal.Parse("0,17");
+        public static decimal Stawka_PIT = 0;
         public static string ROK = "1995";
         public static bool Zapisane = true;
 
@@ -73,6 +73,7 @@ namespace Księgowość
             string Koszty_s2 = P_Koszty + rok + ".txt";
             string Przychody_s2 = P_Przychody + rok + ".txt";
             string Sprzedaz_s2 = P_Sprzedaz + rok + ".txt";
+            Stawka_PIT = Podaj_stawke_PIT_roku(rok);
 
             Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 4, "#", ";");
             Sprzedaz = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Sprzedaz_s2, 4, "#", ";");
@@ -285,9 +286,25 @@ namespace Księgowość
 
             for (int a = 0; a < Statystyka.GetLength(0); a++)
             {
-                if (Statystyka[a, 0] == rok && Statystyka[a, 1] == "Minimalne wynagrodzenie")
+                if (Statystyka[a, 0] == rok)
                 {
                     limit = decimal.Parse(Statystyka[a, 2]);
+                    break;
+                }
+            }
+
+            return limit;
+        }
+
+        public static decimal Podaj_stawke_PIT_roku(string rok)
+        {
+            decimal limit = 0;
+
+            for (int a = 0; a < Statystyka.GetLength(0); a++)
+            {
+                if (Statystyka[a, 0] == rok)
+                {
+                    limit = decimal.Parse(Statystyka[a, 1]);
                     break;
                 }
             }
