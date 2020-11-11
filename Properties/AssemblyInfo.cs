@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Księgowość")]
 [assembly: AssemblyDescription("Aplikacja do prowadzenia księgowości dla działalności nieewidencjonowanej")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MDEL D.N.")]
+[assembly: AssemblyCompany("ELDM D.N.")]
 [assembly: AssemblyProduct("Księgowość")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
