@@ -1,4 +1,13 @@
 ﻿Lista zmian programu Księgowość:
+-1.3.0.0 (11.11.2020r.)
+	-Zmiana formatu rachunków na PDF
+	-Zmiana silnika generującego rachunki na IText
+	-Odczytywanie stawki PIT na dany rok z pliku statystyki
+	-Zmiana nazwy programisty
+	-Dodatkowe informacje do wypełniania PIT36 z pliku statystyki
+	-Generowanie faktur VAT w formacie PDF
+	-Generowanie informacji rocznej w formacie PDF
+
 -1.2.0.0 (02.11.2020r.)
 	-Dodanie listy klientów
 	-Dodanie ikony głównej w każdym oknie aplikacji
