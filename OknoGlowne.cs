@@ -13,6 +13,7 @@ using iText.Layout.Borders;
 using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
+using iText.Kernel.Pdf.Canvas.Draw;
 
 namespace Księgowość
 {
@@ -495,14 +496,14 @@ namespace Księgowość
                 } // Rachunek
                 else
                 {
-                    // ToDo
+                    Generowanie_faktury(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
                 } // Faktura
             }
         }
 
         public void Generowanie_rachunku(string nr_kol)
         {
-            string sciezka = Podaj_folder_rachunkow("0") + "Rachunek-" + nr_kol + ".pdf";
+            string sciezka = Podaj_folder_rachunkow("0") + "Rachunek - " + nr_kol + ".pdf";
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
             string firma = Podaj_moja_firme();
             string sprzedawca = "";
@@ -654,6 +655,243 @@ namespace Księgowość
                 document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
             }
 
+            document.Close();
+        }
+
+        public void Generowanie_faktury(string nr_kol)
+        {
+            string sciezka = Podaj_folder_rachunkow("0") + "Faktura VAT - " + nr_kol + ".pdf";
+            string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
+            string firma = Podaj_moja_firme();
+            string sprzedawca = "";
+            Color headerBg = new DeviceRgb(87, 235, 203);
+            string nabywca = "";
+            decimal cena, ilosc, wartosc;
+
+            sprzedawca += "Sprzedawca:\r";
+            if (firma != "")
+            {
+                sprzedawca += firma + "\r";
+            }
+            sprzedawca += Podaj_moje_imie_i_nazwisko() + "\r";
+            sprzedawca += Podaj_moj_adres() + "\r";
+            sprzedawca += Podaj_moj_kod_i_miasto() + "\r";
+
+            nabywca += "Nabywca:\r";
+            nabywca += Podaj_Imie_i_Nazwisko_klienta(nazwa_klienta) + "\r";
+            nabywca += Podaj_adres_klienta(nazwa_klienta) + "\r";
+            nabywca += Podaj_kod_i_miasto_klienta(nazwa_klienta) + "\r";
+
+            PdfWriter Writer = new PdfWriter(sciezka);
+            PdfDocument pdf = new PdfDocument(Writer);
+            Document document = new Document(pdf);
+            PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
+
+            // Dane sprzedawcy i nabywcy
+            Table Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            Cell cell1 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .Add(new Paragraph(sprzedawca));
+            Cell cell2 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.RIGHT)
+                .Add(new Paragraph(nabywca));
+            Adresy_Tabela.AddCell(cell1);
+            Adresy_Tabela.AddCell(cell2);
+            document.Add(Adresy_Tabela);
+
+            // Napis "Rachunek"
+            Paragraph header = new Paragraph("Faktura VAT nr " + nr_kol)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(30);
+            document.Add(header);
+
+            // Napis "Data sprzedaży"
+            Paragraph subheader = new Paragraph("Data wystawienia - " + Podaj_date_sprzedazy(nr_kol))
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(16);
+            document.Add(subheader);
+
+            // Tabela sprzedaży
+            Table Sprzedaz_Tabela = new Table(7, false).UseAllAvailableWidth();
+            Cell Sp_Cell11 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Nazwa towaru lub usługi"));
+            Cell Sp_Cell12 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Cena netto [Zł]"));
+            Cell Sp_Cell13 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Ilość [Szt.]"));
+            Cell Sp_Cell14 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Wartość netto [Zł]"));
+            Cell Sp_Cell15 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("VAT [%]"));
+            Cell Sp_Cell16 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Wartość VAT [Zł]"));
+            Cell Sp_Cell17 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Wartość brutto [Zł]"));
+            Sprzedaz_Tabela.AddCell(Sp_Cell11);
+            Sprzedaz_Tabela.AddCell(Sp_Cell12);
+            Sprzedaz_Tabela.AddCell(Sp_Cell13);
+            Sprzedaz_Tabela.AddCell(Sp_Cell14);
+            Sprzedaz_Tabela.AddCell(Sp_Cell15);
+            Sprzedaz_Tabela.AddCell(Sp_Cell16);
+            Sprzedaz_Tabela.AddCell(Sp_Cell17);
+
+            for (int a = 0; a < Sprzedaz.GetLength(0); a++)
+            {
+                if (Sprzedaz[a, 0] == nr_kol)
+                {
+                    cena = decimal.Parse(Sprzedaz[a, 2]);
+                    ilosc = decimal.Parse(Sprzedaz[a, 3]);
+                    wartosc = cena * ilosc;
+
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(Sprzedaz[a, 1])) // nazwa
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(cena.ToString("N2"))) // cena netto
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(ilosc.ToString("N2"))) // ilość
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(wartosc.ToString("N2"))) // wartość netto
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph("ZW")) // Stawka VAT
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph("0,00")) // Wartość VAT
+                    );
+                    Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(wartosc.ToString("N2"))) // Wartość brutto
+                    );
+                }
+            }
+            document.Add(Sprzedaz_Tabela);
+
+            // Wartość netto
+            Paragraph header_razem_netto = new Paragraph("Wartość netto: " + Podaj_przychod_faktury(nr_kol).ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_razem_netto);
+
+            // Wartość VAT
+            Paragraph header_wartosc_vat = new Paragraph("Wartość VAT: 0,00 zł")
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_wartosc_vat);
+
+            // Wartość brutto
+            Paragraph header_razem_brutto = new Paragraph("Wartość brutto: " + Podaj_przychod_faktury(nr_kol).ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_razem_brutto);
+
+            // Entery
+            Paragraph header_entery = new Paragraph("\r\r")
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_entery);
+
+            // Linia
+            LineSeparator ls = new LineSeparator(new SolidLine());
+            document.Add(ls);
+
+            // Forma płatności
+            Paragraph header_uwagi = new Paragraph("Uwagi: Powód zwolnienia z VAT: na podstawie art. 113 ust. 1 ustawy o VAT")
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_uwagi);
+
+            // Linia
+            document.Add(ls);
+
+            // Do zapłaty
+            Paragraph header_do_zaplaty = new Paragraph("Do zapłaty: " + Podaj_przychod_faktury(nr_kol).ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_do_zaplaty);
+
+            // Forma płatności
+            Paragraph header_platnosc = new Paragraph("Forma płatności: " + Podaj_forme_platnosci_faktury(nr_kol))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_platnosc);
+
+            // Stopka z wersją
+            Paragraph header_wersja = new Paragraph("Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)
+                .SetFont(Czcionka)
+                .SetFontSize(8);
+            for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
+            {
+                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                float x = pageSize.GetWidth() / 16;
+                float y = pageSize.GetBottom() + 30;
+                document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
+            }
 
             document.Close();
         }

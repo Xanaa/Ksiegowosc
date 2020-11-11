@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -40,18 +38,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoGlowne));
             this.tabControl_Glowne = new System.Windows.Forms.TabControl();
             this.tabPage_Przychody = new System.Windows.Forms.TabPage();
             this.dataGrid_Przychody = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column23 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabPage_Sprzedaz = new System.Windows.Forms.TabPage();
             this.dataGridView_Sprzedaz = new System.Windows.Forms.DataGridView();
             this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,10 +87,19 @@
             this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
             this.daneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajPrzychodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listaKlientówToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UstawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaKlientówToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Kol_Przychody_Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_NrKol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_Nabywca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_Adres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_KodIMiasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_FormaPlatnosci = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Kol_Przychody_Kwota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Kol_Przychody_Rachunek = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Kol_Przychody_Faktura = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -126,7 +127,7 @@
             this.tabControl_Glowne.Location = new System.Drawing.Point(12, 27);
             this.tabControl_Glowne.Name = "tabControl_Glowne";
             this.tabControl_Glowne.SelectedIndex = 0;
-            this.tabControl_Glowne.Size = new System.Drawing.Size(857, 415);
+            this.tabControl_Glowne.Size = new System.Drawing.Size(992, 415);
             this.tabControl_Glowne.TabIndex = 0;
             // 
             // tabPage_Przychody
@@ -135,7 +136,7 @@
             this.tabPage_Przychody.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Przychody.Name = "tabPage_Przychody";
             this.tabPage_Przychody.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Przychody.Size = new System.Drawing.Size(849, 389);
+            this.tabPage_Przychody.Size = new System.Drawing.Size(984, 389);
             this.tabPage_Przychody.TabIndex = 0;
             this.tabPage_Przychody.Text = "Przychody";
             this.tabPage_Przychody.UseVisualStyleBackColor = true;
@@ -147,91 +148,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGrid_Przychody.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid_Przychody.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column12,
-            this.Column16,
-            this.Column22,
-            this.Column23});
+            this.Kol_Przychody_Data,
+            this.Kol_Przychody_NrKol,
+            this.Kol_Przychody_Nabywca,
+            this.Kol_Przychody_Adres,
+            this.Kol_Przychody_KodIMiasto,
+            this.Kol_Przychody_FormaPlatnosci,
+            this.Kol_Przychody_Kwota,
+            this.Kol_Przychody_Rachunek,
+            this.Kol_Przychody_Faktura});
             this.dataGrid_Przychody.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_Przychody.Name = "dataGrid_Przychody";
-            this.dataGrid_Przychody.Size = new System.Drawing.Size(837, 377);
+            this.dataGrid_Przychody.Size = new System.Drawing.Size(972, 377);
             this.dataGrid_Przychody.TabIndex = 0;
             this.dataGrid_Przychody.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Przychody_CellContentClick);
             this.dataGrid_Przychody.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGrid_Przychody_CellEndEdit);
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "Data";
-            this.Column1.Name = "Column1";
-            this.Column1.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
-            this.Column1.Width = 55;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column2.HeaderText = "Nr kol.";
-            this.Column2.Name = "Column2";
-            this.Column2.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
-            this.Column2.Width = 59;
-            // 
-            // Column3
-            // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column3.HeaderText = "Nabywca";
-            this.Column3.Name = "Column3";
-            this.Column3.ToolTipText = "Nazwa/Imę i nazwisko nabywcy";
-            this.Column3.Width = 77;
-            // 
-            // Column4
-            // 
-            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column4.HeaderText = "Adres";
-            this.Column4.Name = "Column4";
-            this.Column4.ToolTipText = "Ulica i numer budynku/lokalu";
-            this.Column4.Width = 59;
-            // 
-            // Column12
-            // 
-            this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column12.HeaderText = "Kod i miasto";
-            this.Column12.Name = "Column12";
-            this.Column12.ToolTipText = "Kod pocztowy i Miasto";
-            this.Column12.Width = 82;
-            // 
-            // Column16
-            // 
-            this.Column16.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column16.HeaderText = "Forma płatności";
-            this.Column16.Items.AddRange(new object[] {
-            "Przelew na konto",
-            "Gotówka"});
-            this.Column16.Name = "Column16";
-            this.Column16.Width = 80;
-            // 
-            // Column22
-            // 
-            this.Column22.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "C2";
-            this.Column22.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column22.HeaderText = "Sprzedaż";
-            this.Column22.Name = "Column22";
-            this.Column22.ReadOnly = true;
-            this.Column22.Width = 76;
-            // 
-            // Column23
-            // 
-            this.Column23.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Column23.HeaderText = "Rachunek";
-            this.Column23.Name = "Column23";
-            this.Column23.Text = "";
-            this.Column23.Width = 63;
             // 
             // tabPage_Sprzedaz
             // 
@@ -612,7 +543,7 @@
             this.pomocToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(881, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1016, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -662,9 +593,16 @@
             // dodajPrzychodyToolStripMenuItem
             // 
             this.dodajPrzychodyToolStripMenuItem.Name = "dodajPrzychodyToolStripMenuItem";
-            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.dodajPrzychodyToolStripMenuItem.Text = "Dodaj przychody";
             this.dodajPrzychodyToolStripMenuItem.Click += new System.EventHandler(this.DodajPrzychodyToolStripMenuItem_Click);
+            // 
+            // listaKlientówToolStripMenuItem
+            // 
+            this.listaKlientówToolStripMenuItem.Name = "listaKlientówToolStripMenuItem";
+            this.listaKlientówToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.listaKlientówToolStripMenuItem.Text = "Lista Klientów";
+            this.listaKlientówToolStripMenuItem.Click += new System.EventHandler(this.ListaKlientówToolStripMenuItem_Click);
             // 
             // pomocToolStripMenuItem
             // 
@@ -678,29 +616,103 @@
             // UstawieniaToolStripMenuItem
             // 
             this.UstawieniaToolStripMenuItem.Name = "UstawieniaToolStripMenuItem";
-            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.UstawieniaToolStripMenuItem.Text = "Ustawienia";
             this.UstawieniaToolStripMenuItem.Click += new System.EventHandler(this.UstawieniaToolStripMenuItem_Click);
             // 
             // aktualizacjaToolStripMenuItem
             // 
             this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
-            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.aktualizacjaToolStripMenuItem.Text = "O programie";
             this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
             // 
-            // listaKlientówToolStripMenuItem
+            // Kol_Przychody_Data
             // 
-            this.listaKlientówToolStripMenuItem.Name = "listaKlientówToolStripMenuItem";
-            this.listaKlientówToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.listaKlientówToolStripMenuItem.Text = "Lista Klientów";
-            this.listaKlientówToolStripMenuItem.Click += new System.EventHandler(this.ListaKlientówToolStripMenuItem_Click);
+            this.Kol_Przychody_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Kol_Przychody_Data.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Kol_Przychody_Data.HeaderText = "Data";
+            this.Kol_Przychody_Data.Name = "Kol_Przychody_Data";
+            this.Kol_Przychody_Data.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
+            this.Kol_Przychody_Data.Width = 55;
+            // 
+            // Kol_Przychody_NrKol
+            // 
+            this.Kol_Przychody_NrKol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_NrKol.HeaderText = "Nr kol.";
+            this.Kol_Przychody_NrKol.Name = "Kol_Przychody_NrKol";
+            this.Kol_Przychody_NrKol.ToolTipText = "Numer kolejny, (MiesiącRok.Numer)";
+            this.Kol_Przychody_NrKol.Width = 63;
+            // 
+            // Kol_Przychody_Nabywca
+            // 
+            this.Kol_Przychody_Nabywca.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_Nabywca.HeaderText = "Nabywca";
+            this.Kol_Przychody_Nabywca.Name = "Kol_Przychody_Nabywca";
+            this.Kol_Przychody_Nabywca.ToolTipText = "Nazwa/Imę i nazwisko nabywcy";
+            this.Kol_Przychody_Nabywca.Width = 77;
+            // 
+            // Kol_Przychody_Adres
+            // 
+            this.Kol_Przychody_Adres.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_Adres.HeaderText = "Adres";
+            this.Kol_Przychody_Adres.Name = "Kol_Przychody_Adres";
+            this.Kol_Przychody_Adres.ToolTipText = "Ulica i numer budynku/lokalu";
+            this.Kol_Przychody_Adres.Width = 59;
+            // 
+            // Kol_Przychody_KodIMiasto
+            // 
+            this.Kol_Przychody_KodIMiasto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_KodIMiasto.HeaderText = "Kod i miasto";
+            this.Kol_Przychody_KodIMiasto.Name = "Kol_Przychody_KodIMiasto";
+            this.Kol_Przychody_KodIMiasto.ToolTipText = "Kod pocztowy i Miasto";
+            this.Kol_Przychody_KodIMiasto.Width = 89;
+            // 
+            // Kol_Przychody_FormaPlatnosci
+            // 
+            this.Kol_Przychody_FormaPlatnosci.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_FormaPlatnosci.HeaderText = "Forma płatności";
+            this.Kol_Przychody_FormaPlatnosci.Items.AddRange(new object[] {
+            "Przelew na konto",
+            "Gotówka"});
+            this.Kol_Przychody_FormaPlatnosci.Name = "Kol_Przychody_FormaPlatnosci";
+            this.Kol_Przychody_FormaPlatnosci.Width = 80;
+            // 
+            // Kol_Przychody_Kwota
+            // 
+            this.Kol_Przychody_Kwota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Format = "C2";
+            this.Kol_Przychody_Kwota.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Kol_Przychody_Kwota.HeaderText = "Kwota";
+            this.Kol_Przychody_Kwota.Name = "Kol_Przychody_Kwota";
+            this.Kol_Przychody_Kwota.ReadOnly = true;
+            this.Kol_Przychody_Kwota.ToolTipText = "Kwota sprzedaży";
+            this.Kol_Przychody_Kwota.Width = 62;
+            // 
+            // Kol_Przychody_Rachunek
+            // 
+            this.Kol_Przychody_Rachunek.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_Rachunek.HeaderText = "Rachunek";
+            this.Kol_Przychody_Rachunek.Name = "Kol_Przychody_Rachunek";
+            this.Kol_Przychody_Rachunek.Text = "";
+            this.Kol_Przychody_Rachunek.ToolTipText = "Kliknij aby wygenerować rachunek w formacie PDF";
+            this.Kol_Przychody_Rachunek.Width = 63;
+            // 
+            // Kol_Przychody_Faktura
+            // 
+            this.Kol_Przychody_Faktura.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Kol_Przychody_Faktura.HeaderText = "Faktura VAT";
+            this.Kol_Przychody_Faktura.Name = "Kol_Przychody_Faktura";
+            this.Kol_Przychody_Faktura.ToolTipText = "Kliknij aby wygenerować fakturę VAT w formacie PDF";
+            this.Kol_Przychody_Faktura.Width = 66;
             // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(881, 454);
+            this.ClientSize = new System.Drawing.Size(1016, 454);
             this.Controls.Add(this.tabControl_Glowne);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -771,14 +783,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column16;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column22;
-        private System.Windows.Forms.DataGridViewButtonColumn Column23;
         private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aktualizacjaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem daneToolStripMenuItem;
@@ -788,6 +792,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.ToolStripMenuItem UstawieniaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listaKlientówToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Data;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_NrKol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Nabywca;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Adres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_KodIMiasto;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Kol_Przychody_FormaPlatnosci;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Kwota;
+        private System.Windows.Forms.DataGridViewButtonColumn Kol_Przychody_Rachunek;
+        private System.Windows.Forms.DataGridViewButtonColumn Kol_Przychody_Faktura;
     }
 }
 
