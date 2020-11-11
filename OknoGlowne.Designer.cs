@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OknoGlowne));
             this.tabControl_Glowne = new System.Windows.Forms.TabControl();
             this.tabPage_Przychody = new System.Windows.Forms.TabPage();
@@ -100,6 +100,7 @@
             this.Kol_Przychody_Kwota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kol_Przychody_Rachunek = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Kol_Przychody_Faktura = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Button_InformacjaRoczna = new System.Windows.Forms.Button();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -210,8 +211,8 @@
             // Column20
             // 
             this.Column20.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Format = "N2";
-            this.Column20.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Format = "N2";
+            this.Column20.DefaultCellStyle = dataGridViewCellStyle13;
             this.Column20.HeaderText = "Cena";
             this.Column20.Name = "Column20";
             this.Column20.Width = 57;
@@ -219,9 +220,9 @@
             // Column19
             // 
             this.Column19.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.Column19.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Format = "N2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.Column19.DefaultCellStyle = dataGridViewCellStyle14;
             this.Column19.HeaderText = "Ilość";
             this.Column19.Name = "Column19";
             this.Column19.Width = 54;
@@ -229,8 +230,8 @@
             // Column21
             // 
             this.Column21.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle5.Format = "N2";
-            this.Column21.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Format = "N2";
+            this.Column21.DefaultCellStyle = dataGridViewCellStyle15;
             this.Column21.HeaderText = "Wartość";
             this.Column21.Name = "Column21";
             this.Column21.Width = 72;
@@ -272,8 +273,8 @@
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle6.Format = "N2";
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle16.Format = "N2";
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle16;
             this.Column6.HeaderText = "Kwota";
             this.Column6.Name = "Column6";
             this.Column6.Width = 62;
@@ -353,8 +354,8 @@
             // Column8
             // 
             this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle7.Format = "C2";
-            this.Column8.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle17.Format = "C2";
+            this.Column8.DefaultCellStyle = dataGridViewCellStyle17;
             this.Column8.HeaderText = "Przychód";
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
@@ -363,8 +364,8 @@
             // Column9
             // 
             this.Column9.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle8.Format = "C2";
-            this.Column9.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle18.Format = "C2";
+            this.Column9.DefaultCellStyle = dataGridViewCellStyle18;
             this.Column9.HeaderText = "Koszty";
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
@@ -373,8 +374,8 @@
             // Column13
             // 
             this.Column13.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle9.Format = "C2";
-            this.Column13.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle19.Format = "C2";
+            this.Column13.DefaultCellStyle = dataGridViewCellStyle19;
             this.Column13.HeaderText = "Dochód";
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
@@ -383,8 +384,8 @@
             // Column10
             // 
             this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle10.Format = "C2";
-            this.Column10.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle20.Format = "C2";
+            this.Column10.DefaultCellStyle = dataGridViewCellStyle20;
             this.Column10.HeaderText = "Zaliczka PIT";
             this.Column10.Name = "Column10";
             this.Column10.ReadOnly = true;
@@ -393,8 +394,8 @@
             // Column15
             // 
             this.Column15.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle11.Format = "C2";
-            this.Column15.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle21.Format = "C2";
+            this.Column15.DefaultCellStyle = dataGridViewCellStyle21;
             this.Column15.HeaderText = "Netto";
             this.Column15.Name = "Column15";
             this.Column15.ReadOnly = true;
@@ -403,8 +404,8 @@
             // Column14
             // 
             this.Column14.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle12.Format = "C2";
-            this.Column14.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle22.Format = "C2";
+            this.Column14.DefaultCellStyle = dataGridViewCellStyle22;
             this.Column14.HeaderText = "Pozostały limit";
             this.Column14.Name = "Column14";
             this.Column14.ReadOnly = true;
@@ -412,6 +413,7 @@
             // 
             // tabPage_InfoPIT
             // 
+            this.tabPage_InfoPIT.Controls.Add(this.Button_InformacjaRoczna);
             this.tabPage_InfoPIT.Controls.Add(this.label6);
             this.tabPage_InfoPIT.Controls.Add(this.textBox_S_netto);
             this.tabPage_InfoPIT.Controls.Add(this.label5);
@@ -630,9 +632,9 @@
             // Kol_Przychody_Data
             // 
             this.Kol_Przychody_Data.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.Kol_Przychody_Data.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle23.Format = "d";
+            dataGridViewCellStyle23.NullValue = null;
+            this.Kol_Przychody_Data.DefaultCellStyle = dataGridViewCellStyle23;
             this.Kol_Przychody_Data.HeaderText = "Data";
             this.Kol_Przychody_Data.Name = "Kol_Przychody_Data";
             this.Kol_Przychody_Data.ToolTipText = "Dzień.Miesiąc.Rok (dd.mm.rrrr)";
@@ -683,8 +685,8 @@
             // Kol_Przychody_Kwota
             // 
             this.Kol_Przychody_Kwota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Format = "C2";
-            this.Kol_Przychody_Kwota.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle24.Format = "C2";
+            this.Kol_Przychody_Kwota.DefaultCellStyle = dataGridViewCellStyle24;
             this.Kol_Przychody_Kwota.HeaderText = "Kwota";
             this.Kol_Przychody_Kwota.Name = "Kol_Przychody_Kwota";
             this.Kol_Przychody_Kwota.ReadOnly = true;
@@ -707,6 +709,16 @@
             this.Kol_Przychody_Faktura.Name = "Kol_Przychody_Faktura";
             this.Kol_Przychody_Faktura.ToolTipText = "Kliknij aby wygenerować fakturę VAT w formacie PDF";
             this.Kol_Przychody_Faktura.Width = 66;
+            // 
+            // Button_InformacjaRoczna
+            // 
+            this.Button_InformacjaRoczna.Location = new System.Drawing.Point(6, 162);
+            this.Button_InformacjaRoczna.Name = "Button_InformacjaRoczna";
+            this.Button_InformacjaRoczna.Size = new System.Drawing.Size(201, 23);
+            this.Button_InformacjaRoczna.TabIndex = 12;
+            this.Button_InformacjaRoczna.Text = "Informacja Roczna";
+            this.Button_InformacjaRoczna.UseVisualStyleBackColor = true;
+            this.Button_InformacjaRoczna.Click += new System.EventHandler(this.Button_InformacjaRoczna_Click);
             // 
             // OknoGlowne
             // 
@@ -801,6 +813,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Kwota;
         private System.Windows.Forms.DataGridViewButtonColumn Kol_Przychody_Rachunek;
         private System.Windows.Forms.DataGridViewButtonColumn Kol_Przychody_Faktura;
+        private System.Windows.Forms.Button Button_InformacjaRoczna;
     }
 }
 

@@ -964,6 +964,210 @@ namespace Księgowość
             document.Close();
         }
 
+        public void Generowanie_Informacji_roczenj(string rok)
+        {
+            string sciezka = Podaj_folder_rachunkow("0") + "Informacja roczna - " + rok + ".pdf";
+            Color headerBg = new DeviceRgb(87, 235, 203);
+            string firma = Podaj_moja_firme();
+            string marza = Oblicz_marze_roku(rok);
+            decimal limit_miesieczny = Podaj_limit_przychodu(rok);
+            decimal przychod, dochod, podatek, netto, pozostaly_limit;
+
+            PdfWriter Writer = new PdfWriter(sciezka);
+            PdfDocument pdf = new PdfDocument(Writer);
+            Document document = new Document(pdf);
+            PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
+
+            // Napis "Informacja roczna"
+            Paragraph header = new Paragraph("Informacja roczna za rok " + rok)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(30);
+            document.Add(header);
+
+            if(firma != "")
+            {
+                // Nazwa firmy
+                Paragraph subheader = new Paragraph(firma)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(16);
+                document.Add(subheader);
+            }
+
+            // Suma przychodu
+            Paragraph header_razem_netto = new Paragraph("\nMiesięczny limit przychodów: " + limit_miesieczny.ToString("C2") + "\n")
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_razem_netto);
+
+            // Tabela sprzedaży
+            Table Sprzedaz_Tabela = new Table(7, false).UseAllAvailableWidth();
+            Cell Sp_Cell11 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Miesiąc"));
+            Cell Sp_Cell12 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Przychód"));
+            Cell Sp_Cell13 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Koszty"));
+            Cell Sp_Cell14 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Dochód brutto"));
+            Cell Sp_Cell15 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Podatek"));
+            Cell Sp_Cell16 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Dochód netto"));
+            Cell Sp_Cell17 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Pozostały limit"));
+            Sprzedaz_Tabela.AddCell(Sp_Cell11);
+            Sprzedaz_Tabela.AddCell(Sp_Cell12);
+            Sprzedaz_Tabela.AddCell(Sp_Cell13);
+            Sprzedaz_Tabela.AddCell(Sp_Cell14);
+            Sprzedaz_Tabela.AddCell(Sp_Cell15);
+            Sprzedaz_Tabela.AddCell(Sp_Cell16);
+            Sprzedaz_Tabela.AddCell(Sp_Cell17);
+
+            for (int a = 0; a < 12; a++)
+            {
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(Podaj_miesiac_z_liczby(a + 1))) // Miesiąc
+                );
+                przychod = Oblicz_Przychody_miesiaca((a + 1).ToString("00"));
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(przychod.ToString("C2"))) // Przychody
+                );
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(Oblicz_Koszty_miesiaca((a + 1).ToString("00")).ToString("C2"))) // Koszty
+                );
+                dochod = Oblicz_Dochody_miesiaca((a + 1).ToString("00"));
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFont(Czcionka)
+                        .SetFontSize(10)
+                        .Add(new Paragraph(dochod.ToString("C2"))) // Dochód brutto
+                    );
+                podatek = Oblicz_Zaliczke_PIT_miesiaca((a + 1).ToString("00"));
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(podatek.ToString("C2"))) // Podatek
+                );
+                netto = dochod - podatek;
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(netto.ToString("C2"))) // Dochód netto
+                );
+                pozostaly_limit = limit_miesieczny - przychod;
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(pozostaly_limit.ToString("C2"))) // Pozostały limit
+                );
+            }
+            
+            document.Add(Sprzedaz_Tabela);
+
+            // Suma przychodu
+            Paragraph header_suma_przychodu = new Paragraph("Suma przychodu: " + Oblicz_Przychody_roku().ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_suma_przychodu);
+
+            // Suma kosztów
+            Paragraph header_suma_kosztow = new Paragraph("Suma kosztów: " + Oblicz_Koszty_roku().ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_suma_kosztow);
+
+            // Suma dochodu brutto
+            Paragraph header_dochod_brutto = new Paragraph("Suma dochodu brutto: " + Oblicz_Dochody_roku().ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_dochod_brutto);
+
+            // Suma podatku
+            Paragraph header_suma_podatku = new Paragraph("Suma podatku: " + Oblicz_Zaliczke_PIT_roku().ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_suma_podatku);
+
+            // Suma dochodu netto
+            Paragraph header_netto_roku = new Paragraph("Suma dochodu netto: " + Oblicz_netto_roku().ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_netto_roku);
+
+            // Marża
+            Paragraph header_marza = new Paragraph("Marża: " + marza)
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_marza);
+
+            // Linia
+            LineSeparator ls = new LineSeparator(new SolidLine());
+            document.Add(ls);
+
+            // Stopka z wersją
+            Paragraph header_wersja = new Paragraph("Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)
+                .SetFont(Czcionka)
+                .SetFontSize(8);
+            for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
+            {
+                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                float x = pageSize.GetWidth() / 16;
+                float y = pageSize.GetBottom() + 30;
+                document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
+            }
+
+            document.Close();
+        }
+
         public static string Podaj_moja_firme()
         {
             string zwrot = "";
@@ -1304,6 +1508,71 @@ namespace Księgowość
         {
             Lista_Klientow_okno Lista_Klientow_okno_ = new Lista_Klientow_okno();
             Lista_Klientow_okno_.Show();
+        }
+
+        public static string Oblicz_marze_roku(string rok)
+        {
+            string zwrot = "n/n";
+            decimal przy = Oblicz_Przychody_roku();
+            decimal kosz = Oblicz_Koszty_roku();
+            if(kosz != 0)
+            {
+                zwrot = ((przy / kosz) - 1).ToString("P2");
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_miesiac_z_liczby(int liczba)
+        {
+            string returnek;
+            switch (liczba)
+            {
+                case 1:
+                    returnek = "Styczeń";
+                    break;
+                case 2:
+                    returnek = "Luty";
+                    break;
+                case 3:
+                    returnek = "Marzec";
+                    break;
+                case 4:
+                    returnek = "Kwiecień";
+                    break;
+                case 5:
+                    returnek = "Maj";
+                    break;
+                case 6:
+                    returnek = "Czerwiec";
+                    break;
+                case 7:
+                    returnek = "Lipiec";
+                    break;
+                case 8:
+                    returnek = "Sierpień";
+                    break;
+                case 9:
+                    returnek = "Wrzesień";
+                    break;
+                case 10:
+                    returnek = "Październik";
+                    break;
+                case 11:
+                    returnek = "Listopad";
+                    break;
+                case 12:
+                    returnek = "Grudzień";
+                    break;
+                default:
+                    returnek = "Błąd";
+                    break;
+            }
+            return returnek;
+        }
+
+        private void Button_InformacjaRoczna_Click(object sender, EventArgs e)
+        {
+            Generowanie_Informacji_roczenj(ROK);
         }
     }   
 }
