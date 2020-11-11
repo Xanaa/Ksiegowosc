@@ -34,7 +34,7 @@ namespace Księgowość
         public static string[,] Koszty;
         public static string[,] Przychody;
         public static string[,] Sprzedaz;
-        public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 3, "#", ";");
+        public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 6, "#", ";");
         public static string[,] Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
         public static string[,] Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
 
@@ -189,6 +189,9 @@ namespace Księgowość
             textBox_S_Dochodow.Text = Oblicz_Dochody_roku().ToString("C2");
             textBox_S_ZaliczekPIT.Text = Oblicz_Zaliczke_PIT_roku().ToString("C2");
             textBox_S_netto.Text = Oblicz_netto_roku().ToString("C2");
+
+            Label_PIT_SumaPrzychodow.Text = "Suma przychodów - PIT36("+ Podaj_numer_PIT36_roku(ROK) + ") p. " + Podaj_kol_przychodu_PIT36_roku(ROK);
+            Label_PIT_SumaKosztow.Text = "Suma kosztów - PIT36(" + Podaj_numer_PIT36_roku(ROK) + ") p. " + Podaj_kol_kosztu_PIT36_roku(ROK);
         }
 
         public static decimal Oblicz_Przychody_miesiaca(string miesiac)
@@ -305,6 +308,54 @@ namespace Księgowość
                 if (Statystyka[a, 0] == rok)
                 {
                     limit = decimal.Parse(Statystyka[a, 1]);
+                    break;
+                }
+            }
+
+            return limit;
+        }
+
+        public static string Podaj_numer_PIT36_roku(string rok)
+        {
+            string limit = "";
+
+            for (int a = 0; a < Statystyka.GetLength(0); a++)
+            {
+                if (Statystyka[a, 0] == rok)
+                {
+                    limit = Statystyka[a, 3];
+                    break;
+                }
+            }
+
+            return limit;
+        }
+
+        public static string Podaj_kol_przychodu_PIT36_roku(string rok)
+        {
+            string limit = "";
+
+            for (int a = 0; a < Statystyka.GetLength(0); a++)
+            {
+                if (Statystyka[a, 0] == rok)
+                {
+                    limit = Statystyka[a, 4];
+                    break;
+                }
+            }
+
+            return limit;
+        }
+
+        public static string Podaj_kol_kosztu_PIT36_roku(string rok)
+        {
+            string limit = "";
+
+            for (int a = 0; a < Statystyka.GetLength(0); a++)
+            {
+                if (Statystyka[a, 0] == rok)
+                {
+                    limit = Statystyka[a, 5];
                     break;
                 }
             }

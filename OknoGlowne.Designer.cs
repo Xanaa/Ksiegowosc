@@ -73,8 +73,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_S_ZaliczekPIT = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.Label_PIT_SumaKosztow = new System.Windows.Forms.Label();
+            this.Label_PIT_SumaPrzychodow = new System.Windows.Forms.Label();
             this.textBox_S_Dochodow = new System.Windows.Forms.TextBox();
             this.textBox_S_Kosztow = new System.Windows.Forms.TextBox();
             this.textBox_S_Przychodow = new System.Windows.Forms.TextBox();
@@ -291,7 +291,7 @@
             this.tabPage_Info.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Info.Name = "tabPage_Info";
             this.tabPage_Info.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Info.Size = new System.Drawing.Size(849, 389);
+            this.tabPage_Info.Size = new System.Drawing.Size(984, 389);
             this.tabPage_Info.TabIndex = 2;
             this.tabPage_Info.Text = "Info";
             this.tabPage_Info.UseVisualStyleBackColor = true;
@@ -306,7 +306,7 @@
             this.tabControl1.Location = new System.Drawing.Point(6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(837, 377);
+            this.tabControl1.Size = new System.Drawing.Size(972, 377);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage_Roz_mies
@@ -315,7 +315,7 @@
             this.tabPage_Roz_mies.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Roz_mies.Name = "tabPage_Roz_mies";
             this.tabPage_Roz_mies.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Roz_mies.Size = new System.Drawing.Size(829, 351);
+            this.tabPage_Roz_mies.Size = new System.Drawing.Size(964, 351);
             this.tabPage_Roz_mies.TabIndex = 0;
             this.tabPage_Roz_mies.Text = "Rozliczenie miesięczne";
             this.tabPage_Roz_mies.UseVisualStyleBackColor = true;
@@ -339,7 +339,7 @@
             this.dataGrid_PITMiesiecznie.Location = new System.Drawing.Point(6, 6);
             this.dataGrid_PITMiesiecznie.Name = "dataGrid_PITMiesiecznie";
             this.dataGrid_PITMiesiecznie.ReadOnly = true;
-            this.dataGrid_PITMiesiecznie.Size = new System.Drawing.Size(817, 339);
+            this.dataGrid_PITMiesiecznie.Size = new System.Drawing.Size(952, 339);
             this.dataGrid_PITMiesiecznie.TabIndex = 0;
             // 
             // Column11
@@ -417,8 +417,8 @@
             this.tabPage_InfoPIT.Controls.Add(this.label5);
             this.tabPage_InfoPIT.Controls.Add(this.textBox_S_ZaliczekPIT);
             this.tabPage_InfoPIT.Controls.Add(this.label4);
-            this.tabPage_InfoPIT.Controls.Add(this.label3);
-            this.tabPage_InfoPIT.Controls.Add(this.label2);
+            this.tabPage_InfoPIT.Controls.Add(this.Label_PIT_SumaKosztow);
+            this.tabPage_InfoPIT.Controls.Add(this.Label_PIT_SumaPrzychodow);
             this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Dochodow);
             this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Kosztow);
             this.tabPage_InfoPIT.Controls.Add(this.textBox_S_Przychodow);
@@ -427,7 +427,7 @@
             this.tabPage_InfoPIT.Location = new System.Drawing.Point(4, 22);
             this.tabPage_InfoPIT.Name = "tabPage_InfoPIT";
             this.tabPage_InfoPIT.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_InfoPIT.Size = new System.Drawing.Size(829, 351);
+            this.tabPage_InfoPIT.Size = new System.Drawing.Size(964, 351);
             this.tabPage_InfoPIT.TabIndex = 1;
             this.tabPage_InfoPIT.Text = "Rozliczenie PIT";
             this.tabPage_InfoPIT.UseVisualStyleBackColor = true;
@@ -471,27 +471,27 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(112, 87);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(173, 13);
+            this.label4.Size = new System.Drawing.Size(87, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Suma dochodów - PIT36(27) p.109";
+            this.label4.Text = "Suma dochodów";
             // 
-            // label3
+            // Label_PIT_SumaKosztow
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 61);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Suma kosztów - PIT36(27) p.108";
+            this.Label_PIT_SumaKosztow.AutoSize = true;
+            this.Label_PIT_SumaKosztow.Location = new System.Drawing.Point(112, 61);
+            this.Label_PIT_SumaKosztow.Name = "Label_PIT_SumaKosztow";
+            this.Label_PIT_SumaKosztow.Size = new System.Drawing.Size(162, 13);
+            this.Label_PIT_SumaKosztow.TabIndex = 6;
+            this.Label_PIT_SumaKosztow.Text = "Suma kosztów - PIT36(27) p.108";
             // 
-            // label2
+            // Label_PIT_SumaPrzychodow
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(112, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Suma przychodów - PIT36(27) p.107";
+            this.Label_PIT_SumaPrzychodow.AutoSize = true;
+            this.Label_PIT_SumaPrzychodow.Location = new System.Drawing.Point(112, 35);
+            this.Label_PIT_SumaPrzychodow.Name = "Label_PIT_SumaPrzychodow";
+            this.Label_PIT_SumaPrzychodow.Size = new System.Drawing.Size(180, 13);
+            this.Label_PIT_SumaPrzychodow.TabIndex = 5;
+            this.Label_PIT_SumaPrzychodow.Text = "Suma przychodów - PIT36(27) p.107";
             // 
             // textBox_S_Dochodow
             // 
@@ -768,8 +768,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox_S_ZaliczekPIT;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Label_PIT_SumaKosztow;
+        private System.Windows.Forms.Label Label_PIT_SumaPrzychodow;
         private System.Windows.Forms.TextBox textBox_S_Dochodow;
         private System.Windows.Forms.TextBox textBox_S_Kosztow;
         private System.Windows.Forms.TextBox textBox_S_Przychodow;
