@@ -1,4 +1,7 @@
 ﻿Lista zmian programu Księgowość:
+-1.3.0.1 (12.11.2020r.)
+	-Naprawiono błąd krytyczny przy zapisie danych
+
 -1.3.0.0 (11.11.2020r.)
 	-Zmiana formatu rachunków na PDF
 	-Zmiana silnika generującego rachunki na IText

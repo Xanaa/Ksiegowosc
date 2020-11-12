@@ -467,14 +467,14 @@ namespace Księgowość
             int przychody_dlugosc = dataGrid_Przychody.Rows.GetRowCount(0) - 1;
             int sprzedaz_dlugosc = dataGridView_Sprzedaz.Rows.GetRowCount(0) - 1;
             int koszty_dlugosc = dataGrid_Koszty.Rows.GetRowCount(0) - 1;
-            int przychody_szerokosc = 6;
+            int przychody_szerokosc = 4;
             int sprzedaz_szerokosc = 4;
             int koszty_szerokosc = 3;
             string[,] Nowe_przychody = new string[przychody_dlugosc, przychody_szerokosc];
             string[,] Nowe_sprzedaz = new string[sprzedaz_dlugosc, sprzedaz_szerokosc];
             string[,] Nowe_koszty = new string[koszty_dlugosc, koszty_szerokosc];
             DateTime data1;
-            string data, data2, nr_kol, Nabywca, Adres, Kod_i_miasto, Forma_platnosci, nazwa, cena, ilosc;
+            string data, data2, nr_kol,Nabywca, Nazwa_nabywcy, adres, Forma_platnosci, nazwa, cena, ilosc;
 
             for (int a = 0; a < przychody_dlugosc; a ++)
             {
@@ -483,16 +483,14 @@ namespace Księgowość
                 data = data1.Day.ToString("00") + "." + data1.Month.ToString("00") + "." + data1.Year.ToString("0000");
                 nr_kol = dataGrid_Przychody.Rows[a].Cells[1].Value.ToString();
                 Nabywca = dataGrid_Przychody.Rows[a].Cells[2].Value.ToString().Replace(';', ',');
-                Adres = dataGrid_Przychody.Rows[a].Cells[3].Value.ToString();
-                Kod_i_miasto = dataGrid_Przychody.Rows[a].Cells[4].Value.ToString();
+                adres = dataGrid_Przychody.Rows[a].Cells[3].Value.ToString().Replace(';', ',');
+                Nazwa_nabywcy = Podaj_Nazwe_klienta(Nabywca, adres);
                 Forma_platnosci = dataGrid_Przychody.Rows[a].Cells[5].Value.ToString();
 
                 Nowe_przychody[a, 0] = data;
                 Nowe_przychody[a, 1] = nr_kol;
-                Nowe_przychody[a, 2] = Nabywca;
-                Nowe_przychody[a, 3] = Adres;
-                Nowe_przychody[a, 4] = Kod_i_miasto;
-                Nowe_przychody[a, 5] = Forma_platnosci;
+                Nowe_przychody[a, 2] = Nazwa_nabywcy;
+                Nowe_przychody[a, 3] = Forma_platnosci;
             } // Przychody
 
             for (int a = 0; a < sprzedaz_dlugosc; a++)
@@ -1290,6 +1288,20 @@ namespace Księgowość
                 if (Lista_klientów[a, 0] == nazwa_klienta)
                 {
                     zwrot = Lista_klientów[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_Nazwe_klienta(string Imie_i_Nazwisko_klienta, string adres)
+        {
+            string zwrot = "";
+            for (int a = 0; a < Lista_klientów.GetLength(0); a++)
+            {
+                if (Lista_klientów[a, 1] == Imie_i_Nazwisko_klienta && Lista_klientów[a, 2] == adres)
+                {
+                    zwrot = Lista_klientów[a, 0];
                     break;
                 }
             }
