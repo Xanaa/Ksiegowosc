@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dodaj_przychody));
             this.TabControl_Dodaj = new System.Windows.Forms.TabControl();
             this.TabPage_Dane_podstawowe = new System.Windows.Forms.TabPage();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Button_Odswiez = new System.Windows.Forms.Button();
+            this.Button_Klienci = new System.Windows.Forms.Button();
+            this.Label_Nazwa_Klienta = new System.Windows.Forms.Label();
             this.ComboBox_Klienci = new System.Windows.Forms.ComboBox();
             this.Label_Forma_platnosci = new System.Windows.Forms.Label();
             this.ComboBox_Forma_platnosci = new System.Windows.Forms.ComboBox();
@@ -82,9 +82,9 @@
             // 
             // TabPage_Dane_podstawowe
             // 
-            this.TabPage_Dane_podstawowe.Controls.Add(this.button2);
-            this.TabPage_Dane_podstawowe.Controls.Add(this.button1);
-            this.TabPage_Dane_podstawowe.Controls.Add(this.label1);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.Button_Odswiez);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.Button_Klienci);
+            this.TabPage_Dane_podstawowe.Controls.Add(this.Label_Nazwa_Klienta);
             this.TabPage_Dane_podstawowe.Controls.Add(this.ComboBox_Klienci);
             this.TabPage_Dane_podstawowe.Controls.Add(this.Label_Forma_platnosci);
             this.TabPage_Dane_podstawowe.Controls.Add(this.ComboBox_Forma_platnosci);
@@ -109,34 +109,34 @@
             this.TabPage_Dane_podstawowe.Text = "Dane podstawowe";
             this.TabPage_Dane_podstawowe.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // Button_Odswiez
             // 
-            this.button2.Location = new System.Drawing.Point(452, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "Odśwież";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Button_Odswiez.Location = new System.Drawing.Point(452, 6);
+            this.Button_Odswiez.Name = "Button_Odswiez";
+            this.Button_Odswiez.Size = new System.Drawing.Size(75, 23);
+            this.Button_Odswiez.TabIndex = 18;
+            this.Button_Odswiez.Text = "Odśwież";
+            this.Button_Odswiez.UseVisualStyleBackColor = true;
+            this.Button_Odswiez.Click += new System.EventHandler(this.Button_Odswiez_Click);
             // 
-            // button1
+            // Button_Klienci
             // 
-            this.button1.Location = new System.Drawing.Point(371, 6);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Klienci";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Button_Klienci.Location = new System.Drawing.Point(371, 6);
+            this.Button_Klienci.Name = "Button_Klienci";
+            this.Button_Klienci.Size = new System.Drawing.Size(75, 23);
+            this.Button_Klienci.TabIndex = 17;
+            this.Button_Klienci.Text = "Klienci";
+            this.Button_Klienci.UseVisualStyleBackColor = true;
+            this.Button_Klienci.Click += new System.EventHandler(this.Button_Klienci_Click);
             // 
-            // label1
+            // Label_Nazwa_Klienta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(291, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Nazwa klienta";
+            this.Label_Nazwa_Klienta.AutoSize = true;
+            this.Label_Nazwa_Klienta.Location = new System.Drawing.Point(291, 9);
+            this.Label_Nazwa_Klienta.Name = "Label_Nazwa_Klienta";
+            this.Label_Nazwa_Klienta.Size = new System.Drawing.Size(74, 13);
+            this.Label_Nazwa_Klienta.TabIndex = 16;
+            this.Label_Nazwa_Klienta.Text = "Nazwa klienta";
             // 
             // ComboBox_Klienci
             // 
@@ -436,7 +436,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Button Button_Str3_Dodaj;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Label_Nazwa_Klienta;
         private System.Windows.Forms.ComboBox ComboBox_Klienci;
         private System.Windows.Forms.Label Label_Kod_miasto;
         private System.Windows.Forms.TextBox TextBox_Kupujacy_kod_miasto;
@@ -444,7 +444,7 @@
         private System.Windows.Forms.TextBox TextBox_Kupujacy_ulica;
         private System.Windows.Forms.Label Label_kupujacy_nazwa;
         private System.Windows.Forms.TextBox TextBox_Kupujacy_nazwa;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Button_Klienci;
+        private System.Windows.Forms.Button Button_Odswiez;
     }
 }

@@ -967,7 +967,6 @@ namespace Księgowość
             string sciezka = Podaj_folder_rachunkow("0") + "Informacja roczna - " + rok + ".pdf";
             Color headerBg = new DeviceRgb(87, 235, 203);
             string firma = Podaj_moja_firme();
-            string marza = Oblicz_marze_roku(rok);
             decimal limit_miesieczny = Podaj_limit_przychodu(rok);
             decimal przychod, dochod, podatek, netto, pozostaly_limit;
 
@@ -1139,13 +1138,6 @@ namespace Księgowość
                 .SetTextAlignment(TextAlignment.LEFT)
                 .SetFontSize(10);
             document.Add(header_netto_roku);
-
-            // Marża
-            Paragraph header_marza = new Paragraph("Marża: " + marza)
-                .SetFont(Czcionka)
-                .SetTextAlignment(TextAlignment.LEFT)
-                .SetFontSize(10);
-            document.Add(header_marza);
 
             // Linia
             LineSeparator ls = new LineSeparator(new SolidLine());
@@ -1520,18 +1512,6 @@ namespace Księgowość
         {
             Lista_Klientow_okno Lista_Klientow_okno_ = new Lista_Klientow_okno();
             Lista_Klientow_okno_.Show();
-        }
-
-        public static string Oblicz_marze_roku(string rok)
-        {
-            string zwrot = "n/n";
-            decimal przy = Oblicz_Przychody_roku();
-            decimal kosz = Oblicz_Koszty_roku();
-            if(kosz != 0)
-            {
-                zwrot = ((przy / kosz) - 1).ToString("P2");
-            }
-            return zwrot;
         }
 
         public static string Podaj_miesiac_z_liczby(int liczba)

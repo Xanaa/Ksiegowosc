@@ -5,7 +5,7 @@ namespace Księgowość
 {
     public partial class Dodaj_przychody : Form
     {
-        public static string K_nazwa, K_ulica_dom, K_kod_miasto, K_data, K_nr_kol, K_forma_platnosci;
+        public static string K_nazwa, K_ulica_dom, K_nazwa_skrot, K_data, K_nr_kol, K_forma_platnosci;
         public static string[,] K_przychody, K_sprzedaz, K_koszty;
 
         public Dodaj_przychody()
@@ -29,13 +29,13 @@ namespace Księgowość
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button_Klienci_Click(object sender, EventArgs e)
         {
             Lista_Klientow_okno Lista_Klientow_okno_ = new Lista_Klientow_okno();
             Lista_Klientow_okno_.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button_Odswiez_Click(object sender, EventArgs e)
         {
             Wypelnij_klientow();
         }
@@ -54,18 +54,16 @@ namespace Księgowość
         {
             K_nazwa = TextBox_Kupujacy_nazwa.Text;
             K_ulica_dom = TextBox_Kupujacy_ulica.Text;
-            K_kod_miasto = TextBox_Kupujacy_kod_miasto.Text;
+            K_nazwa_skrot = OknoGlowne.Podaj_Nazwe_klienta(K_nazwa, K_ulica_dom);
             K_data = TextBox_Data_sprzedazy.Text;
             K_nr_kol = TextBox_nr_kol_1.Text + "." + TextBox_nr_kol_2.Text;
             K_forma_platnosci = ComboBox_Forma_platnosci.Text;
 
-            K_przychody = new string[1, 6];
+            K_przychody = new string[1, 4];
             K_przychody[0, 0] = K_data;
             K_przychody[0, 1] = K_nr_kol;
-            K_przychody[0, 2] = K_nazwa;
-            K_przychody[0, 3] = K_ulica_dom;
-            K_przychody[0, 4] = K_kod_miasto;
-            K_przychody[0, 5] = K_forma_platnosci;
+            K_przychody[0, 2] = K_nazwa_skrot;
+            K_przychody[0, 3] = K_forma_platnosci;
 
             Zczytaj_Sprzedaz();
             Zczytaj_Koszty();
