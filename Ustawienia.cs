@@ -20,6 +20,8 @@ namespace Księgowość
             TextBox_Firma.Text = OknoGlowne.Podaj_moja_firme();
             TextBox_FolderRachunkow.Text = OknoGlowne.Podaj_folder_rachunkow("1");
             CheckBox_Aktualizacje.Checked = OknoGlowne.Podaj_aktualizacje_na_start();
+            TextBox_Logo.Text = OknoGlowne.Podaj_nazwe_Logo();
+            CheckBox_Logo.Checked = OknoGlowne.Podaj_czy_Logo();
         }
 
         private void Button_Zapisz_Click(object sender, EventArgs e)
@@ -29,7 +31,7 @@ namespace Księgowość
 
         public void Zapisz_ustawienia()
         {
-            string[] DoZapisu = new string[11];
+            string[] DoZapisu = new string[15];
             DoZapisu[0] = "# Jeśli sprzedajesz jako firma, wpisz nazwę";
             DoZapisu[1] = "Firma;" + TextBox_Firma.Text;
             DoZapisu[2] = "Imię i nazwisko;" + TextBox_ImieNazwisko.Text;
@@ -48,6 +50,17 @@ namespace Księgowość
             {
                 DoZapisu[10] = "Aktualizacja;0";
             }
+            DoZapisu[11] = "# Logo - czy ma być wyświetlane";
+            if (CheckBox_Logo.Checked == true)
+            {
+                DoZapisu[12] = "Logo;1";
+            }
+            else
+            {
+                DoZapisu[12] = "Logo;0";
+            }
+            DoZapisu[13] = "# Logo - nazwa pliku";
+            DoZapisu[14] = "Logo nazwa;" + TextBox_Logo.Text;
 
             File.WriteAllLines(OknoGlowne.sciezka_startowa + OknoGlowne.P_Moje_dane, DoZapisu);
         }

@@ -121,12 +121,12 @@
             this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem.Text = "Plik";
             // 
-            // zapiszToolStripMenuItem
+            // ZapiszToolStripMenuItem
             // 
-            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
+            this.zapiszToolStripMenuItem.Name = "ZapiszToolStripMenuItem";
             this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zapiszToolStripMenuItem.Text = "Zapisz";
-            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.zapiszToolStripMenuItem_Click);
+            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click);
             // 
             // Lista_Klientow_okno
             // 

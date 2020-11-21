@@ -9,3 +9,7 @@ Kod i miasto;85-688 Bydgoszcz
 Folder rachunków;
 # Czy aktualizacje mają być sprawdzane przy starcie aplikacji
 Aktualizacja;1
+# Logo - czy ma być wyświetlane
+Logo;1
+# Logo - nazwa pliku
+Logo nazwa;Logo.jpg

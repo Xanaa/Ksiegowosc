@@ -41,9 +41,22 @@ namespace Księgowość
                 Imie_i_nazwisko = dataGrid_Klienci.Rows[a].Cells[1].Value.ToString();
                 adres = dataGrid_Klienci.Rows[a].Cells[2].Value.ToString();
                 kod_i_miasto = dataGrid_Klienci.Rows[a].Cells[3].Value.ToString();
-                email = dataGrid_Klienci.Rows[a].Cells[4].Value.ToString();
-                telefon = dataGrid_Klienci.Rows[a].Cells[5].Value.ToString();
-
+                if(dataGrid_Klienci.Rows[a].Cells[4].Value != null)
+                {
+                    email = dataGrid_Klienci.Rows[a].Cells[4].Value.ToString();
+                }
+                else
+                {
+                    email = "";
+                }
+                if (dataGrid_Klienci.Rows[a].Cells[5].Value != null)
+                {
+                    telefon = dataGrid_Klienci.Rows[a].Cells[5].Value.ToString();
+                }
+                else
+                {
+                    telefon = "";
+                }
 
                 Nowi_klienci[a, 0] = nazwa_klienta;
                 Nowi_klienci[a, 1] = Imie_i_nazwisko;
@@ -63,7 +76,7 @@ namespace Księgowość
             File.WriteAllLines(OknoGlowne.sciezka_startowa + OknoGlowne.P_Lista_klientów, Lista_nowa);
         }
 
-        private void zapiszToolStripMenuItem_Click(object sender, System.EventArgs e)
+        private void ZapiszToolStripMenuItem_Click(object sender, System.EventArgs e)
         {
             Wczytaj_DGV();
         }

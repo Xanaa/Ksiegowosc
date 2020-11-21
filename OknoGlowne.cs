@@ -14,6 +14,8 @@ using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf.Canvas.Draw;
+using System.Drawing;
+using iText.IO.Image;
 
 namespace Księgowość
 {
@@ -42,6 +44,9 @@ namespace Księgowość
         public static decimal Stawka_PIT = 0;
         public static string ROK = "1995";
         public static bool Zapisane = true;
+        public static System.Drawing.Image Logo;
+        public static string Logo_nazwa = "";
+        public static bool Logo_wlaczone = false;
 
         // Do okien innych
         private static OknoGlowne Glowne_inst;
@@ -73,6 +78,7 @@ namespace Księgowość
             string Koszty_s2 = P_Koszty + rok + ".txt";
             string Przychody_s2 = P_Przychody + rok + ".txt";
             string Sprzedaz_s2 = P_Sprzedaz + rok + ".txt";
+            string sciezka_logo = sciezka_startowa + F_Dane + @"/";
             Stawka_PIT = Podaj_stawke_PIT_roku(rok);
 
             Przychody = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, Przychody_s2, 4, "#", ";");
@@ -91,7 +97,16 @@ namespace Księgowość
             {
                 Wczytaj_Koszty();
                 Wczytaj_Info_PIT();
-            }        
+            }
+
+            Logo_wlaczone = Podaj_czy_Logo();
+            if(Logo_wlaczone == true)
+            {
+                Logo_nazwa = Podaj_nazwe_Logo();
+                sciezka_logo += Logo_nazwa;
+                Logo = System.Drawing.Image.FromFile(sciezka_logo);
+                PictureBox_Logo.Image = Logo;
+            }
         }
 
         public void Wczytaj_Przychody()
@@ -573,7 +588,7 @@ namespace Księgowość
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
             string firma = Podaj_moja_firme();
             string sprzedawca = "";
-            Color headerBg = new DeviceRgb(87, 235, 203);
+            iText.Kernel.Colors.Color headerBg = new DeviceRgb(87, 235, 203);
             string nabywca = "";
             decimal cena, ilosc, wartosc;
 
@@ -596,8 +611,17 @@ namespace Księgowość
             Document document = new Document(pdf);
             PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
 
-            // Dane sprzedawcy i nabywcy
-            Table Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            // Dane sprzedawcy i nabywcy, Logo
+            Table Adresy_Tabela;
+            if (Logo_wlaczone == true)
+            {
+                Adresy_Tabela = new Table(3, false).UseAllAvailableWidth();
+            }
+            else
+            {
+                Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            }
+            
             Cell cell1 = new Cell(1, 1)
                 .SetBorder(Border.NO_BORDER)
                 .SetFont(Czcionka)
@@ -611,6 +635,18 @@ namespace Księgowość
                 .SetTextAlignment(TextAlignment.RIGHT)
                 .Add(new Paragraph(nabywca));
             Adresy_Tabela.AddCell(cell1);
+            if (Logo_wlaczone == true)
+            {
+                string sciezka_logo = sciezka_startowa + F_Dane + @"/" + Logo_nazwa;
+                iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(sciezka_logo));
+                img.ScaleToFit(74,60);
+                Cell cell3 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .Add(img);
+
+                Adresy_Tabela.AddCell(cell3);
+            }
             Adresy_Tabela.AddCell(cell2);
             document.Add(Adresy_Tabela);
 
@@ -715,7 +751,7 @@ namespace Księgowość
                 .SetFontSize(8);
             for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
             {
-                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                iText.Kernel.Geom.Rectangle pageSize = pdf.GetPage(i).GetPageSize();
                 float x = pageSize.GetWidth() / 16;
                 float y = pageSize.GetBottom() + 30;
                 document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
@@ -730,7 +766,7 @@ namespace Księgowość
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
             string firma = Podaj_moja_firme();
             string sprzedawca = "";
-            Color headerBg = new DeviceRgb(87, 235, 203);
+            iText.Kernel.Colors.Color headerBg = new DeviceRgb(87, 235, 203);
             string nabywca = "";
             decimal cena, ilosc, wartosc;
 
@@ -754,7 +790,15 @@ namespace Księgowość
             PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
 
             // Dane sprzedawcy i nabywcy
-            Table Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            Table Adresy_Tabela;
+            if (Logo_wlaczone == true)
+            {
+                Adresy_Tabela = new Table(3, false).UseAllAvailableWidth();
+            }
+            else
+            {
+                Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+            }
             Cell cell1 = new Cell(1, 1)
                 .SetBorder(Border.NO_BORDER)
                 .SetFont(Czcionka)
@@ -768,6 +812,18 @@ namespace Księgowość
                 .SetTextAlignment(TextAlignment.RIGHT)
                 .Add(new Paragraph(nabywca));
             Adresy_Tabela.AddCell(cell1);
+            if (Logo_wlaczone == true)
+            {
+                string sciezka_logo = sciezka_startowa + F_Dane + @"/" + Logo_nazwa;
+                iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(sciezka_logo));
+                img.ScaleToFit(74, 60);
+                Cell cell3 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .Add(img);
+
+                Adresy_Tabela.AddCell(cell3);
+            }
             Adresy_Tabela.AddCell(cell2);
             document.Add(Adresy_Tabela);
 
@@ -953,7 +1009,7 @@ namespace Księgowość
                 .SetFontSize(8);
             for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
             {
-                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                iText.Kernel.Geom.Rectangle pageSize = pdf.GetPage(i).GetPageSize();
                 float x = pageSize.GetWidth() / 16;
                 float y = pageSize.GetBottom() + 30;
                 document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
@@ -965,7 +1021,7 @@ namespace Księgowość
         public void Generowanie_Informacji_roczenj(string rok)
         {
             string sciezka = Podaj_folder_rachunkow("0") + "Informacja roczna - " + rok + ".pdf";
-            Color headerBg = new DeviceRgb(87, 235, 203);
+            iText.Kernel.Colors.Color headerBg = new DeviceRgb(87, 235, 203);
             string firma = Podaj_moja_firme();
             decimal limit_miesieczny = Podaj_limit_przychodu(rok);
             decimal przychod, dochod, podatek, netto, pozostaly_limit;
@@ -1149,7 +1205,7 @@ namespace Księgowość
                 .SetFontSize(8);
             for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
             {
-                Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                iText.Kernel.Geom.Rectangle pageSize = pdf.GetPage(i).GetPageSize();
                 float x = pageSize.GetWidth() / 16;
                 float y = pageSize.GetBottom() + 30;
                 document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
@@ -1206,6 +1262,39 @@ namespace Księgowość
             for (int a = 0; a < Moje_dane.GetLength(0); a++)
             {
                 if (Moje_dane[a, 0] == "Kod i miasto")
+                {
+                    zwrot = Moje_dane[a, 1];
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static bool Podaj_czy_Logo()
+        {
+            bool zwrot = false;
+            string odczyt;
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Logo")
+                {
+                    odczyt = Moje_dane[a, 1];
+                    if(odczyt == "1")
+                    {
+                        zwrot = true;
+                    }
+                    break;
+                }
+            }
+            return zwrot;
+        }
+
+        public static string Podaj_nazwe_Logo()
+        {
+            string zwrot = "";
+            for (int a = 0; a < Moje_dane.GetLength(0); a++)
+            {
+                if (Moje_dane[a, 0] == "Logo nazwa")
                 {
                     zwrot = Moje_dane[a, 1];
                     break;

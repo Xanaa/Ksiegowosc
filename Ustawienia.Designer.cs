@@ -34,7 +34,7 @@
             this.TextBox_KodMiasto = new System.Windows.Forms.TextBox();
             this.TabControl_Ustawienia = new System.Windows.Forms.TabControl();
             this.TabPage_MojeDane = new System.Windows.Forms.TabPage();
-            this.Llabel_Firma = new System.Windows.Forms.Label();
+            this.Label_Firma = new System.Windows.Forms.Label();
             this.Label_KodMiasto = new System.Windows.Forms.Label();
             this.Label_Adres = new System.Windows.Forms.Label();
             this.Label_ImieNazwisko = new System.Windows.Forms.Label();
@@ -44,6 +44,8 @@
             this.Label_FolderRachunkow = new System.Windows.Forms.Label();
             this.TextBox_FolderRachunkow = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.CheckBox_Logo = new System.Windows.Forms.CheckBox();
+            this.TextBox_Logo = new System.Windows.Forms.TextBox();
             this.TabControl_Ustawienia.SuspendLayout();
             this.TabPage_MojeDane.SuspendLayout();
             this.TabPage_Inne.SuspendLayout();
@@ -85,7 +87,9 @@
             // 
             // TabPage_MojeDane
             // 
-            this.TabPage_MojeDane.Controls.Add(this.Llabel_Firma);
+            this.TabPage_MojeDane.Controls.Add(this.TextBox_Logo);
+            this.TabPage_MojeDane.Controls.Add(this.CheckBox_Logo);
+            this.TabPage_MojeDane.Controls.Add(this.Label_Firma);
             this.TabPage_MojeDane.Controls.Add(this.Label_KodMiasto);
             this.TabPage_MojeDane.Controls.Add(this.Label_Adres);
             this.TabPage_MojeDane.Controls.Add(this.Label_ImieNazwisko);
@@ -101,14 +105,14 @@
             this.TabPage_MojeDane.Text = "Moje dane";
             this.TabPage_MojeDane.UseVisualStyleBackColor = true;
             // 
-            // Llabel_Firma
+            // Label_Firma
             // 
-            this.Llabel_Firma.AutoSize = true;
-            this.Llabel_Firma.Location = new System.Drawing.Point(210, 87);
-            this.Llabel_Firma.Name = "Llabel_Firma";
-            this.Llabel_Firma.Size = new System.Drawing.Size(64, 13);
-            this.Llabel_Firma.TabIndex = 7;
-            this.Llabel_Firma.Text = "Nazwa firmy";
+            this.Label_Firma.AutoSize = true;
+            this.Label_Firma.Location = new System.Drawing.Point(210, 87);
+            this.Label_Firma.Name = "Label_Firma";
+            this.Label_Firma.Size = new System.Drawing.Size(64, 13);
+            this.Label_Firma.TabIndex = 7;
+            this.Label_Firma.Text = "Nazwa firmy";
             // 
             // Label_KodMiasto
             // 
@@ -194,6 +198,23 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button_Zapisz_Click);
             // 
+            // CheckBox_Logo
+            // 
+            this.CheckBox_Logo.AutoSize = true;
+            this.CheckBox_Logo.Location = new System.Drawing.Point(213, 115);
+            this.CheckBox_Logo.Name = "CheckBox_Logo";
+            this.CheckBox_Logo.Size = new System.Drawing.Size(50, 17);
+            this.CheckBox_Logo.TabIndex = 8;
+            this.CheckBox_Logo.Text = "Logo";
+            this.CheckBox_Logo.UseVisualStyleBackColor = true;
+            // 
+            // TextBox_Logo
+            // 
+            this.TextBox_Logo.Location = new System.Drawing.Point(6, 113);
+            this.TextBox_Logo.Name = "TextBox_Logo";
+            this.TextBox_Logo.Size = new System.Drawing.Size(198, 20);
+            this.TextBox_Logo.TabIndex = 9;
+            // 
             // Ustawienia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,7 +243,7 @@
         private System.Windows.Forms.TextBox TextBox_KodMiasto;
         private System.Windows.Forms.TabControl TabControl_Ustawienia;
         private System.Windows.Forms.TabPage TabPage_MojeDane;
-        private System.Windows.Forms.Label Llabel_Firma;
+        private System.Windows.Forms.Label Label_Firma;
         private System.Windows.Forms.Label Label_KodMiasto;
         private System.Windows.Forms.Label Label_Adres;
         private System.Windows.Forms.Label Label_ImieNazwisko;
@@ -232,5 +253,7 @@
         private System.Windows.Forms.Label Label_FolderRachunkow;
         private System.Windows.Forms.TextBox TextBox_FolderRachunkow;
         private System.Windows.Forms.CheckBox CheckBox_Aktualizacje;
+        private System.Windows.Forms.TextBox TextBox_Logo;
+        private System.Windows.Forms.CheckBox CheckBox_Logo;
     }
 }
