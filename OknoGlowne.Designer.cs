@@ -77,6 +77,7 @@
             this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage_InfoPIT = new System.Windows.Forms.TabPage();
+            this.PictureBox_Logo = new System.Windows.Forms.PictureBox();
             this.Button_InformacjaRoczna = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox_S_netto = new System.Windows.Forms.TextBox();
@@ -91,17 +92,17 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_MiesLimPrzych = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
-            this.daneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dodajPrzychodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listaKlientówToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PlikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZapiszToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZmianaRokuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripComboBox_rok = new System.Windows.Forms.ToolStripComboBox();
+            this.FunkcjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DodajPrzychodyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ListaKlientówToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WystawRachunekZakupuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PomocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.UstawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.PictureBox_Logo = new System.Windows.Forms.PictureBox();
+            this.AktualizacjaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl_Glowne.SuspendLayout();
             this.tabPage_Przychody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Przychody)).BeginInit();
@@ -114,8 +115,8 @@
             this.tabPage_Roz_mies.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).BeginInit();
             this.tabPage_InfoPIT.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logo)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl_Glowne
@@ -518,6 +519,16 @@
             this.tabPage_InfoPIT.Text = "Rozliczenie PIT";
             this.tabPage_InfoPIT.UseVisualStyleBackColor = true;
             // 
+            // PictureBox_Logo
+            // 
+            this.PictureBox_Logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.PictureBox_Logo.Location = new System.Drawing.Point(802, 6);
+            this.PictureBox_Logo.Name = "PictureBox_Logo";
+            this.PictureBox_Logo.Size = new System.Drawing.Size(156, 130);
+            this.PictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBox_Logo.TabIndex = 13;
+            this.PictureBox_Logo.TabStop = false;
+            // 
             // Button_InformacjaRoczna
             // 
             this.Button_InformacjaRoczna.Location = new System.Drawing.Point(6, 162);
@@ -633,105 +644,103 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.plikToolStripMenuItem,
-            this.zmianaRokuToolStripMenuItem,
-            this.daneToolStripMenuItem,
-            this.pomocToolStripMenuItem});
+            this.PlikToolStripMenuItem,
+            this.ZmianaRokuToolStripMenuItem,
+            this.FunkcjeToolStripMenuItem,
+            this.PomocToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1016, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // plikToolStripMenuItem
+            // PlikToolStripMenuItem
             // 
-            this.plikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zapiszToolStripMenuItem});
-            this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
-            this.plikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
-            this.plikToolStripMenuItem.Text = "Plik";
+            this.PlikToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ZapiszToolStripMenuItem});
+            this.PlikToolStripMenuItem.Name = "PlikToolStripMenuItem";
+            this.PlikToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
+            this.PlikToolStripMenuItem.Text = "Plik";
             // 
-            // zapiszToolStripMenuItem
+            // ZapiszToolStripMenuItem
             // 
-            this.zapiszToolStripMenuItem.Name = "zapiszToolStripMenuItem";
-            this.zapiszToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.zapiszToolStripMenuItem.Text = "Zapisz";
-            this.zapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click_1);
+            this.ZapiszToolStripMenuItem.Name = "ZapiszToolStripMenuItem";
+            this.ZapiszToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ZapiszToolStripMenuItem.Text = "Zapisz";
+            this.ZapiszToolStripMenuItem.Click += new System.EventHandler(this.ZapiszToolStripMenuItem_Click_1);
             // 
-            // zmianaRokuToolStripMenuItem
+            // ZmianaRokuToolStripMenuItem
             // 
-            this.zmianaRokuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripComboBox_rok});
-            this.zmianaRokuToolStripMenuItem.Name = "zmianaRokuToolStripMenuItem";
-            this.zmianaRokuToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.zmianaRokuToolStripMenuItem.Text = "Zmiana roku";
+            this.ZmianaRokuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripComboBox_rok});
+            this.ZmianaRokuToolStripMenuItem.Name = "ZmianaRokuToolStripMenuItem";
+            this.ZmianaRokuToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.ZmianaRokuToolStripMenuItem.Text = "Zmiana roku";
             // 
-            // toolStripComboBox_rok
+            // ToolStripComboBox_rok
             // 
-            this.toolStripComboBox_rok.Items.AddRange(new object[] {
+            this.ToolStripComboBox_rok.Items.AddRange(new object[] {
             "2019",
             "2020",
             "2021"});
-            this.toolStripComboBox_rok.Name = "toolStripComboBox_rok";
-            this.toolStripComboBox_rok.Size = new System.Drawing.Size(121, 23);
-            this.toolStripComboBox_rok.Sorted = true;
-            this.toolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox_rok_SelectedIndexChanged);
+            this.ToolStripComboBox_rok.Name = "ToolStripComboBox_rok";
+            this.ToolStripComboBox_rok.Size = new System.Drawing.Size(121, 23);
+            this.ToolStripComboBox_rok.Sorted = true;
+            this.ToolStripComboBox_rok.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox_rok_SelectedIndexChanged);
             // 
-            // daneToolStripMenuItem
+            // FunkcjeToolStripMenuItem
             // 
-            this.daneToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dodajPrzychodyToolStripMenuItem,
-            this.listaKlientówToolStripMenuItem});
-            this.daneToolStripMenuItem.Name = "daneToolStripMenuItem";
-            this.daneToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
-            this.daneToolStripMenuItem.Text = "Dane";
+            this.FunkcjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DodajPrzychodyToolStripMenuItem,
+            this.ListaKlientówToolStripMenuItem,
+            this.WystawRachunekZakupuToolStripMenuItem});
+            this.FunkcjeToolStripMenuItem.Name = "FunkcjeToolStripMenuItem";
+            this.FunkcjeToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.FunkcjeToolStripMenuItem.Text = "Funkcje";
             // 
-            // dodajPrzychodyToolStripMenuItem
+            // DodajPrzychodyToolStripMenuItem
             // 
-            this.dodajPrzychodyToolStripMenuItem.Name = "dodajPrzychodyToolStripMenuItem";
-            this.dodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.dodajPrzychodyToolStripMenuItem.Text = "Dodaj przychody";
-            this.dodajPrzychodyToolStripMenuItem.Click += new System.EventHandler(this.DodajPrzychodyToolStripMenuItem_Click);
+            this.DodajPrzychodyToolStripMenuItem.Name = "DodajPrzychodyToolStripMenuItem";
+            this.DodajPrzychodyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.DodajPrzychodyToolStripMenuItem.Text = "Dodaj przychody";
+            this.DodajPrzychodyToolStripMenuItem.Click += new System.EventHandler(this.DodajPrzychodyToolStripMenuItem_Click);
             // 
-            // listaKlientówToolStripMenuItem
+            // ListaKlientówToolStripMenuItem
             // 
-            this.listaKlientówToolStripMenuItem.Name = "listaKlientówToolStripMenuItem";
-            this.listaKlientówToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.listaKlientówToolStripMenuItem.Text = "Lista Klientów";
-            this.listaKlientówToolStripMenuItem.Click += new System.EventHandler(this.ListaKlientówToolStripMenuItem_Click);
+            this.ListaKlientówToolStripMenuItem.Name = "ListaKlientówToolStripMenuItem";
+            this.ListaKlientówToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.ListaKlientówToolStripMenuItem.Text = "Lista Klientów";
+            this.ListaKlientówToolStripMenuItem.Click += new System.EventHandler(this.ListaKlientówToolStripMenuItem_Click);
             // 
-            // pomocToolStripMenuItem
+            // WystawRachunekZakupuToolStripMenuItem
             // 
-            this.pomocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.WystawRachunekZakupuToolStripMenuItem.Name = "WystawRachunekZakupuToolStripMenuItem";
+            this.WystawRachunekZakupuToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.WystawRachunekZakupuToolStripMenuItem.Text = "Wystaw rachunek zakupu";
+            this.WystawRachunekZakupuToolStripMenuItem.Click += new System.EventHandler(this.WystawRachunekZakupuToolStripMenuItem_Click);
+            // 
+            // PomocToolStripMenuItem
+            // 
+            this.PomocToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.UstawieniaToolStripMenuItem,
-            this.aktualizacjaToolStripMenuItem});
-            this.pomocToolStripMenuItem.Name = "pomocToolStripMenuItem";
-            this.pomocToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
-            this.pomocToolStripMenuItem.Text = "Pomoc";
+            this.AktualizacjaToolStripMenuItem});
+            this.PomocToolStripMenuItem.Name = "PomocToolStripMenuItem";
+            this.PomocToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.PomocToolStripMenuItem.Text = "Pomoc";
             // 
             // UstawieniaToolStripMenuItem
             // 
             this.UstawieniaToolStripMenuItem.Name = "UstawieniaToolStripMenuItem";
-            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.UstawieniaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.UstawieniaToolStripMenuItem.Text = "Ustawienia";
             this.UstawieniaToolStripMenuItem.Click += new System.EventHandler(this.UstawieniaToolStripMenuItem_Click);
             // 
-            // aktualizacjaToolStripMenuItem
+            // AktualizacjaToolStripMenuItem
             // 
-            this.aktualizacjaToolStripMenuItem.Name = "aktualizacjaToolStripMenuItem";
-            this.aktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.aktualizacjaToolStripMenuItem.Text = "O programie";
-            this.aktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
-            // 
-            // PictureBox_Logo
-            // 
-            this.PictureBox_Logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.PictureBox_Logo.Location = new System.Drawing.Point(802, 6);
-            this.PictureBox_Logo.Name = "PictureBox_Logo";
-            this.PictureBox_Logo.Size = new System.Drawing.Size(156, 130);
-            this.PictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBox_Logo.TabIndex = 13;
-            this.PictureBox_Logo.TabStop = false;
+            this.AktualizacjaToolStripMenuItem.Name = "AktualizacjaToolStripMenuItem";
+            this.AktualizacjaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AktualizacjaToolStripMenuItem.Text = "O programie";
+            this.AktualizacjaToolStripMenuItem.Click += new System.EventHandler(this.AktualizacjaToolStripMenuItem_Click);
             // 
             // OknoGlowne
             // 
@@ -758,9 +767,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_PITMiesiecznie)).EndInit();
             this.tabPage_InfoPIT.ResumeLayout(false);
             this.tabPage_InfoPIT.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logo)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -776,9 +785,9 @@
         private System.Windows.Forms.TabPage tabPage_Info;
         private System.Windows.Forms.DataGridView dataGrid_PITMiesiecznie;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zmianaRokuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox_rok;
+        private System.Windows.Forms.ToolStripMenuItem PlikToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZmianaRokuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox ToolStripComboBox_rok;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_MiesLimPrzych;
         private System.Windows.Forms.TabControl tabControl1;
@@ -803,21 +812,21 @@
         private System.Windows.Forms.TextBox textBox_S_netto;
         private System.Windows.Forms.TabPage tabPage_Sprzedaz;
         private System.Windows.Forms.DataGridView dataGridView_Sprzedaz;
-        private System.Windows.Forms.ToolStripMenuItem zapiszToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZapiszToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column20;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column19;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column21;
-        private System.Windows.Forms.ToolStripMenuItem pomocToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aktualizacjaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem daneToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dodajPrzychodyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PomocToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AktualizacjaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FunkcjeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DodajPrzychodyToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.ToolStripMenuItem UstawieniaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem listaKlientówToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ListaKlientówToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Data;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_NrKol;
         private System.Windows.Forms.DataGridViewTextBoxColumn Kol_Przychody_Nabywca;
@@ -829,6 +838,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Kol_Przychody_Faktura;
         private System.Windows.Forms.Button Button_InformacjaRoczna;
         private System.Windows.Forms.PictureBox PictureBox_Logo;
+        private System.Windows.Forms.ToolStripMenuItem WystawRachunekZakupuToolStripMenuItem;
     }
 }
 

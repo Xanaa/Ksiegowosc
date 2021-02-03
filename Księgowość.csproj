@@ -135,6 +135,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wystaw_rachunek_zakupu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wystaw_rachunek_zakupu.Designer.cs">
+      <DependentUpon>Wystaw_rachunek_zakupu.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Dodaj_przychody.resx">
       <DependentUpon>Dodaj_przychody.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,6 +165,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Wystaw_rachunek_zakupu.resx">
+      <DependentUpon>Wystaw_rachunek_zakupu.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Dane\FreeSans.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -182,6 +191,9 @@
     </Content>
     <Content Include="Dane\Logo.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Dane\Przychody\Przychody-2021.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Dane\Przychody\Przychody-2020.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

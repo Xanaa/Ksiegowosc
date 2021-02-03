@@ -1,3 +1,4 @@
+01.01.2020;Koszty;Koszty;Gotówka
 22.08.2020;082020.1;J.Banan;Gotówka
 02.09.2020;092020.1;M.Arbuz;Przelew na konto
 11.10.2020;102020.1;M.Arbuz;Przelew na konto

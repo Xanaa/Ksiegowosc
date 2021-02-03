@@ -12,9 +12,7 @@ using iText.Layout.Properties;
 using iText.Layout.Borders;
 using iText.Kernel.Colors;
 using iText.Kernel.Font;
-using iText.Kernel.Geom;
 using iText.Kernel.Pdf.Canvas.Draw;
-using System.Drawing;
 using iText.IO.Image;
 
 namespace Księgowość
@@ -48,6 +46,14 @@ namespace Księgowość
         public static string Logo_nazwa = "";
         public static bool Logo_wlaczone = false;
 
+        // Rachunek zakupu
+        public static string[,] RZ_Lista_zakupu = new string[1, 3];
+        public static string RZ_Sprzedawca = "";
+        public static string RZ_Nazwa_rachunku = "";
+        public static string RZ_Nosnik = "";
+        public static string RZ_Data = "";
+        public static string RZ_Forma_Platnosci = "Gotówka";
+
         // Do okien innych
         private static OknoGlowne Glowne_inst;
 
@@ -73,7 +79,7 @@ namespace Księgowość
         {
             ROK = rok;
             this.Text = "Księgowość " + Application.ProductVersion + " - Rok " + ROK;
-            toolStripComboBox_rok.Text = ROK;
+            ToolStripComboBox_rok.Text = ROK;
             Czy_pliki_istnieja(rok);
             string Koszty_s2 = P_Koszty + rok + ".txt";
             string Przychody_s2 = P_Przychody + rok + ".txt";
@@ -551,9 +557,9 @@ namespace Księgowość
 
         private void ToolStripComboBox_rok_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ROK != toolStripComboBox_rok.Text)
+            if(ROK != ToolStripComboBox_rok.Text)
             {
-                Wczytaj_rok(toolStripComboBox_rok.Text);
+                Wczytaj_rok(ToolStripComboBox_rok.Text);
             }
         }
 
@@ -573,16 +579,16 @@ namespace Księgowość
                 int kolumna = e.ColumnIndex;
                 if(kolumna == 7)
                 {
-                    Generowanie_rachunku(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
+                    Generowanie_rachunku_sprzedazy(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
                 } // Rachunek
                 else
                 {
-                    Generowanie_faktury(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
+                    Generowanie_faktury_sprzedazy(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
                 } // Faktura
             }
         }
 
-        public void Generowanie_rachunku(string nr_kol)
+        public void Generowanie_rachunku_sprzedazy(string nr_kol)
         {
             string sciezka = Podaj_folder_rachunkow("0") + "Rachunek - " + nr_kol + ".pdf";
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
@@ -760,7 +766,163 @@ namespace Księgowość
             document.Close();
         }
 
-        public void Generowanie_faktury(string nr_kol)
+        public void Generowanie_rachunku_zakupu()
+        {
+            string sciezka = Podaj_folder_rachunkow("0") + "Rachunek zakupu - " + RZ_Nazwa_rachunku + ".pdf";
+            string firma = Podaj_moja_firme();
+            string sprzedawca = "";
+            iText.Kernel.Colors.Color headerBg = new DeviceRgb(87, 235, 203);
+            string nabywca = "";
+            decimal cena, ilosc, wartosc, calosc = 0;
+
+            sprzedawca += "Nabywca:\r";
+            if (firma != "")
+            {
+                sprzedawca += firma + "\r";
+            }
+            sprzedawca += Podaj_moje_imie_i_nazwisko() + "\r";
+            sprzedawca += Podaj_moj_adres() + "\r";
+            sprzedawca += Podaj_moj_kod_i_miasto() + "\r";
+
+            nabywca += "Sprzedawca:\r";
+            nabywca += Podaj_Imie_i_Nazwisko_klienta(RZ_Sprzedawca) + "\r";
+            nabywca += Podaj_adres_klienta(RZ_Sprzedawca) + "\r";
+            nabywca += Podaj_kod_i_miasto_klienta(RZ_Sprzedawca) + "\r";
+
+            PdfWriter Writer = new PdfWriter(sciezka);
+            PdfDocument pdf = new PdfDocument(Writer);
+            Document document = new Document(pdf);
+            PdfFont Czcionka = PdfFontFactory.CreateFont(FONT, "Cp1250", true);
+
+            // Dane sprzedawcy i nabywcy
+            Table Adresy_Tabela;
+            Adresy_Tabela = new Table(2, false).UseAllAvailableWidth();
+
+            Cell cell1 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .Add(new Paragraph(nabywca));
+            Cell cell2 = new Cell(1, 1)
+                .SetBorder(Border.NO_BORDER)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.RIGHT)
+                .Add(new Paragraph(sprzedawca));
+            Adresy_Tabela.AddCell(cell1);
+            Adresy_Tabela.AddCell(cell2);
+            document.Add(Adresy_Tabela);
+
+            // Napis "Rachunek"
+            Paragraph header = new Paragraph("Rachunek " + RZ_Nazwa_rachunku)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(30);
+            document.Add(header);
+
+            // Napis "Data sprzedaży"
+            Paragraph subheader = new Paragraph("Data sprzedaży - " + RZ_Data)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .SetFont(Czcionka)
+                .SetFontSize(16);
+            document.Add(subheader);
+
+            // Tabela sprzedaży
+            Table Sprzedaz_Tabela = new Table(4, false).UseAllAvailableWidth();
+            Cell Sp_Cell11 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Nazwa towaru"));
+            Cell Sp_Cell12 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Cena [Zł]"));
+            Cell Sp_Cell13 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Ilość [Szt.]"));
+            Cell Sp_Cell14 = new Cell(1, 1)
+                .SetBackgroundColor(headerBg)
+                .SetFont(Czcionka)
+                .SetFontSize(10)
+                .SetTextAlignment(TextAlignment.CENTER)
+                .Add(new Paragraph("Wartość [Zł]"));
+            Sprzedaz_Tabela.AddCell(Sp_Cell11);
+            Sprzedaz_Tabela.AddCell(Sp_Cell12);
+            Sprzedaz_Tabela.AddCell(Sp_Cell13);
+            Sprzedaz_Tabela.AddCell(Sp_Cell14);
+
+            for (int a = 0; a < RZ_Lista_zakupu.GetLength(0); a++)
+            {
+                cena = decimal.Parse(RZ_Lista_zakupu[a, 1]);
+                ilosc = decimal.Parse(RZ_Lista_zakupu[a, 2]);
+                wartosc = cena * ilosc;
+                calosc += wartosc;
+
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(RZ_Lista_zakupu[a, 0])) // nazwa
+                );
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(cena.ToString("N2"))) // cena
+                );
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(ilosc.ToString("N2"))) // ilość
+                );
+                Sprzedaz_Tabela.AddCell(new Cell(1, 1)
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFont(Czcionka)
+                    .SetFontSize(10)
+                    .Add(new Paragraph(wartosc.ToString("N2"))) // wartość
+                );
+            }
+            document.Add(Sprzedaz_Tabela);
+
+            // Razem
+            Paragraph header_razem = new Paragraph("Razem: " + calosc.ToString("C2"))
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_razem);
+
+            // Forma płatności
+            Paragraph header_platnosc = new Paragraph("Forma płatności: " + RZ_Forma_Platnosci)
+                .SetFont(Czcionka)
+                .SetTextAlignment(TextAlignment.LEFT)
+                .SetFontSize(10);
+            document.Add(header_platnosc);
+
+            // Stopka z wersją
+            Paragraph header_wersja = new Paragraph("Wygenerowano automatycznie przez Księgowość " + Application.ProductVersion)
+                .SetFont(Czcionka)
+                .SetFontSize(8);
+            for (int i = 1; i <= pdf.GetNumberOfPages(); i++)
+            {
+                iText.Kernel.Geom.Rectangle pageSize = pdf.GetPage(i).GetPageSize();
+                float x = pageSize.GetWidth() / 16;
+                float y = pageSize.GetBottom() + 30;
+                document.ShowTextAligned(header_wersja, x, y, i, TextAlignment.LEFT, VerticalAlignment.BOTTOM, 0);
+            }
+
+            document.Close();
+        }
+
+        public void Generowanie_faktury_sprzedazy(string nr_kol)
         {
             string sciezka = Podaj_folder_rachunkow("0") + "Faktura VAT - " + nr_kol + ".pdf";
             string nazwa_klienta = Podaj_nazwe_klienta(nr_kol);
@@ -1018,7 +1180,7 @@ namespace Księgowość
             document.Close();
         }
 
-        public void Generowanie_Informacji_roczenj(string rok)
+        public void Generowanie_Informacji_rocznej(string rok)
         {
             string sciezka = Podaj_folder_rachunkow("0") + "Informacja roczna - " + rok + ".pdf";
             iText.Kernel.Colors.Color headerBg = new DeviceRgb(87, 235, 203);
@@ -1653,7 +1815,13 @@ namespace Księgowość
 
         private void Button_InformacjaRoczna_Click(object sender, EventArgs e)
         {
-            Generowanie_Informacji_roczenj(ROK);
+            Generowanie_Informacji_rocznej(ROK);
+        }
+
+        private void WystawRachunekZakupuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Wystaw_rachunek_zakupu Wystaw_rachunek_zakupu_ = new Wystaw_rachunek_zakupu();
+            Wystaw_rachunek_zakupu_.Show();
         }
     }   
 }

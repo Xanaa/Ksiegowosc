@@ -361,7 +361,7 @@
             this.Button_Str3_Dodaj.Name = "Button_Str3_Dodaj";
             this.Button_Str3_Dodaj.Size = new System.Drawing.Size(75, 59);
             this.Button_Str3_Dodaj.TabIndex = 4;
-            this.Button_Str3_Dodaj.Text = "Dodaj";
+            this.Button_Str3_Dodaj.Text = "Zakończ";
             this.Button_Str3_Dodaj.UseVisualStyleBackColor = true;
             this.Button_Str3_Dodaj.Click += new System.EventHandler(this.Button_Str3_Dodaj_Click);
             // 
