@@ -41,7 +41,7 @@ namespace Księgowość
         public static String FONT = sciezka_startowa + F_Dane + @"/FreeSans.ttf";
         public static decimal Stawka_PIT = 0;
         public static string ROK = "1995";
-        public static bool Zapisane = true;
+        public static bool Zapisane = true; // Czy zmiany zostały zapisane
         public static System.Drawing.Image Logo;
         public static string Logo_nazwa = "";
         public static bool Logo_wlaczone = false;
