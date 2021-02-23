@@ -566,6 +566,7 @@ namespace Księgowość
         private void ZapiszToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Zapisz();
+            Zapisane = true;
         }
 
         private void DataGrid_Przychody_CellContentClick(object sender, DataGridViewCellEventArgs e)

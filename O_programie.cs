@@ -5,7 +5,7 @@ namespace Księgowość
 {
     public partial class O_programie : Form
     {
-        public static string[] Lista_zmian = File.ReadAllLines(OknoGlowne.sciezka_startowa + @"\Lista zmian.txt");
+        public static string[] Lista_zmian = new string[1];
         private static string moja_wer, nowa_wer;
 
         public O_programie()
@@ -13,6 +13,15 @@ namespace Księgowość
             InitializeComponent();
             moja_wer = Application.ProductVersion;
             textBox_moja_wer.Text = moja_wer;
+
+            try
+            {
+                Lista_zmian = File.ReadAllLines(OknoGlowne.sciezka_startowa + @"\Lista zmian.txt");
+            }
+            catch
+            {
+                Lista_zmian[0] = "Błąd wczytywania pliku 'Lista zmian.txt'";
+            }
 
             richTextBox1.Clear();
             for(int a = 0; a< Lista_zmian.GetLength(0); a++)
