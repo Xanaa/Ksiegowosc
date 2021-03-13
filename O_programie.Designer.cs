@@ -29,135 +29,147 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(O_programie));
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button_pobierz = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox_najnowsza_wer = new System.Windows.Forms.TextBox();
-            this.textBox_moja_wer = new System.Windows.Forms.TextBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.RichTextBox_Historia = new System.Windows.Forms.RichTextBox();
+            this.Label_Ksiegowosc = new System.Windows.Forms.Label();
+            this.Button_Spr_upd = new System.Windows.Forms.Button();
+            this.GroupBox_Wersje = new System.Windows.Forms.GroupBox();
+            this.GroupBox_Aktualizacje = new System.Windows.Forms.GroupBox();
+            this.Button_Zglos_blad = new System.Windows.Forms.Button();
+            this.Button_pobierz = new System.Windows.Forms.Button();
+            this.Label_Nowa_wersja = new System.Windows.Forms.Label();
+            this.Label_Moja_wersja = new System.Windows.Forms.Label();
+            this.TextBox_Nowa_wersja = new System.Windows.Forms.TextBox();
+            this.TextBox_Moja_wersja = new System.Windows.Forms.TextBox();
+            this.GroupBox_Wersje.SuspendLayout();
+            this.GroupBox_Aktualizacje.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // RichTextBox_Historia
             // 
-            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.RichTextBox_Historia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(6, 48);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(492, 328);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.RichTextBox_Historia.Location = new System.Drawing.Point(6, 48);
+            this.RichTextBox_Historia.Name = "RichTextBox_Historia";
+            this.RichTextBox_Historia.ReadOnly = true;
+            this.RichTextBox_Historia.Size = new System.Drawing.Size(492, 328);
+            this.RichTextBox_Historia.TabIndex = 0;
+            this.RichTextBox_Historia.Text = "";
             // 
-            // label1
+            // Label_Ksiegowosc
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Księgowość ";
+            this.Label_Ksiegowosc.AutoSize = true;
+            this.Label_Ksiegowosc.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Label_Ksiegowosc.Location = new System.Drawing.Point(6, 16);
+            this.Label_Ksiegowosc.Name = "Label_Ksiegowosc";
+            this.Label_Ksiegowosc.Size = new System.Drawing.Size(162, 29);
+            this.Label_Ksiegowosc.TabIndex = 1;
+            this.Label_Ksiegowosc.Text = "Księgowość ";
             // 
-            // button1
+            // Button_Spr_upd
             // 
-            this.button1.Location = new System.Drawing.Point(6, 71);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 22);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Sprawdź aktualizacje";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.Button_Spr_upd.Location = new System.Drawing.Point(6, 71);
+            this.Button_Spr_upd.Name = "Button_Spr_upd";
+            this.Button_Spr_upd.Size = new System.Drawing.Size(198, 22);
+            this.Button_Spr_upd.TabIndex = 2;
+            this.Button_Spr_upd.Text = "Sprawdź aktualizacje";
+            this.Button_Spr_upd.UseVisualStyleBackColor = true;
+            this.Button_Spr_upd.Click += new System.EventHandler(this.Button_Spr_upd_Click);
             // 
-            // groupBox1
+            // GroupBox_Wersje
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GroupBox_Wersje.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 382);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Wersje";
+            this.GroupBox_Wersje.Controls.Add(this.Label_Ksiegowosc);
+            this.GroupBox_Wersje.Controls.Add(this.RichTextBox_Historia);
+            this.GroupBox_Wersje.Location = new System.Drawing.Point(12, 12);
+            this.GroupBox_Wersje.Name = "GroupBox_Wersje";
+            this.GroupBox_Wersje.Size = new System.Drawing.Size(504, 382);
+            this.GroupBox_Wersje.TabIndex = 3;
+            this.GroupBox_Wersje.TabStop = false;
+            this.GroupBox_Wersje.Text = "Wersje";
             // 
-            // groupBox2
+            // GroupBox_Aktualizacje
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GroupBox_Aktualizacje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.button_pobierz);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.textBox_najnowsza_wer);
-            this.groupBox2.Controls.Add(this.textBox_moja_wer);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(522, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 382);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Aktualizacje";
+            this.GroupBox_Aktualizacje.Controls.Add(this.Button_Zglos_blad);
+            this.GroupBox_Aktualizacje.Controls.Add(this.Button_pobierz);
+            this.GroupBox_Aktualizacje.Controls.Add(this.Label_Nowa_wersja);
+            this.GroupBox_Aktualizacje.Controls.Add(this.Label_Moja_wersja);
+            this.GroupBox_Aktualizacje.Controls.Add(this.TextBox_Nowa_wersja);
+            this.GroupBox_Aktualizacje.Controls.Add(this.TextBox_Moja_wersja);
+            this.GroupBox_Aktualizacje.Controls.Add(this.Button_Spr_upd);
+            this.GroupBox_Aktualizacje.Location = new System.Drawing.Point(522, 12);
+            this.GroupBox_Aktualizacje.Name = "GroupBox_Aktualizacje";
+            this.GroupBox_Aktualizacje.Size = new System.Drawing.Size(234, 382);
+            this.GroupBox_Aktualizacje.TabIndex = 4;
+            this.GroupBox_Aktualizacje.TabStop = false;
+            this.GroupBox_Aktualizacje.Text = "Aktualizacje";
             // 
-            // button_pobierz
+            // Button_Zglos_blad
             // 
-            this.button_pobierz.Location = new System.Drawing.Point(6, 99);
-            this.button_pobierz.Name = "button_pobierz";
-            this.button_pobierz.Size = new System.Drawing.Size(198, 23);
-            this.button_pobierz.TabIndex = 7;
-            this.button_pobierz.Text = "Pobierz aktualizacje";
-            this.button_pobierz.UseVisualStyleBackColor = true;
-            this.button_pobierz.Visible = false;
-            this.button_pobierz.Click += new System.EventHandler(this.Button_pobierz_Click);
+            this.Button_Zglos_blad.Location = new System.Drawing.Point(6, 128);
+            this.Button_Zglos_blad.Name = "Button_Zglos_blad";
+            this.Button_Zglos_blad.Size = new System.Drawing.Size(198, 23);
+            this.Button_Zglos_blad.TabIndex = 8;
+            this.Button_Zglos_blad.Text = "Zgłoś błąd";
+            this.Button_Zglos_blad.UseVisualStyleBackColor = true;
+            this.Button_Zglos_blad.Click += new System.EventHandler(this.Button_Zglos_blad_Click);
             // 
-            // label3
+            // Button_pobierz
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(112, 48);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Najnowsza wersja";
+            this.Button_pobierz.Location = new System.Drawing.Point(6, 99);
+            this.Button_pobierz.Name = "Button_pobierz";
+            this.Button_pobierz.Size = new System.Drawing.Size(198, 23);
+            this.Button_pobierz.TabIndex = 7;
+            this.Button_pobierz.Text = "Pobierz aktualizacje";
+            this.Button_pobierz.UseVisualStyleBackColor = true;
+            this.Button_pobierz.Visible = false;
+            this.Button_pobierz.Click += new System.EventHandler(this.Button_pobierz_Click);
             // 
-            // label2
+            // Label_Nowa_wersja
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(112, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Wersja zainstalowana";
+            this.Label_Nowa_wersja.AutoSize = true;
+            this.Label_Nowa_wersja.Location = new System.Drawing.Point(112, 48);
+            this.Label_Nowa_wersja.Name = "Label_Nowa_wersja";
+            this.Label_Nowa_wersja.Size = new System.Drawing.Size(92, 13);
+            this.Label_Nowa_wersja.TabIndex = 6;
+            this.Label_Nowa_wersja.Text = "Najnowsza wersja";
             // 
-            // textBox_najnowsza_wer
+            // Label_Moja_wersja
             // 
-            this.textBox_najnowsza_wer.Location = new System.Drawing.Point(6, 45);
-            this.textBox_najnowsza_wer.Name = "textBox_najnowsza_wer";
-            this.textBox_najnowsza_wer.ReadOnly = true;
-            this.textBox_najnowsza_wer.Size = new System.Drawing.Size(100, 20);
-            this.textBox_najnowsza_wer.TabIndex = 4;
+            this.Label_Moja_wersja.AutoSize = true;
+            this.Label_Moja_wersja.Location = new System.Drawing.Point(112, 22);
+            this.Label_Moja_wersja.Name = "Label_Moja_wersja";
+            this.Label_Moja_wersja.Size = new System.Drawing.Size(110, 13);
+            this.Label_Moja_wersja.TabIndex = 5;
+            this.Label_Moja_wersja.Text = "Wersja zainstalowana";
             // 
-            // textBox_moja_wer
+            // TextBox_Nowa_wersja
             // 
-            this.textBox_moja_wer.Location = new System.Drawing.Point(6, 19);
-            this.textBox_moja_wer.Name = "textBox_moja_wer";
-            this.textBox_moja_wer.ReadOnly = true;
-            this.textBox_moja_wer.Size = new System.Drawing.Size(100, 20);
-            this.textBox_moja_wer.TabIndex = 3;
+            this.TextBox_Nowa_wersja.Location = new System.Drawing.Point(6, 45);
+            this.TextBox_Nowa_wersja.Name = "TextBox_Nowa_wersja";
+            this.TextBox_Nowa_wersja.ReadOnly = true;
+            this.TextBox_Nowa_wersja.Size = new System.Drawing.Size(100, 20);
+            this.TextBox_Nowa_wersja.TabIndex = 4;
+            // 
+            // TextBox_Moja_wersja
+            // 
+            this.TextBox_Moja_wersja.Location = new System.Drawing.Point(6, 19);
+            this.TextBox_Moja_wersja.Name = "TextBox_Moja_wersja";
+            this.TextBox_Moja_wersja.ReadOnly = true;
+            this.TextBox_Moja_wersja.Size = new System.Drawing.Size(100, 20);
+            this.TextBox_Moja_wersja.TabIndex = 3;
             // 
             // O_programie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 406);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GroupBox_Aktualizacje);
+            this.Controls.Add(this.GroupBox_Wersje);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -165,25 +177,26 @@
             this.Name = "O_programie";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "O programie";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.GroupBox_Wersje.ResumeLayout(false);
+            this.GroupBox_Wersje.PerformLayout();
+            this.GroupBox_Aktualizacje.ResumeLayout(false);
+            this.GroupBox_Aktualizacje.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_najnowsza_wer;
-        private System.Windows.Forms.TextBox textBox_moja_wer;
-        private System.Windows.Forms.Button button_pobierz;
+        private System.Windows.Forms.RichTextBox RichTextBox_Historia;
+        private System.Windows.Forms.Label Label_Ksiegowosc;
+        private System.Windows.Forms.Button Button_Spr_upd;
+        private System.Windows.Forms.GroupBox GroupBox_Wersje;
+        private System.Windows.Forms.GroupBox GroupBox_Aktualizacje;
+        private System.Windows.Forms.Label Label_Nowa_wersja;
+        private System.Windows.Forms.Label Label_Moja_wersja;
+        private System.Windows.Forms.TextBox TextBox_Nowa_wersja;
+        private System.Windows.Forms.TextBox TextBox_Moja_wersja;
+        private System.Windows.Forms.Button Button_pobierz;
+        private System.Windows.Forms.Button Button_Zglos_blad;
     }
 }

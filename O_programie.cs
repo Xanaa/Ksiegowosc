@@ -12,7 +12,7 @@ namespace Księgowość
         {
             InitializeComponent();
             moja_wer = Application.ProductVersion;
-            textBox_moja_wer.Text = moja_wer;
+            TextBox_Moja_wersja.Text = moja_wer;
 
             try
             {
@@ -23,30 +23,35 @@ namespace Księgowość
                 Lista_zmian[0] = "Błąd wczytywania pliku 'Lista zmian.txt'";
             }
 
-            richTextBox1.Clear();
+            RichTextBox_Historia.Clear();
             for(int a = 0; a< Lista_zmian.GetLength(0); a++)
             {
-                richTextBox1.Text += Lista_zmian[a] + "\n";
+                RichTextBox_Historia.Text += Lista_zmian[a] + "\n";
             }
         }
 
         private void Button_pobierz_Click(object sender, System.EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://drive.google.com/file/d/1pbEIP2rqtr1taN7HfUJNXS5-PPs8GgXC/view?usp=sharing");
+            System.Diagnostics.Process.Start("https://github.com/Xanaa/Ksiegowosc/releases");
         }
 
-        private void Button1_Click(object sender, System.EventArgs e)
+        private void Button_Zglos_blad_Click(object sender, System.EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Xanaa/Ksiegowosc/issues");
+        }
+
+        private void Button_Spr_upd_Click(object sender, System.EventArgs e)
         {
             nowa_wer = OknoGlowne.Sprawdz_wersje();
-            textBox_najnowsza_wer.Text = nowa_wer;
+            TextBox_Nowa_wersja.Text = nowa_wer;
 
             if(moja_wer != nowa_wer)
             {
-                button_pobierz.Visible = true;
+                Button_pobierz.Visible = true;
             }
             else
             {
-                button_pobierz.Visible = false;
+                Button_pobierz.Visible = false;
             }
         }
     }

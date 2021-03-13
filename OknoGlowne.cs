@@ -35,16 +35,17 @@ namespace Księgowość
         public static string[,] Przychody;
         public static string[,] Sprzedaz;
         public static string[,] Statystyka = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Statystyka, 6, "#", ";");
-        public static string[,] Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
-        public static string[,] Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
+        public static string[,] Moje_dane;
+        public static string[,] Lista_klientów;
 
-        public static String FONT = sciezka_startowa + F_Dane + @"/FreeSans.ttf";
+        public static string FONT = sciezka_startowa + F_Dane + @"/FreeSans.ttf";
         public static decimal Stawka_PIT = 0;
         public static string ROK = "1995";
-        public static bool Zapisane = true; // Czy zmiany zostały zapisane
+        public static bool Zapisane = true;
         public static System.Drawing.Image Logo;
         public static string Logo_nazwa = "";
         public static bool Logo_wlaczone = false;
+        public static bool Logo_blad_wczytywania = false;
 
         // Rachunek zakupu
         public static string[,] RZ_Lista_zakupu = new string[1, 3];
@@ -67,12 +68,47 @@ namespace Księgowość
             Thread.CurrentThread.CurrentUICulture = culture;
 
             ROK = DateTime.Now.Year.ToString(); // Obecny rok
+            Inicjalizacja_plikow();
             Wczytaj_rok(ROK);
 
             if(Podaj_aktualizacje_na_start() == true)
             {
                 Sprawdz_wersje();
             }           
+        }
+
+        private void Inicjalizacja_plikow()
+        {
+            string[] Do_zapisu = new string[1];
+            if (File.Exists(sciezka_startowa + P_Lista_klientów) == false)
+            {
+                Do_zapisu[0] = "Koszty;Nośnik kosztów;-;-;-;-";
+                File.WriteAllLines(sciezka_startowa + P_Lista_klientów, Do_zapisu);
+            }
+            Lista_klientów = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Lista_klientów, 6, "#", ";");
+
+            if (File.Exists(sciezka_startowa + P_Moje_dane) == false)
+            {
+                Do_zapisu = new string[15];
+                Do_zapisu[0] = "# Jeśli sprzedajesz jako firma, wpisz nazwę";
+                Do_zapisu[1] = "Firma;Janusz-EX D.N.";
+                Do_zapisu[2] = "Imię i nazwisko;Janusz Kowalski";
+                Do_zapisu[3] = "# ul. 'Nazwa ulicy' dom/mieszkanie";
+                Do_zapisu[4] = "Adres;ul. Demotywująca 12/8";
+                Do_zapisu[5] = "Kod i miasto;85-688 Bydgoszcz";
+                Do_zapisu[6] = "# Folder zostaw pusty lub podaj z ukośnikiem na końcu";
+                Do_zapisu[7] = "# np. C:\\Users\\Janusz\\Desktop\\Rachunki\\";
+                Do_zapisu[8] = "Folder rachunków;";
+                Do_zapisu[9] = "# Czy aktualizacje mają być sprawdzane przy starcie aplikacji";
+                Do_zapisu[10] = "Aktualizacja;1";
+                Do_zapisu[11] = "# Logo - czy ma być wyświetlane";
+                Do_zapisu[12] = "Logo;1";
+                Do_zapisu[13] = "# Logo - nazwa pliku";
+                Do_zapisu[14] = "Logo nazwa;Logo.jpg";
+
+                File.WriteAllLines(sciezka_startowa + P_Moje_dane, Do_zapisu);
+            }
+            Moje_dane = Obsluga_plikow.Wczytaj_plik_tekstowy(sciezka_startowa, P_Moje_dane, 2, "#", ";");
         }
 
         public void Wczytaj_rok(string rok)
@@ -110,18 +146,27 @@ namespace Księgowość
             {
                 Logo_nazwa = Podaj_nazwe_Logo();
                 sciezka_logo += Logo_nazwa;
-                Logo = System.Drawing.Image.FromFile(sciezka_logo);
+                try
+                {
+                    Logo = System.Drawing.Image.FromFile(sciezka_logo);
+                }
+                catch
+                {
+                    MessageBox.Show("Błąd wczytywania pliku z Logiem\r" + sciezka_logo, "Błąd pliku", MessageBoxButtons.OK);
+                    Logo_blad_wczytywania = true;
+                }
+                
                 PictureBox_Logo.Image = Logo;
             }
         }
 
         public void Wczytaj_Przychody()
         {
-            dataGrid_Przychody.Rows.Clear();
+            DataGrid_Przychody.Rows.Clear();
 
             DateTime Data;
             string nrkol, Nazwa_klienta, Imie_i_Nazwisko_klienta, Adres, Kod_i_miasto, Forma_platnosci;
-            decimal Przychod;
+            decimal Przychod, Koszty, Zysk;
 
             for (int a = 0; a < Przychody.GetLength(0); a++)
             {
@@ -133,14 +178,16 @@ namespace Księgowość
                 Kod_i_miasto = Podaj_kod_i_miasto_klienta(Nazwa_klienta);
                 Forma_platnosci = Przychody[a, 3];
                 Przychod = Podaj_przychod_faktury(nrkol);
+                Koszty = Podaj_koszty_faktury(nrkol);
+                Zysk = Przychod - Koszty;
 
-                dataGrid_Przychody.Rows.Add(Data, nrkol, Imie_i_Nazwisko_klienta, Adres, Kod_i_miasto, Forma_platnosci, Przychod);
+                DataGrid_Przychody.Rows.Add(Data, nrkol, Imie_i_Nazwisko_klienta, Adres, Kod_i_miasto, Forma_platnosci, Przychod, Koszty, Zysk);
             }
         }
 
         public void Wczytaj_Sprzedaz()
         {
-            dataGridView_Sprzedaz.Rows.Clear();
+            DataGridView_Sprzedaz.Rows.Clear();
 
             string nrkol;
             string Opis;
@@ -156,13 +203,13 @@ namespace Księgowość
                 ilosc = decimal.Parse(Sprzedaz[a, 3]);
                 wartosc = cena * ilosc;
 
-                dataGridView_Sprzedaz.Rows.Add(nrkol, Opis, cena, ilosc, wartosc);
+                DataGridView_Sprzedaz.Rows.Add(nrkol, Opis, cena, ilosc, wartosc);
             }
         }
 
         public void Wczytaj_Koszty()
         {
-            dataGrid_Koszty.Rows.Clear();
+            DataGrid_Koszty.Rows.Clear();
 
             string nrkol;
             decimal kwota;
@@ -175,14 +222,14 @@ namespace Księgowość
                     nrkol = Koszty[a, 0];
                     kwota = decimal.Parse(Koszty[a, 1]);
                     Opis = Koszty[a, 2];
-                    dataGrid_Koszty.Rows.Add(nrkol, kwota, Opis);
+                    DataGrid_Koszty.Rows.Add(nrkol, kwota, Opis);
                 }
             }        
         }
 
         public void Wczytaj_Info_PIT()
         {
-            dataGrid_PITMiesiecznie.Rows.Clear();
+            DataGrid_PITMiesiecznie.Rows.Clear();
             decimal mies_limit = Podaj_limit_przychodu(ROK);
             string miech;
             decimal Przychod;
@@ -201,15 +248,15 @@ namespace Księgowość
                 Zal_PIT = Oblicz_Zaliczke_PIT_miesiaca(miech);
                 netto = Dochod - Zal_PIT;
                 pozostaly_limit = mies_limit - Przychod;
-                dataGrid_PITMiesiecznie.Rows.Add(miech, Przychod, Koszty, Dochod, Zal_PIT, netto, pozostaly_limit, false);
+                DataGrid_PITMiesiecznie.Rows.Add(miech, Przychod, Koszty, Dochod, Zal_PIT, netto, pozostaly_limit, false);
             }
 
-            textBox_MiesLimPrzych.Text = mies_limit.ToString("C2");
-            textBox_S_Przychodow.Text = Oblicz_Przychody_roku().ToString("C2");
-            textBox_S_Kosztow.Text = Oblicz_Koszty_roku().ToString("C2");
-            textBox_S_Dochodow.Text = Oblicz_Dochody_roku().ToString("C2");
-            textBox_S_ZaliczekPIT.Text = Oblicz_Zaliczke_PIT_roku().ToString("C2");
-            textBox_S_netto.Text = Oblicz_netto_roku().ToString("C2");
+            TextBox_MiesLimPrzych.Text = mies_limit.ToString("C2");
+            TextBox_S_Przychodow.Text = Oblicz_Przychody_roku().ToString("C2");
+            TextBox_S_Kosztow.Text = Oblicz_Koszty_roku().ToString("C2");
+            TextBox_S_Dochodow.Text = Oblicz_Dochody_roku().ToString("C2");
+            TextBox_S_ZaliczekPIT.Text = Oblicz_Zaliczke_PIT_roku().ToString("C2");
+            TextBox_S_netto.Text = Oblicz_netto_roku().ToString("C2");
 
             Label_PIT_SumaPrzychodow.Text = "Suma przychodów - PIT36("+ Podaj_numer_PIT36_roku(ROK) + ") p. " + Podaj_kol_przychodu_PIT36_roku(ROK);
             Label_PIT_SumaKosztow.Text = "Suma kosztów - PIT36(" + Podaj_numer_PIT36_roku(ROK) + ") p. " + Podaj_kol_kosztu_PIT36_roku(ROK);
@@ -476,6 +523,21 @@ namespace Księgowość
             return kwota;
         }
 
+        public static decimal Podaj_koszty_faktury(string nr_kol)
+        {
+            decimal kwota = 0;
+
+            for (int a = 0; a < Koszty.GetLength(0); a++)
+            {
+                if (Koszty[a, 0] == nr_kol)
+                {
+                    kwota += decimal.Parse(Koszty[a, 1].Replace('.',','));
+                }
+            }
+
+            return kwota;
+        }
+
         public void Zapisz()
         {
             Wczytaj_DGV();
@@ -485,9 +547,9 @@ namespace Księgowość
 
         public void Wczytaj_DGV()
         {
-            int przychody_dlugosc = dataGrid_Przychody.Rows.GetRowCount(0) - 1;
-            int sprzedaz_dlugosc = dataGridView_Sprzedaz.Rows.GetRowCount(0) - 1;
-            int koszty_dlugosc = dataGrid_Koszty.Rows.GetRowCount(0) - 1;
+            int przychody_dlugosc = DataGrid_Przychody.Rows.GetRowCount(0) - 1;
+            int sprzedaz_dlugosc = DataGridView_Sprzedaz.Rows.GetRowCount(0) - 1;
+            int koszty_dlugosc = DataGrid_Koszty.Rows.GetRowCount(0) - 1;
             int przychody_szerokosc = 4;
             int sprzedaz_szerokosc = 4;
             int koszty_szerokosc = 3;
@@ -499,14 +561,14 @@ namespace Księgowość
 
             for (int a = 0; a < przychody_dlugosc; a ++)
             {
-                data2 = dataGrid_Przychody.Rows[a].Cells[0].Value.ToString();
+                data2 = DataGrid_Przychody.Rows[a].Cells[0].Value.ToString();
                 data1 = DateTime.Parse(data2);
                 data = data1.Day.ToString("00") + "." + data1.Month.ToString("00") + "." + data1.Year.ToString("0000");
-                nr_kol = dataGrid_Przychody.Rows[a].Cells[1].Value.ToString();
-                Nabywca = dataGrid_Przychody.Rows[a].Cells[2].Value.ToString().Replace(';', ',');
-                adres = dataGrid_Przychody.Rows[a].Cells[3].Value.ToString().Replace(';', ',');
+                nr_kol = DataGrid_Przychody.Rows[a].Cells[1].Value.ToString();
+                Nabywca = DataGrid_Przychody.Rows[a].Cells[2].Value.ToString().Replace(';', ',');
+                adres = DataGrid_Przychody.Rows[a].Cells[3].Value.ToString().Replace(';', ',');
                 Nazwa_nabywcy = Podaj_Nazwe_klienta(Nabywca, adres);
-                Forma_platnosci = dataGrid_Przychody.Rows[a].Cells[5].Value.ToString();
+                Forma_platnosci = DataGrid_Przychody.Rows[a].Cells[5].Value.ToString();
 
                 Nowe_przychody[a, 0] = data;
                 Nowe_przychody[a, 1] = nr_kol;
@@ -516,10 +578,10 @@ namespace Księgowość
 
             for (int a = 0; a < sprzedaz_dlugosc; a++)
             {
-                nr_kol = dataGridView_Sprzedaz.Rows[a].Cells[0].Value.ToString();
-                nazwa = dataGridView_Sprzedaz.Rows[a].Cells[1].Value.ToString();
-                cena = dataGridView_Sprzedaz.Rows[a].Cells[2].Value.ToString();
-                ilosc = dataGridView_Sprzedaz.Rows[a].Cells[3].Value.ToString();
+                nr_kol = DataGridView_Sprzedaz.Rows[a].Cells[0].Value.ToString();
+                nazwa = DataGridView_Sprzedaz.Rows[a].Cells[1].Value.ToString();
+                cena = DataGridView_Sprzedaz.Rows[a].Cells[2].Value.ToString();
+                ilosc = DataGridView_Sprzedaz.Rows[a].Cells[3].Value.ToString();
 
                 Nowe_sprzedaz[a, 0] = nr_kol;
                 Nowe_sprzedaz[a, 1] = nazwa;
@@ -529,9 +591,9 @@ namespace Księgowość
 
             for (int a = 0; a < koszty_dlugosc; a++)
             {
-                nr_kol = dataGrid_Koszty.Rows[a].Cells[0].Value.ToString();
-                cena = dataGrid_Koszty.Rows[a].Cells[1].Value.ToString();
-                nazwa = dataGrid_Koszty.Rows[a].Cells[2].Value.ToString();
+                nr_kol = DataGrid_Koszty.Rows[a].Cells[0].Value.ToString();
+                cena = DataGrid_Koszty.Rows[a].Cells[1].Value.ToString();
+                nazwa = DataGrid_Koszty.Rows[a].Cells[2].Value.ToString();
 
                 Nowe_koszty[a, 0] = nr_kol;
                 Nowe_koszty[a, 1] = cena.Replace('.',',');
@@ -573,18 +635,18 @@ namespace Księgowość
         {
             var senderGrid = (DataGridView)sender;
             int Wiersz = e.RowIndex;
-            int liczba_wierszy = dataGrid_Przychody.Rows.GetRowCount(0);
+            int liczba_wierszy = DataGrid_Przychody.Rows.GetRowCount(0);
 
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn && Wiersz >= 0 && Wiersz < (liczba_wierszy-1))
             {
                 int kolumna = e.ColumnIndex;
-                if(kolumna == 7)
+                if(kolumna == 9)
                 {
-                    Generowanie_rachunku_sprzedazy(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
+                    Generowanie_rachunku_sprzedazy(DataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
                 } // Rachunek
-                else
+                else if(kolumna == 10)
                 {
-                    Generowanie_faktury_sprzedazy(dataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
+                    Generowanie_faktury_sprzedazy(DataGrid_Przychody.Rows[Wiersz].Cells[1].Value.ToString());
                 } // Faktura
             }
         }
@@ -642,7 +704,7 @@ namespace Księgowość
                 .SetTextAlignment(TextAlignment.RIGHT)
                 .Add(new Paragraph(nabywca));
             Adresy_Tabela.AddCell(cell1);
-            if (Logo_wlaczone == true)
+            if (Logo_wlaczone == true && Logo_blad_wczytywania == false)
             {
                 string sciezka_logo = sciezka_startowa + F_Dane + @"/" + Logo_nazwa;
                 iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(sciezka_logo));
@@ -975,7 +1037,7 @@ namespace Księgowość
                 .SetTextAlignment(TextAlignment.RIGHT)
                 .Add(new Paragraph(nabywca));
             Adresy_Tabela.AddCell(cell1);
-            if (Logo_wlaczone == true)
+            if (Logo_wlaczone == true && Logo_blad_wczytywania == false)
             {
                 string sciezka_logo = sciezka_startowa + F_Dane + @"/" + Logo_nazwa;
                 iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(sciezka_logo));

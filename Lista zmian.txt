@@ -1,6 +1,16 @@
 ﻿Lista zmian programu Księgowość:
+-1.4.1.0 (13.03.2021r.)
+	-Dodanie przycisku zgłaszania błędów
+	-Poprawa nazewnictwa elementów okien
+	-Zmiana adresu plików do pobrania aktualizacji
+	-Dodanie kolumn 'Koszty' i 'Zysk' w widoku Przychodów
+	-Aktualizacja kolumn PIT
+	-Naprawiono błąd gdy brak pliku z Logiem
+	-Naprawiono błąd gdy brak pliku z Listą klientów
+	-Naprawiono błąd gdy brak pliku z Danymi sprzedawcy
+
 -1.4.0.1 (23.02.2021r.)
-	-Naprawiono błąd polegający na pytaniu o zapis przy zamknięciu mimo zapisu przez menu "Plik->Zapisz"
+	-Naprawiono błąd zapisu przy zamknięciu gdy wybrano w menu "Plik->Zapisz"
 	-Naprawiono błąd krytyczny gdy brakuje pliku 'Lista zmian.txt'
 
 -1.4.0.0 (03.02.2021r.)

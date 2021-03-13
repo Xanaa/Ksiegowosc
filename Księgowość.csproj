@@ -88,7 +88,7 @@
       <HintPath>packages\itext7.7.1.13\lib\net40\itext.svg.dll</HintPath>
     </Reference>
     <Reference Include="Pomocnik">
-      <HintPath>..\..\Pomocnik\Pomocnik\bin\Debug\Pomocnik.dll</HintPath>
+      <HintPath>..\Pomocnik\Pomocnik\bin\Debug\Pomocnik.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
